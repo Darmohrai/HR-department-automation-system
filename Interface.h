@@ -1,6 +1,7 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_INTERFACE_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_INTERFACE_H
 
+#include <string>
 
 class Interface{
 public:
@@ -10,12 +11,11 @@ public:
     virtual int getSalary() = 0;
 
     // methods set
-    virtual void setInfo() = 0;
     virtual void prepareOrder() = 0;
-    virtual bool changeStatus() = 0;
+    virtual void checkStatus() = 0;
 
     // methods save
-    virtual void saveInfo() = 0;
+    virtual void saveInfo(std::string file_name) = 0;
 };
 
 

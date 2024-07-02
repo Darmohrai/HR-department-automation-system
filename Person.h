@@ -2,8 +2,8 @@
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_PERSON_H
 
 #include "Interface.h"
-#include <string>
 #include <iostream>
+#include <fstream>
 
 
 class Person : Interface {
@@ -15,9 +15,16 @@ private:
     int entry_date;
     std::string specialty;
 public:
+
     // methods get
     void getAllInfo() override;
     void getBriefInfo() override;
+
+    // methods set
+    void checkStatus() override;
+
+    // methods save
+    void saveInfo(std::string file_name) override;
 };
 
 
