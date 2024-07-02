@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(HR_department_automation_system main.cpp
         Interface.cpp
-        Interface.h)
+        Interface.h
+        Person.h
+        Person.cpp)
