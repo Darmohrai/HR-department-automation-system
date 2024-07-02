@@ -1,5 +1,30 @@
 #include "Person.h"
 
+Person::Person(std::string &fullname, int age, int passport_number,
+               std::string &education, int entry_date, std::string &specialty) {
+    this->fullname = fullname;
+    this->age = age;
+    this->passport_number = passport_number;
+    this->education = education;
+    this->entry_date = entry_date;
+    this->specialty = specialty;
+}
+
+Person::Person(Person &&pers) noexcept: fullname{pers.fullname}, age{pers.age}, passport_number{pers.passport_number},
+                                        education{pers.education}, entry_date{pers.entry_date},
+                                        specialty{pers.specialty} {
+    pers.fullname = "";
+    pers.age = 0;
+    pers.passport_number = 0;
+    pers.education = "";
+    pers.entry_date = 0;
+    pers.specialty = "";
+}
+
+Person::Person(Person &pers) : fullname{pers.fullname}, age{pers.age}, passport_number{pers.passport_number},
+                               education{pers.education}, entry_date{pers.entry_date},
+                               specialty{pers.specialty} {}
+
 void Person::getAllInfo() {
     std::cout << "ПІБ - " << fullname
               << "\nВік - " << age

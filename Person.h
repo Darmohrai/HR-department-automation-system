@@ -15,9 +15,21 @@ private:
     int entry_date;
     std::string specialty;
 public:
+    Person() : fullname{"None"}, age{0}, passport_number{0},
+               education{"None"}, entry_date{0}, specialty{"None"} {};
+
+    Person(std::string &fullname, int age, int passport_number,
+           std::string &education, int entry_date, std::string &specialty);
+
+    Person(Person &pers);
+
+    Person(Person &&pers) noexcept;
+
+    ~Person() { std::cout << "\nobj delete\n"; };
 
     // methods get
     void getAllInfo() override;
+
     void getBriefInfo() override;
 
     // methods set
