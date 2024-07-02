@@ -7,4 +7,6 @@ add_executable(HR_department_automation_system main.cpp
         Interface.cpp
         Interface.h
         Person.h
-        Person.cpp)
+        Person.cpp
+        Trainee.h
+        Trainee.cpp)

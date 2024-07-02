@@ -29,8 +29,8 @@ void Person::getAllInfo() {
     std::cout << "ПІБ - " << fullname
               << "\nВік - " << age
               << "\nНомер паспорта - " << passport_number
-              << "\nОсвіта" << education
-              << "\nДата надходження у фірму" << entry_date
+              << "\nОсвіта - " << education
+              << "\nДата надходження у фірму - " << entry_date
               << "\nСпеціальність - " << specialty;
 }
 
@@ -51,4 +51,9 @@ void Person::saveInfo(std::string file_name) {
     fout << fullname << "\n" << age << "\n" << passport_number << "\n" << education << "\n" << entry_date << "\n"
          << specialty;
     fout.close();
+}
+
+void Person::readInfo(std::string file_name) {
+    std::ifstream fin(file_name, std::ios::app);
+    // need to update ...
 }

@@ -6,7 +6,7 @@
 #include <fstream>
 
 
-class Person : Interface {
+class Person : public Interface {
 private:
     std::string fullname;
     int age;
@@ -37,6 +37,7 @@ public:
 
     // methods save
     void saveInfo(std::string file_name) override;
+    void readInfo(std::string file_name) override;
 };
 
 

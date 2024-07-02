@@ -16,6 +16,7 @@ public:
 
     // methods save
     virtual void saveInfo(std::string file_name) = 0;
+    virtual void readInfo(std::string file_name) = 0;
 };
 
 
