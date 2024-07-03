@@ -20,13 +20,21 @@ public:
 
     Employee(Employee &employee);
 
+    ~Employee() {std::cout << "object deleted"; }
+
 
     // methods get
     void getAllInfo() override;
 
     void getBriefInfo() override;
 
-    [[nodiscard]] int getSalary() override { return salary; }
+    [[nodiscard]] int getSalary() override { return salary;}
+
+
+    // methods set
+    void prepareOrder() override;
+
+    void checkStatus() override;
 };
 
 

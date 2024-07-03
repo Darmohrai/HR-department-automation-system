@@ -32,7 +32,9 @@ public:
 
     void getBriefInfo() override;
 
-    std::string getFullname() { return fullname; }
+    [[nodiscard]] std::string getFullname() const { return fullname; }
+
+    [[nodiscard]] int getAge() const { return age; }
 
 
     // methods set
