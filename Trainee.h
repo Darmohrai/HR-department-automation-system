@@ -3,7 +3,7 @@
 
 #include "Person.h"
 
-class Trainee : Person {
+class Trainee final : public Person {
 private:
     int probation;
     std::string performance;
