@@ -18,6 +18,13 @@ public:
     Trainee(Trainee &&trainee) noexcept; // need check
 
     Trainee(Trainee &trainee);
+
+    // methods get
+    void getAllInfo() override;
+
+    void getBriefInfo() override;
+
+    [[nodiscard]] int getSalary() override { return 0; }
 };
 
 

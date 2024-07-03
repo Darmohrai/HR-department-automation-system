@@ -16,8 +16,21 @@ Trainee::Trainee(Trainee &&trainee) noexcept: Person(std::move(trainee)), probat
     trainee.mentor = nullptr;
 }
 
-Trainee::Trainee(Trainee &trainee): Person(trainee){
+Trainee::Trainee(Trainee &trainee) : Person(trainee) {
     this->probation = trainee.probation;
     this->performance = trainee.performance;
     this->mentor = trainee.mentor;
+}
+
+void Trainee::getAllInfo() {
+    Person::getAllInfo();
+    std::cout << "\nТермін завершення пробного періоду - " << probation
+              << "\nПродуктивність - " << performance
+              << "\nМентор - " << mentor;
+}
+
+void Trainee::getBriefInfo() {
+    Person::getBriefInfo();
+    std::cout << "\nПосада - практикант"
+              << "\nПродуктивність - " << performance;
 }

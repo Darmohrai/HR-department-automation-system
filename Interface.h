@@ -8,7 +8,7 @@ public:
     // methods get
     virtual void getAllInfo() = 0;
     virtual void getBriefInfo() = 0;
-    virtual int getSalary() = 0;
+    [[nodiscard]] virtual int getSalary() = 0;
 
     // methods set
     virtual void prepareOrder() = 0;

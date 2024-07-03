@@ -32,11 +32,14 @@ public:
 
     void getBriefInfo() override;
 
+
     // methods set
     void checkStatus() override;
 
+
     // methods save
     void saveInfo(std::string file_name) override;
+
     void readInfo(std::string file_name) override;
 };
 
