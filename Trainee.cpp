@@ -2,7 +2,7 @@
 
 Trainee::Trainee(std::string &fullname, int age, int passport_number,
                  std::string &education, int entry_date, std::string &specialty,
-                 int &probation, std::string &performance, std::string *mentor) :
+                 int probation, std::string &performance, std::string &mentor) :
         Person(fullname, age, passport_number, education, entry_date, specialty) {
     this->probation = probation;
     this->performance = performance;
@@ -13,7 +13,7 @@ Trainee::Trainee(Trainee &&trainee) noexcept: Person(std::move(trainee)), probat
                                               performance{trainee.performance}, mentor{trainee.mentor} {
     trainee.probation = 0;
     trainee.performance = "";
-    trainee.mentor = nullptr;
+    trainee.mentor = "";
 }
 
 Trainee::Trainee(Trainee &trainee) : Person(trainee) {
@@ -71,4 +71,16 @@ void Trainee::checkStatus() {
             }
         }
     }
+}
+
+
+void Trainee::saveInfo(std::ofstream &fout){
+    Person::saveInfo(fout);
+    fout << probation << "\n" << performance << "\n" << mentor << "\n\n";
+}
+
+void Trainee::readInfo(std::ifstream &fin){
+    std::string reader;
+    Person::readInfo(fin);
+    fin >> probation >> performance >> mentor >> reader >> reader;
 }

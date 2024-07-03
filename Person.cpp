@@ -46,14 +46,15 @@ void Person::checkStatus() {
     else std::cout << "Працівник не є пенсійного або передпенсійного віку";
 }
 
-void Person::saveInfo(std::string file_name) {
-    std::ofstream fout(file_name, std::ios::app);
+void Person::saveInfo(std::ofstream &fout) {
+    //std::ofstream fout(file_name, std::ios::app);
     fout << fullname << "\n" << age << "\n" << passport_number << "\n" << education << "\n" << entry_date << "\n"
-         << specialty;
-    fout.close();
+         << specialty << "\n";
+    //fout.close();
 }
 
-void Person::readInfo(std::string file_name) {
-    std::ifstream fin(file_name, std::ios::app);
+void Person::readInfo(std::ifstream &fin) {
+    //std::ifstream fin(file_name, std::ios::app);
+    fin >> fullname >> age >> passport_number >> education >> entry_date >> specialty;
     // need to update ...
 }

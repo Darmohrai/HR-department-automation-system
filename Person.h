@@ -40,9 +40,9 @@ public:
 
 
     // methods save
-    void saveInfo(std::string file_name) override;
+    void saveInfo(std::ofstream &fout) override;
 
-    void readInfo(std::string file_name) override;
+    void readInfo(std::ifstream &fin) override;
 };
 
 
