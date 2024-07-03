@@ -24,3 +24,19 @@ Employee::Employee(Employee &&employee) noexcept: Person(std::move(employee)), d
 Employee::Employee(Employee &employee) : Person(employee), department{employee.department},
                                          salary{employee.salary}, position{employee.position},
                                          last_appointment{employee.last_appointment} {}
+
+
+void Employee::getAllInfo() {
+    Person::getAllInfo();
+    std::cout << "\nПідрозділ" << department
+              << "\nПосада" << position
+              << "\nОклад" << salary
+              << "\nОстаннє призначення" << last_appointment;
+}
+
+void Employee::getBriefInfo() {
+    Person::getBriefInfo();
+    std::cout << "\nПідрозділ" << department
+              << "\nПосада" << position
+              << "\nОклад" << salary;
+}
