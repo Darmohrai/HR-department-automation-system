@@ -25,6 +25,12 @@ public:
     void getBriefInfo() override;
 
     [[nodiscard]] int getSalary() override { return 0; }
+
+
+    // methods set
+    void prepareOrder() override;
+
+    void checkStatus() override;
 };
 
 

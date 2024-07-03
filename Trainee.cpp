@@ -34,3 +34,41 @@ void Trainee::getBriefInfo() {
     std::cout << "\nПосада - практикант"
               << "\nПродуктивність - " << performance;
 }
+
+void Trainee::prepareOrder() {
+    std::cout << "\nНаказ підготовлений"
+                 "\nНатисніть 1, щоб підписати"
+                 "\nНатисніть 0, щоб скасувати\n";
+    // need to update ...
+}
+
+void Trainee::checkStatus() {
+    if (performance == "well") {
+        std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
+                  << "\nВведіть '1', щоб побачити повну інформацію про претендента"
+                     "\nВведіть '2', щоб побачити коротку інформацію про претендента"
+                     "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                     "\nВведіть '0', щоб вийти\n";
+        int answer = 1;
+
+        while (answer == 1 or answer == 2) {
+            std::cin >> answer;
+            switch (answer) {
+                case 1:
+                    getAllInfo();
+                    std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                                 "\nВведіть '0', щоб вийти\n";
+                case 2:
+                    getBriefInfo();
+                    std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                                 "\nВведіть '0', щоб вийти\n";
+                case 3:
+                    prepareOrder();
+                case 0:
+                    std::cout << "\n\nВи вийшли\n\n";
+                default:
+                    std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
+            }
+        }
+    }
+}

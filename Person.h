@@ -32,6 +32,8 @@ public:
 
     void getBriefInfo() override;
 
+    std::string getFullname() { return fullname; }
+
 
     // methods set
     void checkStatus() override;

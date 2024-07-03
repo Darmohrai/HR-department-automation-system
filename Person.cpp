@@ -26,7 +26,7 @@ Person::Person(Person &pers) : fullname{pers.fullname}, age{pers.age}, passport_
                                specialty{pers.specialty} {}
 
 void Person::getAllInfo() {
-    std::cout << "ПІБ - " << fullname
+    std::cout << "\nПІБ - " << fullname
               << "\nВік - " << age
               << "\nНомер паспорта - " << passport_number
               << "\nОсвіта - " << education
@@ -35,7 +35,7 @@ void Person::getAllInfo() {
 }
 
 void Person::getBriefInfo() {
-    std::cout << "ПІБ - " << fullname
+    std::cout << "\nПІБ - " << fullname
               << "\nВік - " << age;
 }
 
