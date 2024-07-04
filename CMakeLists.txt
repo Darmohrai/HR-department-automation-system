@@ -11,4 +11,6 @@ add_executable(HR_department_automation_system main.cpp
         Trainee.h
         Trainee.cpp
         Employee.h
-        Employee.cpp)
+        Employee.cpp
+        Manager.h
+        Manager.cpp)

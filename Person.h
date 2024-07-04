@@ -12,14 +12,14 @@ private:
     int age;
     int passport_number;
     std::string education;
-    int entry_date;
+    std::string entry_date;
     std::string specialty;
 public:
     Person() : fullname{"None"}, age{0}, passport_number{0},
-               education{"None"}, entry_date{0}, specialty{"None"} {};
+               education{"None"}, entry_date{"None"}, specialty{"None"} {};
 
     Person(std::string &fullname, int age, int passport_number,
-           std::string &education, int entry_date, std::string &specialty);
+           std::string &education, std::string &entry_date, std::string &specialty);
 
     Person(Person &pers);
 

@@ -12,12 +12,14 @@ public:
     Trainee() : probation{0}, performance{"bad"}, mentor{"None"} {};
 
     Trainee(std::string &fullname, int age, int passport_number,
-            std::string &education, int entry_date, std::string &specialty,
+            std::string &education, std::string &entry_date, std::string &specialty,
             int probation, std::string &performance, std::string &mentor);
 
     Trainee(Trainee &&trainee) noexcept; // need check
 
     Trainee(Trainee &trainee);
+
+    ~Trainee() { std::cout << "object deleted"; }
 
     // methods get
     void getAllInfo() override;

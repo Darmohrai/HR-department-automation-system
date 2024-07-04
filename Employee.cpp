@@ -1,7 +1,7 @@
 #include "Employee.h"
 
 Employee::Employee(std::string &fullname, int age, int passport_number,
-                   std::string &education, int entry_date, std::string &specialty, std::string &department,
+                   std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                    std::string &position, int salary,
                    std::string &last_appointment) : Person(fullname, age,
                                                            passport_number, education,

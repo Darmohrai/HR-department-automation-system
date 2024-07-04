@@ -1,7 +1,7 @@
 #include "Trainee.h"
 
 Trainee::Trainee(std::string &fullname, int age, int passport_number,
-                 std::string &education, int entry_date, std::string &specialty,
+                 std::string &education, std::string &entry_date, std::string &specialty,
                  int probation, std::string &performance, std::string &mentor) :
         Person(fullname, age, passport_number, education, entry_date, specialty) {
     this->probation = probation;

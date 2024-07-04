@@ -1,7 +1,7 @@
 #include "Person.h"
 
 Person::Person(std::string &fullname, int age, int passport_number,
-               std::string &education, int entry_date, std::string &specialty) {
+               std::string &education, std::string &entry_date, std::string &specialty) {
     this->fullname = fullname;
     this->age = age;
     this->passport_number = passport_number;
@@ -17,7 +17,7 @@ Person::Person(Person &&pers) noexcept: fullname{pers.fullname}, age{pers.age}, 
     pers.age = 0;
     pers.passport_number = 0;
     pers.education = "";
-    pers.entry_date = 0;
+    pers.entry_date = "";
     pers.specialty = "";
 }
 
