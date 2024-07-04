@@ -39,5 +39,5 @@ void Manager::saveInfo(std::ofstream &fout) {
 void Manager::readInfo(std::ifstream &fin) {
     std::string reader;
     Employee::readInfo(fin);
-    fin >> supervisory_department >> premium >> reader >> reader;
+    fin >> supervisory_department >> premium;
 }

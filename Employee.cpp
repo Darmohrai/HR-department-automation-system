@@ -105,5 +105,5 @@ void Employee::saveInfo(std::ofstream &fout) {
 
 void Employee::readInfo(std::ifstream &fin) {
     Person::readInfo(fin);
-    fin >> department >> department >> position >> last_appointment;
+    fin >> department >> salary >> position >> last_appointment;
 }

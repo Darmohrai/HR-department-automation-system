@@ -82,5 +82,5 @@ void Trainee::saveInfo(std::ofstream &fout){
 void Trainee::readInfo(std::ifstream &fin){
     std::string reader;
     Person::readInfo(fin);
-    fin >> probation >> performance >> mentor >> reader >> reader;
+    fin >> probation >> performance >> mentor;
 }
