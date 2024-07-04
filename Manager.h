@@ -5,7 +5,7 @@
 
 class Manager final : public Employee {
 private:
-    std::string supervisory_department;
+    std::string supervisory_department; // need to create 'has a relationship' with class Department
     int premium;
 public:
     Manager() : supervisory_department{"None"}, premium{0} {}
@@ -28,6 +28,18 @@ public:
     void getBriefInfo() final;
 
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
+
+    [[nodiscard]] int getPremium() { return premium; }
+
+
+    // methods set
+    void prepareOrder() final { Employee::prepareOrder(); }
+
+    void checkStatus() final { Employee::checkStatus(); }
+
+    void setPremium() { std::cin >> premium; }
+
+
 };
 
 

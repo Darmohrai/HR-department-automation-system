@@ -25,7 +25,7 @@ public:
 
     Person(Person &&pers) noexcept;
 
-    ~Person() { std::cout << "\nobj delete\n"; };
+    ~Person() { std::cout << "\nobj deleted\n"; };
 
     // methods get
     void getAllInfo() override;
