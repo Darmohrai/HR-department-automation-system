@@ -18,3 +18,14 @@ Manager::Manager(Manager &&manager) noexcept: Employee(std::move(manager)),
 
 Manager::Manager(Manager &manager) : Employee(manager), supervisory_department{manager.supervisory_department},
                                      premium{manager.premium} {}
+
+
+void Manager::getAllInfo() {
+    Employee::getAllInfo();
+    std::cout << "\nПремія - " << premium;
+}
+
+void Manager::getBriefInfo() {
+    Employee::getBriefInfo();
+    std::cout << "\nПремія - " << premium;
+}

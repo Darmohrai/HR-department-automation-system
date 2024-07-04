@@ -28,17 +28,17 @@ Employee::Employee(Employee &employee) : Person(employee), department{employee.d
 
 void Employee::getAllInfo() {
     Person::getAllInfo();
-    std::cout << "\nПідрозділ" << department
-              << "\nПосада" << position
-              << "\nОклад" << salary
-              << "\nОстаннє призначення" << last_appointment;
+    std::cout << "\nПідрозділ -" << department
+              << "\nПосада - " << position
+              << "\nОклад - " << salary
+              << "\nОстаннє призначення - " << last_appointment;
 }
 
 void Employee::getBriefInfo() {
     Person::getBriefInfo();
-    std::cout << "\nПідрозділ" << department
-              << "\nПосада" << position
-              << "\nОклад" << salary;
+    std::cout << "\nПідрозділ - " << department
+              << "\nПосада - " << position
+              << "\nОклад - " << salary;
 }
 
 
@@ -46,8 +46,8 @@ void Employee::prepareOrder() {
     int answer;
     bool numb = false;
     std::cout << "\n\nНаказ про звільнення підготовлено, "
-                 "\nНатисніть '1', щоб підписати"
-                 "\nНатисніть '0', щоб скасувати";
+                 "\nНатисніть '1', щоб підписати "
+                 "\nНатисніть '0', щоб скасувати ";
 
     while (numb == false) {
         try {

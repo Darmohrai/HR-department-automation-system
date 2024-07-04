@@ -20,6 +20,14 @@ public:
     Manager(Manager &manager);
 
     ~Manager() { std::cout << "object deleted"; }
+
+
+    // methods get
+    void getAllInfo() final;
+
+    void getBriefInfo() final;
+
+    [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 };
 
 
