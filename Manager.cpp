@@ -29,3 +29,15 @@ void Manager::getBriefInfo() {
     Employee::getBriefInfo();
     std::cout << "\nПремія - " << premium;
 }
+
+
+void Manager::saveInfo(std::ofstream &fout) {
+    Employee::saveInfo(fout);
+    fout << supervisory_department << "\n" << premium << "\n" << "\n";
+}
+
+void Manager::readInfo(std::ifstream &fin) {
+    std::string reader;
+    Employee::readInfo(fin);
+    fin >> supervisory_department >> premium >> reader >> reader;
+}

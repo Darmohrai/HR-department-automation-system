@@ -39,6 +39,12 @@ public:
     void prepareOrder() override;
 
     void checkStatus() override;
+
+
+    // methods save
+    void saveInfo(std::ofstream &fout) override;
+
+    void readInfo(std::ifstream &fin) override;
 };
 
 

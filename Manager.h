@@ -40,6 +40,10 @@ public:
     void setPremium() { std::cin >> premium; }
 
 
+    // methods save
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin) final;
 };
 
 

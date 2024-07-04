@@ -59,7 +59,7 @@ void Employee::prepareOrder() {
             } else if (answer == 0) std::cout << "\nНаказ скасовано\n";
             else throw false;
         }
-        catch (bool n){
+        catch (bool n) {
             std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
             numb = false;
         }
@@ -95,4 +95,15 @@ void Employee::checkStatus() {
             }
         }
     }
+}
+
+
+void Employee::saveInfo(std::ofstream &fout) {
+    Person::saveInfo(fout);
+    fout << department << "\n" << salary << "\n" << position << "\n" << last_appointment << "\n";
+}
+
+void Employee::readInfo(std::ifstream &fin) {
+    Person::readInfo(fin);
+    fin >> department >> department >> position >> last_appointment;
 }
