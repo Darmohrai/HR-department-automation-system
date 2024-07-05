@@ -36,3 +36,14 @@ void OfficeWorker::getBriefInfo() {
     Employee::getBriefInfo();
     std::cout << "\nID - " << id;
 }
+
+
+void OfficeWorker::saveInfo(std::ofstream &fout) {
+    Employee::saveInfo(fout);
+    fout << experience << "\n" << id << "\n" << project_numbers << "\n" << "\n";
+}
+
+void OfficeWorker::readInfo(std::ifstream &fin) {
+    Employee::readInfo(fin);
+    fin >> experience >> id >> project_numbers;
+}

@@ -31,6 +31,21 @@ public:
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
     [[nodiscard]] int getExperience() { return experience; }
+
+
+    // methods set
+    void prepareOrder() final { Employee::prepareOrder(); }
+
+    void checkStatus() final { Employee::checkStatus(); }
+
+    void setProjectNumbers() { std::cin >> project_numbers; }
+
+
+    // methods save
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin) final;
+
 };
 
 
