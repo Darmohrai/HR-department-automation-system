@@ -21,6 +21,16 @@ public:
     OfficeWorker(OfficeWorker &officeWorker);
 
     ~OfficeWorker() { std::cout << "object deleted"; }
+
+
+    // methods get
+    void getAllInfo() final;
+
+    void getBriefInfo() final;
+
+    [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
+
+    [[nodiscard]] int getExperience() { return experience; }
 };
 
 

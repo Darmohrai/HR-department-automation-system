@@ -23,3 +23,16 @@ OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) : Employee(std::move(off
 OfficeWorker::OfficeWorker(OfficeWorker &officeWorker) : Employee(officeWorker), experience{officeWorker.experience},
                                                          id{officeWorker.id},
                                                          project_numbers{officeWorker.project_numbers} {}
+
+
+void OfficeWorker::getAllInfo() {
+    Employee::getAllInfo();
+    std::cout << "\nСтаж - " << experience
+              << "\nID - " << id
+              << "\nКількість проєктів у яких бере участь - " << project_numbers;
+}
+
+void OfficeWorker::getBriefInfo() {
+    Employee::getBriefInfo();
+    std::cout << "\nID - " << id;
+}
