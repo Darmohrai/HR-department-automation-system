@@ -22,3 +22,15 @@ AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition) : Emp
                                                                              experience{auxiliaryPosition.experience},
                                                                              phone_number{
                                                                                      auxiliaryPosition.phone_number} {}
+
+
+void AuxiliaryPosition::getAllInfo() {
+    Employee::getAllInfo();
+    std::cout << "\nСтаж - " << experience
+              << "\nНомер телефону - " << phone_number;
+}
+
+void AuxiliaryPosition::getBriefInfo() {
+    Employee::getBriefInfo();
+    std::cout << "\nНомер телефону - " << phone_number;
+}

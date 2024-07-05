@@ -18,6 +18,18 @@ public:
     AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition);
 
     AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition);
+
+    ~AuxiliaryPosition() { std::cout << "object deleted"; }
+
+
+    // methods get
+    void getAllInfo() final;
+
+    void getBriefInfo() final;
+
+    [[nodiscard]] int getSalary() { return Employee::getSalary(); }
+
+    [[nodiscard]] int getExperience() { return experience; }
 };
 
 
