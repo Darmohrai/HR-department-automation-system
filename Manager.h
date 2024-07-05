@@ -8,7 +8,7 @@ private:
     std::string supervisory_department; // need to create 'has a relationship' with class Department
     int premium;
 public:
-    Manager() : supervisory_department{"None"}, premium{0} {}
+    Manager() : Employee(), supervisory_department{"None"}, premium{0} {}
 
     Manager(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty, std::string &department,

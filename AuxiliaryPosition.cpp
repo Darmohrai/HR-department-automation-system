@@ -1,0 +1,24 @@
+#include "AuxiliaryPosition.h"
+
+AuxiliaryPosition::AuxiliaryPosition(std::string &fullname, int age, int passport_number,
+                                     std::string &education, std::string &entry_date, std::string &specialty,
+                                     std::string &department, std::string &position, int salary,
+                                     std::string &last_appointment, int experience, int phone_number) : Employee(
+        fullname, age, passport_number, education, entry_date, specialty, department, position,
+        salary, last_appointment) {
+    this->experience = experience;
+    this->phone_number = phone_number;
+}
+
+AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition) : Employee(std::move(auxiliaryPosition)),
+                                                                              experience{auxiliaryPosition.experience},
+                                                                              phone_number{
+                                                                                      auxiliaryPosition.phone_number} {
+    auxiliaryPosition.experience = 0;
+    auxiliaryPosition.phone_number = 0;
+}
+
+AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition) : Employee(auxiliaryPosition),
+                                                                             experience{auxiliaryPosition.experience},
+                                                                             phone_number{
+                                                                                     auxiliaryPosition.phone_number} {}

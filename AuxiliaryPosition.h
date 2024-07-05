@@ -1,0 +1,24 @@
+#ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_AUXILIARYPOSITION_H
+#define HR_DEPARTMENT_AUTOMATION_SYSTEM_AUXILIARYPOSITION_H
+
+#include "Employee.h"
+
+class AuxiliaryPosition final : public Employee {
+private:
+    int experience;
+    int phone_number;
+public:
+    AuxiliaryPosition() : Employee(), experience{0}, phone_number{0} {}
+
+    AuxiliaryPosition(std::string &fullname, int age, int passport_number,
+                      std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
+                      std::string &position, int salary, std::string &last_appointment, int experience,
+                      int phone_number);
+
+    AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition);
+
+    AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition);
+};
+
+
+#endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_AUXILIARYPOSITION_H

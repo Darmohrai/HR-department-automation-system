@@ -9,7 +9,7 @@ private:
     int id;
     int project_numbers;
 public:
-    OfficeWorker() : experience{0}, id{0}, project_numbers{0} {}
+    OfficeWorker() : Employee(), experience{0}, id{0}, project_numbers{0} {}
 
     OfficeWorker(std::string &fullname, int age, int passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty, std::string &department,

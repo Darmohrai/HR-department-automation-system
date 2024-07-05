@@ -10,7 +10,7 @@ private:
     int salary;
     std::string last_appointment;
 public:
-    Employee() : department{"None"}, position{"None"}, salary{0}, last_appointment{"None"} {}
+    Employee() : Person(), department{"None"}, position{"None"}, salary{0}, last_appointment{"None"} {}
 
     Employee(std::string &fullname, int age, int passport_number,
              std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
