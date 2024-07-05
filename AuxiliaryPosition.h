@@ -30,6 +30,18 @@ public:
     [[nodiscard]] int getSalary() { return Employee::getSalary(); }
 
     [[nodiscard]] int getExperience() { return experience; }
+
+
+    // methods set
+    void prepareOrder() final { Employee::prepareOrder(); }
+
+    void checkStatus() final { Employee::checkStatus(); }
+
+
+    // methods save
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin)final;
 };
 
 

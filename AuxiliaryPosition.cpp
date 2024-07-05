@@ -34,3 +34,14 @@ void AuxiliaryPosition::getBriefInfo() {
     Employee::getBriefInfo();
     std::cout << "\nНомер телефону - " << phone_number;
 }
+
+
+void AuxiliaryPosition::saveInfo(std::ofstream &fout) {
+    Employee::saveInfo(fout);
+    fout << experience << "\n" << phone_number << "\n" << "\n";
+}
+
+void AuxiliaryPosition::readInfo(std::ifstream &fin) {
+    Employee::readInfo(fin);
+    fin >> experience >> phone_number;
+}
