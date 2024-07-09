@@ -4,6 +4,7 @@
 #include "Employee.h"
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 class Department {
 private:
@@ -20,6 +21,28 @@ public:
     Department(Department &&department);
 
     ~Department() { std::cout << "object deleted"; }
+
+
+    // methods set
+    void setWorker(Employee worker);
+
+    void setManager(std::string manager) { this->manager = manager; }
+
+    void setIncome(int income) { this->income = income; }
+
+    void setPremium(int premium) { this->premium = premium; }
+
+
+    // methods get
+    void getWorkersInfo();
+
+    void getDepartmentInfo();
+
+    int getIncome() { return income; }
+
+    int getPremium() { return premium; }
+
+    std::string getManager() { return manager; }
 };
 
 
