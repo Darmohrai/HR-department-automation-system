@@ -19,4 +19,6 @@ add_executable(HR_department_automation_system main.cpp
         AuxiliaryPosition.h
         AuxiliaryPosition.cpp
         Department.h
-        Department.cpp)
+        Department.cpp
+        Executive.cpp
+        Executive.h)

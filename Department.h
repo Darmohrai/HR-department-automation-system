@@ -15,8 +15,8 @@ private:
 public:
     Department() : manager{"None"}, income{0}, premium{0} {}
 
-    Department(std::string &manager_in, int income_in, int premium_in) : manager{manager_in}, income{income_in},
-                                                                         premium{premium_in} {}
+    Department(std::string &manager, int income, int premium) : manager{manager}, income{income},
+                                                                         premium{premium} {}
 
     Department(Department &&department);
 
