@@ -29,3 +29,12 @@ void Department::getDepartmentInfo() {
               << "\nДохід підприємства" << income
               << "\nПреміальні кошти виділені на підприємство" << premium;
 }
+
+
+void Department::saveInfo(std::ofstream &fout) {
+    fout << manager << "\n" << income << "\n" << premium << "\n";
+}
+
+void Department::readInfo(std::ifstream &fin) {
+    fin >> manager >> income >> premium;
+}

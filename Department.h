@@ -36,14 +36,19 @@ public:
     // methods get
     void getWorkersInfo();
 
-    void getDepartmentInfo();
+    virtual void getDepartmentInfo();
 
     int getIncome() { return income; }
 
     int getPremium() { return premium; }
 
     std::string getManager() { return manager; }
-};
 
+
+    // methods save
+    virtual void saveInfo(std::ofstream &fout);
+
+    virtual void readInfo(std::ifstream &fin);
+};
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_H
