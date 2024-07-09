@@ -15,6 +15,27 @@ public:
     Executive(Executive &&executive);
 
     ~Executive() { std::cout << "object deleted"; }
+
+
+    // methods set
+    void setProjectQuantity(int project_quantity) { this->project_quantity = project_quantity; }
+
+    void setAverageTime(int average_time) { this->average_time = average_time; }
+
+
+    // methods get
+    void getDepartmentInfo() final;
+
+    int getProjectQuantity() { return project_quantity; }
+
+    int getAverageTime() { return average_time; }
+
+
+    // methods save
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin) final;
+
 };
 
 

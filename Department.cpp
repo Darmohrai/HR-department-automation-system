@@ -25,9 +25,9 @@ void Department::getWorkersInfo() {
 
 void Department::getDepartmentInfo() {
     std::cout << "Кількість працівників - " << workers.size()
-              << "\nКерівник" << manager
-              << "\nДохід підприємства" << income
-              << "\nПреміальні кошти виділені на підприємство" << premium;
+              << "\nКерівник - " << manager
+              << "\nДохід підприємства - " << income
+              << "\nПреміальні кошти виділені на підприємство - " << premium;
 }
 
 

@@ -9,3 +9,21 @@ Executive::Executive(Executive &&executive) : Department(std::move(executive)),
     executive.project_quantity = 0;
     executive.average_time = 0;
 }
+
+
+void Executive::getDepartmentInfo() {
+    Department::getDepartmentInfo();
+    std::cout << "\nКількість проєктів - " << project_quantity
+              << "\nСередній час виконання (в днях)" << average_time;
+}
+
+
+void Executive::saveInfo(std::ofstream &fout) {
+    Department::saveInfo(fout);
+    fout << project_quantity << "\n" << average_time << "\n";
+}
+
+void Executive::readInfo(std::ifstream &fin) {
+    Department::readInfo(fin);
+    fin >> project_quantity >> average_time;
+}
