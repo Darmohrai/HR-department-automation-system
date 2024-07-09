@@ -17,4 +17,6 @@ add_executable(HR_department_automation_system main.cpp
         OfficeWorker.h
         OfficeWorker.cpp
         AuxiliaryPosition.h
-        AuxiliaryPosition.cpp)
+        AuxiliaryPosition.cpp
+        Department.h
+        Department.cpp)
