@@ -21,4 +21,6 @@ add_executable(HR_department_automation_system main.cpp
         Department.h
         Department.cpp
         Executive.cpp
-        Executive.h)
+        Executive.h
+        Legal.h
+        Legal.cpp)

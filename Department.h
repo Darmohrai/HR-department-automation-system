@@ -16,9 +16,9 @@ public:
     Department() : manager{"None"}, income{0}, premium{0} {}
 
     Department(std::string &manager, int income, int premium) : manager{manager}, income{income},
-                                                                         premium{premium} {}
+                                                                premium{premium} {}
 
-    Department(Department &&department);
+    Department(Department &&department) noexcept;
 
     ~Department() { std::cout << "object deleted"; }
 
