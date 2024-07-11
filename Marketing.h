@@ -14,6 +14,22 @@ public:
     Marketing(Marketing &&marketing);
 
     ~Marketing() { std::cout << "object deleted"; }
+
+
+    // methods set
+    void setAdSuccessRate(int ad_success_rate_in) { ad_success_rate = ad_success_rate_in; }
+
+
+    // methods get
+    void getDepartmentInfo() final;
+
+    int getADSuccessRate() { return ad_success_rate; }
+
+
+    // methods save
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin) final;
 };
 
 
