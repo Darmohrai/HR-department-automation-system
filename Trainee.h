@@ -9,7 +9,7 @@ private:
     std::string performance;
     std::string mentor; // should be 'has a relationship' with class Employee
 public:
-    Trainee() : probation{0}, performance{"bad"}, mentor{"None"} {};
+    Trainee() : Person(), probation{0}, performance{"bad"}, mentor{"None"} {};
 
     Trainee(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty,

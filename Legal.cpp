@@ -8,3 +8,21 @@ Legal::Legal(Legal &&legal) noexcept: Department(std::move(legal)), court_cases{
     legal.court_cases = 0;
     legal.win_cases = 0;
 }
+
+
+void Legal::getDepartmentInfo() {
+    Department::getDepartmentInfo();
+    std::cout << "\nКількість судових справ - " << court_cases
+              << "\nКількість виграних справ - " << win_cases;
+}
+
+
+void Legal::saveInfo(std::ofstream &fout) {
+    Department::saveInfo(fout);
+    fout << court_cases << "\n" << win_cases << "\n";
+}
+
+void Legal::readInfo(std::ifstream &fin) {
+    Department::readInfo(fin);
+    fin >> court_cases >> win_cases;
+}

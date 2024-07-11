@@ -26,11 +26,11 @@ public:
     // methods set
     void setWorker(Employee worker);
 
-    void setManager(std::string manager) { this->manager = manager; }
+    void setManager(std::string &manager_in) { this->manager = manager_in; }
 
-    void setIncome(int income) { this->income = income; }
+    void setIncome(int income_in) { this->income = income_in; }
 
-    void setPremium(int premium) { this->premium = premium; }
+    void setPremium(int premium_in) { this->premium = premium_in; }
 
 
     // methods get

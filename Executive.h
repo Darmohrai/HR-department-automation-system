@@ -8,7 +8,7 @@ private:
     int project_quantity;
     int average_time; // average executive time
 public:
-    Executive() : project_quantity{0}, average_time{0} {}
+    Executive() : Department(), project_quantity{0}, average_time{0} {}
 
     Executive(std::string &manager, int income, int premium, int project_quantity, int average_time);
 
@@ -18,9 +18,9 @@ public:
 
 
     // methods set
-    void setProjectQuantity(int project_quantity) { this->project_quantity = project_quantity; }
+    void setProjectQuantity(int project_quantity_in) { this->project_quantity = project_quantity_in; }
 
-    void setAverageTime(int average_time) { this->average_time = average_time; }
+    void setAverageTime(int average_time_in) { this->average_time = average_time_in; }
 
 
     // methods get

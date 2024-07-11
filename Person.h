@@ -15,7 +15,7 @@ private:
     std::string entry_date;
     std::string specialty;
 public:
-    Person() : fullname{"None"}, age{0}, passport_number{0},
+    Person() : Interface(), fullname{"None"}, age{0}, passport_number{0},
                education{"None"}, entry_date{"None"}, specialty{"None"} {};
 
     Person(std::string &fullname, int age, int passport_number,

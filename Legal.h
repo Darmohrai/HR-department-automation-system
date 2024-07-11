@@ -15,6 +15,26 @@ public:
     Legal(Legal &&legal) noexcept;
 
     ~Legal() { std::cout << "object deleted"; }
+
+
+    // set methods
+    void setCourtCases(int court_cases_in) { this->court_cases = court_cases_in; }
+
+    void setWinCases(int win_cases_in) { this->win_cases = win_cases_in; }
+
+
+    // get methods
+    void getDepartmentInfo() final;
+
+    int getCourtCases() { return court_cases; }
+
+    int getWinCases() { return win_cases; }
+
+
+    // save methods
+    void saveInfo(std::ofstream &fout) final;
+
+    void readInfo(std::ifstream &fin) final;
 };
 
 
