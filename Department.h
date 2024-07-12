@@ -10,10 +10,11 @@ class Department {
 private:
     std::vector<std::unique_ptr<Employee>> workers;
     std::string manager;
+    std::string name;
     int income;
     int premium;
 public:
-    Department() : manager{"None"}, income{0}, premium{0} {}
+    Department() : manager{"None"}, name{"None"}, income{0}, premium{0} {}
 
     Department(std::string &manager, int income, int premium) : manager{manager}, income{income},
                                                                 premium{premium} {}
@@ -41,6 +42,8 @@ public:
     int getIncome() { return income; }
 
     int getPremium() { return premium; }
+
+    std::string getName() { return name; }
 
     std::string getManager() { return manager; }
 

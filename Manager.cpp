@@ -2,22 +2,17 @@
 
 Manager::Manager(std::string &fullname, int age, int passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
-                 std::string &position, int salary, std::string &last_appointment, std::string &supervisory_department,
-                 int premium) : Employee(fullname, age, passport_number, education, entry_date, specialty, department,
-                                         position, salary, last_appointment) {
-    this->supervisory_department = supervisory_department;
+                 std::string &position, int salary, std::string &last_appointment, int premium) :
+        Employee(fullname, age, passport_number, education, entry_date, specialty, department,
+                 position, salary, last_appointment) {
     this->premium = premium;
 }
 
-Manager::Manager(Manager &&manager) noexcept: Employee(std::move(manager)),
-                                              supervisory_department{manager.supervisory_department},
-                                              premium{manager.premium} {
-    manager.supervisory_department = "";
+Manager::Manager(Manager &&manager) noexcept: Employee(std::move(manager)), premium{manager.premium} {
     manager.premium = 0;
 }
 
-Manager::Manager(Manager &manager) : Employee(manager), supervisory_department{manager.supervisory_department},
-                                     premium{manager.premium} {}
+Manager::Manager(Manager &manager) : Employee(manager), premium{manager.premium} {}
 
 
 void Manager::getAllInfo() {
@@ -33,10 +28,10 @@ void Manager::getBriefInfo() {
 
 void Manager::saveInfo(std::ofstream &fout) {
     Employee::saveInfo(fout);
-    fout << supervisory_department << "\n" << premium << "\n" << "\n";
+    fout  << premium << "\n" << "\n";
 }
 
 void Manager::readInfo(std::ifstream &fin) {
     Employee::readInfo(fin);
-    fin >> supervisory_department >> premium;
+    fin >> premium;
 }
