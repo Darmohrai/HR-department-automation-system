@@ -15,6 +15,7 @@ int main() {
 
     std::vector<Manager> managers;
     std::vector<OfficeWorker> office_workers;
+    std::vector<AuxiliaryPosition> auxiliary_position_workers;
 
     bool exit = false;
     std::string answer;
@@ -39,7 +40,7 @@ int main() {
                     userInstruction();
                     break;
                 case '2':
-                    addEmployee(managers, office_workers);
+                    addEmployee(managers, office_workers, auxiliary_position_workers);
                     break;
             }
         }

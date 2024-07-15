@@ -3,7 +3,8 @@
 
 void gap();
 
-void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers);
+void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                 std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
 void reader();
 
@@ -11,12 +12,15 @@ void addManager(std::vector<Manager> &managers);
 
 void addOfficeWorker(std::vector<OfficeWorker> &office_workers);
 
+void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers);
+
 
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
 }
 
-void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers) {
+void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                 std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
     bool exit = false;
     std::string choose;
 
@@ -41,7 +45,7 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
                     exit = true;
                     break;
                 case '3':
-                    // should be function addAuxiliaryPosition();
+                    addAuxiliaryPosition(auxiliary_position_workers);
                     exit = true;
                     break;
                 case '0':
@@ -228,6 +232,60 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers) {
 
     OfficeWorker new_officeWorker;
     office_workers.push_back(std::move(new_officeWorker));
+}
+
+void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
+    gap();
+
+    std::string fullname;
+    int age;
+    int passport_number;
+    std::string education;
+    std::string entry_date;
+    std::string specialty;
+    std::string department;
+    std::string position;
+    int salary;
+    std::string last_appointment;
+
+    reader(fullname, age, passport_number, education, entry_date, specialty, department,
+           position, salary, last_appointment);
+
+    bool error = false;
+    std::string reader;
+
+    int experience;
+    int phone_number;
+
+    while (!error) {
+        try {
+            std::cout << "\nВведіть досвід роботи (в роках) - ";
+            std::cin >> reader;
+            experience = std::stoi(reader);
+            error = true;
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            error = false;
+        }
+    }
+
+    error = false;
+    while (!error) {
+        try {
+            std::cout << "\nВведіть номер телефону - ";
+            std::cin >> reader;
+            phone_number = std::stoi(reader);
+            error = true;
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            error = false;
+        }
+    }
+
+    AuxiliaryPosition new_auxiliaryPosition;
+    auxiliary_position_workers.push_back(std::move(new_auxiliaryPosition));
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H
