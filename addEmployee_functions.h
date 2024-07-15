@@ -3,16 +3,20 @@
 
 void gap();
 
-void addEmployee(std::vector<Manager> &managers);
+void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers);
+
+void reader();
 
 void addManager(std::vector<Manager> &managers);
+
+void addOfficeWorker(std::vector<OfficeWorker> &office_workers);
 
 
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
 }
 
-void addEmployee(std::vector<Manager> &managers) {
+void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers) {
     bool exit = false;
     std::string choose;
 
@@ -33,7 +37,7 @@ void addEmployee(std::vector<Manager> &managers) {
                     exit = true;
                     break;
                 case '2':
-                    // should be function OfficeWorker();
+                    addOfficeWorker(office_workers);
                     exit = true;
                     break;
                 case '3':
@@ -52,26 +56,11 @@ void addEmployee(std::vector<Manager> &managers) {
     }
 }
 
-void addManager(std::vector<Manager> &managers) {
-    gap();
+void reader(std::string &fullname, int &age, int &passport_number,
+            std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
+            std::string &position, int &salary, std::string &last_appointment) {
     bool error = false;
     std::string reader;
-
-    std::string fullname;
-    int age;
-    int passport_number;
-    std::string education;
-    std::string entry_date;
-    std::string specialty;
-    std::string department;
-    std::string position;
-    int salary;
-    std::string last_appointment;
-    int premium;
-
-
-    std::cout << "\nВведіть ПІБ - ";
-    std::cin >> fullname;
 
     while (!error) {
         try {
@@ -131,8 +120,29 @@ void addManager(std::vector<Manager> &managers) {
 
     std::cout << "\nВведіть дату останнього призначення - ";
     std::cin >> last_appointment;
+}
 
-    error = false;
+void addManager(std::vector<Manager> &managers) {
+    gap();
+
+    std::string fullname;
+    int age;
+    int passport_number;
+    std::string education;
+    std::string entry_date;
+    std::string specialty;
+    std::string department;
+    std::string position;
+    int salary;
+    std::string last_appointment;
+
+    reader(fullname, age, passport_number, education, entry_date, specialty, department, position, salary,
+           last_appointment);
+
+    bool error = false;
+    std::string reader;
+    int premium;
+
     while (!error) {
         try {
             std::cout << "\nВведіть премію - ";
@@ -150,6 +160,74 @@ void addManager(std::vector<Manager> &managers) {
                         last_appointment, premium);
 
     managers.push_back(std::move(new_manager));
+}
+
+void addOfficeWorker(std::vector<OfficeWorker> &office_workers) {
+    gap();
+
+    std::string fullname;
+    int age;
+    int passport_number;
+    std::string education;
+    std::string entry_date;
+    std::string specialty;
+    std::string department;
+    std::string position;
+    int salary;
+    std::string last_appointment;
+
+    reader(fullname, age, passport_number, education, entry_date, specialty, department,
+           position, salary, last_appointment);
+
+    bool error = false;
+    std::string reader;
+
+    int experience;
+    int id;
+    int project_numbers;
+
+    while (!error) {
+        try {
+            std::cout << "\nВведіть досвід роботи (в роках) - ";
+            std::cin >> reader;
+            experience = std::stoi(reader);
+            error = true;
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            error = false;
+        }
+    }
+
+    error = false;
+    while (!error) {
+        try {
+            std::cout << "\nВведіть id - ";
+            std::cin >> reader;
+            id = std::stoi(reader);
+            error = true;
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            error = false;
+        }
+    }
+
+    while (!error) {
+        try {
+            std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
+            std::cin >> reader;
+            project_numbers = std::stoi(reader);
+            error = true;
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            error = false;
+        }
+    }
+
+    OfficeWorker new_officeWorker;
+    office_workers.push_back(std::move(new_officeWorker));
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H

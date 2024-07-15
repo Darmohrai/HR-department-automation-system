@@ -14,6 +14,7 @@ int main() {
     system("chcp 65001");
 
     std::vector<Manager> managers;
+    std::vector<OfficeWorker> office_workers;
 
     bool exit = false;
     std::string answer;
@@ -38,7 +39,7 @@ int main() {
                     userInstruction();
                     break;
                 case '2':
-                    addEmployee(managers);
+                    addEmployee(managers, office_workers);
                     break;
             }
         }
