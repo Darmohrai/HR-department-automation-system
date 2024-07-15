@@ -6,12 +6,14 @@
 #include "AuxiliaryPosition.h"
 #include "Legal.h"
 #include "Marketing.h"
-#include "addEmployee_functions.h"
+#include "addEmployee_functions.h" // function gap() here
 
 void userInstruction();
 
 int main() {
     system("chcp 65001");
+
+    std::vector<Manager> managers;
 
     bool exit = false;
     std::string answer;
@@ -36,7 +38,7 @@ int main() {
                     userInstruction();
                     break;
                 case '2':
-                    addEmployee();
+                    addEmployee(managers);
                     break;
             }
         }
