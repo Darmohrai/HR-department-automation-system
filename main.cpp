@@ -6,12 +6,9 @@
 #include "AuxiliaryPosition.h"
 #include "Legal.h"
 #include "Marketing.h"
-
-void gap();
+#include "addEmployee_functions.h"
 
 void userInstruction();
-
-void addEmployee();
 
 int main() {
     system("chcp 65001");
@@ -55,11 +52,6 @@ int main() {
     return 0;
 }
 
-void gap(){
-    std::cout << "\n--------------------------------------------------------------\n";
-}
-
-
 void userInstruction() {
     gap();
     std::cout << "Дана програма є системою автоматизації відділу кадрів\n"
@@ -74,46 +66,5 @@ void userInstruction() {
         gap();
         std::cout << "\nПомилка вводу, спробуйте ще раз\n";
         std::cin >> answer;
-    }
-}
-
-
-void addEmployee() {
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
-        gap();
-        std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
-                     "\n1). Керівник"
-                     "\n2). Офісний працівник"
-                     "\n3). Додаткова посада\n";
-
-        std::cin >> choose;
-
-        try {
-            if (choose.size() > 1) throw 0;
-            switch (choose[0]) {
-                case '1':
-                    // should be function addManager();
-                    exit = true;
-                    break;
-                case '2':
-                    // should be function OfficeWorker();
-                    exit = true;
-                    break;
-                case '3':
-                    // should be function addAuxiliaryPosition();
-                    exit = true;
-                    break;
-                case '0':
-                    exit = true;
-                    break;
-            }
-        }
-        catch (int exception) { // should be improved
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-        }
     }
 }
