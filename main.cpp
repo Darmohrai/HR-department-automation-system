@@ -1,4 +1,6 @@
 #include <iostream>
+#include <thread>
+
 #include "Trainee.h"
 #include "Manager.h"
 #include "OfficeWorker.h"
@@ -6,8 +8,11 @@
 #include "AuxiliaryPosition.h"
 #include "Legal.h"
 #include "Marketing.h"
+
+#include "Save&Read_functions.h"
 #include "addEmployee_functions.h" // function gap() here
 #include "Trainee_functions.h"
+
 
 void userInstruction();
 
@@ -18,6 +23,12 @@ int main() {
     std::vector<OfficeWorker> office_workers;
     std::vector<AuxiliaryPosition> auxiliary_position_workers;
     std::vector<Trainee> trainees;
+
+
+    std::thread read_manager_info(readManager, std::ref(managers));
+    read_manager_info.join();
+
+
 
     bool exit = false;
     std::string answer;
@@ -58,6 +69,13 @@ int main() {
             std::cerr << "Error";
         }
     }
+
+
+
+
+    std::thread save_manager_info(saveManager, std::ref(managers));
+    save_manager_info.join();
+
 
     return 0;
 }

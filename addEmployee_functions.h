@@ -70,6 +70,9 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     bool error = false;
     std::string reader;
 
+    std::cout << "\nВведіть ПІБ - ";
+    std::cin >> fullname;
+
     while (!error) {
         try {
             std::cout << "\nВведіть вік - ";
