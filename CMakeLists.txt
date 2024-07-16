@@ -27,4 +27,5 @@ add_executable(HR_department_automation_system main.cpp
         Marketing.h
         Marketing.cpp
         addEmployee_functions.h
+        Trainee_functions.h
 )

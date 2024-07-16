@@ -7,6 +7,7 @@
 #include "Legal.h"
 #include "Marketing.h"
 #include "addEmployee_functions.h" // function gap() here
+#include "Trainee_functions.h"
 
 void userInstruction();
 
@@ -16,6 +17,7 @@ int main() {
     std::vector<Manager> managers;
     std::vector<OfficeWorker> office_workers;
     std::vector<AuxiliaryPosition> auxiliary_position_workers;
+    std::vector<Trainee> trainees;
 
     bool exit = false;
     std::string answer;
@@ -25,6 +27,7 @@ int main() {
         std::cout << "Оберіть що Ви хочете зробити та введіть відповідну цифру\n"
                      "1). Переглянути інструкцію користувача\n"
                      "2). Додати робітника\n"
+                     "3). Додати практиканта\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -41,6 +44,9 @@ int main() {
                     break;
                 case '2':
                     addEmployee(managers, office_workers, auxiliary_position_workers);
+                    break;
+                case '3':
+                    addTrainee(trainees);
                     break;
             }
         }

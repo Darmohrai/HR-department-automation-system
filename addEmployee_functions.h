@@ -6,7 +6,12 @@ void gap();
 void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                  std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
-void reader();
+void readerPerson(std::string &fullname, int &age, int &passport_number,
+                  std::string &education, std::string &entry_date, std::string &specialty);
+
+void readerEmployee(std::string &fullname, int &age, int &passport_number,
+                    std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
+                    std::string &position, int &salary, std::string &last_appointment);
 
 void addManager(std::vector<Manager> &managers);
 
@@ -60,9 +65,8 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
     }
 }
 
-void reader(std::string &fullname, int &age, int &passport_number,
-            std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
-            std::string &position, int &salary, std::string &last_appointment) {
+void readerPerson(std::string &fullname, int &age, int &passport_number,
+                  std::string &education, std::string &entry_date, std::string &specialty) {
     bool error = false;
     std::string reader;
 
@@ -101,6 +105,15 @@ void reader(std::string &fullname, int &age, int &passport_number,
 
     std::cout << "\nВведіть спеціальність - ";
     std::cin >> specialty;
+}
+
+void readerEmployee(std::string &fullname, int &age, int &passport_number,
+                    std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
+                    std::string &position, int &salary, std::string &last_appointment) {
+    readerPerson(fullname, age, passport_number, education, entry_date, specialty);
+
+    bool error = false;
+    std::string reader;
 
     std::cout << "\nВведіть підрозділ - ";
     std::cin >> department;
@@ -140,8 +153,8 @@ void addManager(std::vector<Manager> &managers) {
     int salary;
     std::string last_appointment;
 
-    reader(fullname, age, passport_number, education, entry_date, specialty, department, position, salary,
-           last_appointment);
+    readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department, position, salary,
+                   last_appointment);
 
     bool error = false;
     std::string reader;
@@ -180,8 +193,8 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers) {
     int salary;
     std::string last_appointment;
 
-    reader(fullname, age, passport_number, education, entry_date, specialty, department,
-           position, salary, last_appointment);
+    readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department,
+                   position, salary, last_appointment);
 
     bool error = false;
     std::string reader;
@@ -248,8 +261,8 @@ void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_wor
     int salary;
     std::string last_appointment;
 
-    reader(fullname, age, passport_number, education, entry_date, specialty, department,
-           position, salary, last_appointment);
+    readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department,
+                   position, salary, last_appointment);
 
     bool error = false;
     std::string reader;
