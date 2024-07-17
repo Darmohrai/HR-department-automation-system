@@ -1,17 +1,17 @@
 #include <iostream>
 #include <thread>
 
-#include "Trainee.h"
-#include "Manager.h"
-#include "OfficeWorker.h"
-#include "AuxiliaryPosition.h"
-#include "AuxiliaryPosition.h"
-#include "Legal.h"
-#include "Marketing.h"
+#include "Worker_classes/Trainee.h"
+#include "Worker_classes/Manager.h"
+#include "Worker_classes/OfficeWorker.h"
+#include "Worker_classes/AuxiliaryPosition.h"
+#include "Department_classes/Executive.h"
+#include "Department_classes/Legal.h"
+#include "Department_classes/Marketing.h"
 
-#include "Save&Read_functions.h"
-#include "addEmployee_functions.h" // function gap() here
-#include "Trainee_functions.h"
+#include "functions/Save&Read_functions.h"
+#include "functions/addEmployee_functions.h" // function gap() here
+#include "functions/Trainee_functions.h"
 
 
 void userInstruction();

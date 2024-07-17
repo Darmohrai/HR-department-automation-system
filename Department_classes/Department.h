@@ -1,7 +1,7 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_H
 
-#include "Employee.h"
+#include "../Worker_classes/Employee.h"
 #include <vector>
 #include <memory>
 #include <algorithm>

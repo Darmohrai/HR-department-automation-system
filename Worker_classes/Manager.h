@@ -3,7 +3,7 @@
 
 #include <memory>
 #include "Employee.h"
-#include "Department.h"
+#include "../Department_classes/Department.h"
 
 class Manager final : public Employee {
 private:
