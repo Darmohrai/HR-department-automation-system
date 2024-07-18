@@ -19,6 +19,9 @@ void userInstruction();
 
 int main() {
     system("chcp 65001");
+    Marketing marketing;
+    Legal legal;
+    Executive executive;
 
     std::vector<Manager> managers;
     std::vector<OfficeWorker> office_workers;
@@ -39,7 +42,7 @@ int main() {
                      "1). Переглянути інструкцію користувача\n"
                      "2). Додати робітника\n"
                      "3). Додати практиканта\n"
-                     "4). Створити новий підрозділ\n"
+                     "4). Змінити дані про підрозділи\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -61,7 +64,7 @@ int main() {
                     addTrainee(trainees);
                     break;
                 case '4':
-                    createDepartment(marketing_departments);
+                    changeDepartmentInfo(marketing);
                     break;
             }
         }
