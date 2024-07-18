@@ -16,6 +16,8 @@ void caseIncomeOrPremium(T &obj, int choose);
 void addDepartmentInfo(int &income, int &premium);
 
 
+
+
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
     bool exit = false;

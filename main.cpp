@@ -58,7 +58,8 @@ int main() {
                     userInstruction();
                     break;
                 case '2':
-                    addEmployee(managers, office_workers, auxiliary_position_workers);
+                    addEmployee(managers, office_workers, auxiliary_position_workers,
+                                marketing, legal, executive);
                     break;
                 case '3':
                     addTrainee(trainees);
