@@ -3,16 +3,25 @@
 
 #include <mutex>
 
-std::mutex mtx_manager, mtx_office_worker, mtx_auxiliary_position;
+std::mutex mtx_manager, mtx_office_worker, mtx_auxiliary_position, mtx_trainee;
 
 void clear_file(std::string &filename);
 
-void saveManager(std::vector<Manager> &managers);
-
-void saveOfficeWorker(std::vector<OfficeWorker> &office_workers);
-
-void saveAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers);
-
+template <typename T>
+void saveWorkerInfo(std::vector<T> &vector_obj, std::string &filename){
+    clear_file(filename);
+    try {
+        std::ofstream fout(filename, std::ios::in);
+        fout << vector_obj.size() << "\n\n";
+        std::for_each(vector_obj.begin(), vector_obj.end(), [&fout](T &obj) {
+            obj.saveInfo(fout);
+        });
+        fout.close();
+    }
+    catch (...) {
+        std::cout << "\nСталася помилка збереження інформації\n";
+    }
+}
 
 void readManager(std::vector<Manager> &managers);
 
@@ -27,55 +36,7 @@ void clear_file(std::string &filename) {
 }
 
 
-void saveManager(std::vector<Manager> &managers) {
-    std::string filename = "D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt";
-    clear_file(filename);
-    try {
-        std::lock_guard<std::mutex> lockGuard_manager(mtx_manager);
-        std::ofstream fout(filename, std::ios::in);
-        fout << managers.size() << "\n\n";
-        std::for_each(managers.begin(), managers.end(), [&fout](Manager &manager) {
-            manager.saveInfo(fout);
-        });
-        fout.close();
-    }
-    catch (...) {
-        std::cout << "\nСталася помилка збереження інформації\n";
-    }
-}
 
-void saveOfficeWorker(std::vector<OfficeWorker> &office_workers) {
-    std::string filename = "D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt";
-    clear_file(filename);
-    try {
-        std::lock_guard<std::mutex> lockGuard_office_worker(mtx_office_worker);
-        std::ofstream fout(filename, std::ios::in);
-        fout << office_workers.size() << "\n\n";
-        std::for_each(office_workers.begin(), office_workers.end(), [&fout](OfficeWorker &officeWorker) {
-            officeWorker.saveInfo(fout);
-        });
-        fout.close();
-    }
-    catch (...) {
-        std::cout << "\nСталася помилка збереження інформації\n";
-    }
-}
-
-void saveAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
-    std::string filename = "D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt";
-    clear_file(filename);
-    try {
-        std::lock_guard<std::mutex> lockGuard_auxiliary_position(mtx_auxiliary_position);
-        std::ofstream fout(filename, std::ios::in);
-        fout << auxiliary_position_workers.size() << "\n\n";
-        std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
-                      [&fout](AuxiliaryPosition &auxiliaryPosition) { auxiliaryPosition.saveInfo(fout); });
-        fout.close();
-    }
-    catch (...) {
-        std::cout << "\nСталася помилка збереження інформації\n";
-    }
-}
 
 
 void readManager(std::vector<Manager> &managers) {
