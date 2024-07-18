@@ -7,7 +7,7 @@ class Trainee final : public Person {
 private:
     int probation;
     std::string performance;
-    std::string mentor; // should be 'has a relationship' with class Employee
+    std::string mentor;
 public:
     Trainee() : Person(), probation{0}, performance{"bad"}, mentor{"None"} {};
 

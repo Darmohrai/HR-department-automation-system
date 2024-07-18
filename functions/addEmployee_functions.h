@@ -23,7 +23,7 @@ void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_wor
 
 
 
-// implementation
+// definition
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
 }
@@ -122,7 +122,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
     bool error = false;
     std::string reader;
 
-    std::cout << "\nВведіть підрозділ - ";
+    std::cout << "\nОберіть підрозділ - ";
     std::cin >> department;
 
     std::cout << "\nВведіть посаду - ";

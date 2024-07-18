@@ -1,16 +1,19 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_SAVE_READ_FUNCTIONS_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_SAVE_READ_FUNCTIONS_H
 
+#include <thread>
+#include <mutex>
+
 std::mutex mtx_for_database;
 
 // declaration
 void clear_file(std::string &filename);
 
 
-template <typename T_s>
+template<typename T_s>
 void saveWorkerInfo(std::vector<T_s> &vector_obj, std::string &filename);
 
-template <typename T_r>
+template<typename T_r>
 void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename);
 
 
@@ -21,17 +24,15 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees);
 
 
-
-
-// implementation
+// definition
 void clear_file(std::string &filename) {
     std::ofstream fclear(filename, std::ios::trunc | std::ios::out);
     fclear.close();
 }
 
 
-template <typename T_s>
-void saveWorkerInfo(std::vector<T_s> &vector_obj, std::string &filename){
+template<typename T_s>
+void saveWorkerInfo(std::vector<T_s> &vector_obj, std::string &filename) {
     clear_file(filename);
     try {
         std::ofstream fout(filename, std::ios::in);
@@ -46,8 +47,8 @@ void saveWorkerInfo(std::vector<T_s> &vector_obj, std::string &filename){
     }
 }
 
-template <typename T_r>
-void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename){
+template<typename T_r>
+void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename) {
     try {
         std::ifstream fin(filename);
         int count = 0;
@@ -70,11 +71,13 @@ void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         std::lock_guard<std::mutex> save_lockGuard(mtx_for_database);
 
         std::string filename_manager =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt)";
         std::string filename_office_worker =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt)";
         std::string filename_auxiliary_position =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt)";
+        std::string filename_trainee =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\trainee.txt)";
 
 
         std::thread save_manager_info(saveWorkerInfo<Manager>, std::ref(managers), std::ref(filename_manager));
@@ -82,9 +85,11 @@ void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                                             std::ref(filename_office_worker));
         std::thread save_auxiliary_position(saveWorkerInfo<AuxiliaryPosition>, std::ref(auxiliary_position_workers),
                                             std::ref(filename_auxiliary_position));
+        std::thread save_trainee(saveWorkerInfo<Trainee>, std::ref(trainees), std::ref(filename_trainee));
         save_manager_info.join();
         save_office_worker_info.join();
         save_auxiliary_position.join();
+        save_trainee.join();
     }
     catch (...) {
         std::cerr << "\nСталася помилка збереження інформації\n";
@@ -97,11 +102,13 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         std::lock_guard<std::mutex> read_lockGuard(mtx_for_database);
 
         std::string filename_manager =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt)";
         std::string filename_office_worker =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt)";
         std::string filename_auxiliary_position =
-                "D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt";
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt)";
+        std::string filename_trainee =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\trainee.txt)";
 
         std::thread read_manager_info(readWorkerInfo<Manager>, std::ref(managers), std::ref(filename_manager));
         std::thread read_office_worker_info(readWorkerInfo<OfficeWorker>, std::ref(office_workers),
@@ -109,10 +116,12 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         std::thread read_auxiliary_position_info(readWorkerInfo<AuxiliaryPosition>,
                                                  std::ref(auxiliary_position_workers),
                                                  std::ref(filename_auxiliary_position));
+        std::thread read_trainee_info(readWorkerInfo<Trainee>, std::ref(trainees), std::ref(filename_trainee));
 
         read_manager_info.join();
         read_office_worker_info.join();
         read_auxiliary_position_info.join();
+        read_trainee_info.join();
     }
     catch (...) {
         std::cerr << "\nСталася помилка зчитування інформації\n";

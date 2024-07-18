@@ -1,6 +1,4 @@
 #include <iostream>
-#include <thread>
-#include <mutex>
 
 #include "Worker_classes/Trainee.h"
 #include "Worker_classes/Manager.h"
@@ -13,6 +11,7 @@
 #include "functions/Save&Read_functions.h"
 #include "functions/addEmployee_functions.h" // function gap() here
 #include "functions/Trainee_functions.h"
+#include "functions/Department_functions.h"
 
 
 void userInstruction();
@@ -28,6 +27,8 @@ int main() {
 
     threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
+    std::vector<Marketing> marketing_departments;
+
 
     bool exit = false;
     std::string answer;
@@ -38,6 +39,7 @@ int main() {
                      "1). Переглянути інструкцію користувача\n"
                      "2). Додати робітника\n"
                      "3). Додати практиканта\n"
+                     "4). Створити новий підрозділ\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -57,6 +59,9 @@ int main() {
                     break;
                 case '3':
                     addTrainee(trainees);
+                    break;
+                case '4':
+                    createDepartment(marketing_departments);
                     break;
             }
         }

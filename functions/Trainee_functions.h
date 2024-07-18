@@ -5,9 +5,7 @@
 void addTrainee();
 
 
-
-
-// implementation
+// definition
 void addTrainee(std::vector<Trainee> &trainees) {
     gap();
 
@@ -47,6 +45,10 @@ void addTrainee(std::vector<Trainee> &trainees) {
     std::cout << "\nВведіть ПІБ ментора - ";
     std::cin >> mentor;
 
+    Trainee new_Trainee(fullname, age, passport_number, education, entry_date, specialty,
+                        probation, performance, mentor);
+
+    trainees.push_back(std::move(new_Trainee));
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_TRAINEE_FUNCTIONS_H
