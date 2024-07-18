@@ -64,7 +64,7 @@ int main() {
                     addTrainee(trainees);
                     break;
                 case '4':
-                    changeDepartmentInfo(marketing);
+                    changeDepartmentInfo(marketing, legal, executive);
                     break;
             }
         }
