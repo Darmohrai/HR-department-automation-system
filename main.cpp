@@ -27,8 +27,10 @@ int main() {
 
     std::thread read_manager_info(readManager, std::ref(managers));
     std::thread read_office_worker_info(readOfficeWorker, std::ref(office_workers));
+    std::thread read_auxiliary_position_info(readAuxiliaryPosition, std::ref(auxiliary_position_workers));
     read_manager_info.join();
     read_office_worker_info.join();
+    read_auxiliary_position_info.join();
 
 
     bool exit = false;
@@ -74,8 +76,10 @@ int main() {
 
     std::thread save_manager_info(saveManager, std::ref(managers));
     std::thread save_office_worker_info(saveOfficeWorker, std::ref(office_workers));
+    std::thread save_auxiliary_position(saveAuxiliaryPosition, std::ref(auxiliary_position_workers));
     save_manager_info.join();
     save_office_worker_info.join();
+    save_auxiliary_position.join();
 
 
     return 0;
