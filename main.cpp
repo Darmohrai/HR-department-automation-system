@@ -14,13 +14,9 @@
 #include "functions/addEmployee_functions.h" // function gap() here
 #include "functions/Trainee_functions.h"
 
-std::mutex mtx_for_database;
-
 
 void userInstruction();
 
-void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
-                     std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees);
 
 int main() {
     system("chcp 65001");
@@ -30,13 +26,7 @@ int main() {
     std::vector<AuxiliaryPosition> auxiliary_position_workers;
     std::vector<Trainee> trainees;
 
-
-    std::thread read_manager_info(readManager, std::ref(managers));
-    std::thread read_office_worker_info(readOfficeWorker, std::ref(office_workers));
-    std::thread read_auxiliary_position_info(readAuxiliaryPosition, std::ref(auxiliary_position_workers));
-    read_manager_info.join();
-    read_office_worker_info.join();
-    read_auxiliary_position_info.join();
+    threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
 
     bool exit = false;
@@ -102,26 +92,3 @@ void userInstruction() {
     }
 }
 
-void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
-                     std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees) {
-    try {
-        std::lock_guard<std::mutex> save_lockGuard(mtx_for_database);
-
-        std::string filename_manager = "D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt";
-        std::string filename_office_worker = "D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt";
-        std::string filename_auxiliary_position = "D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt";
-
-
-        std::thread save_manager_info(saveWorkerInfo<Manager>, std::ref(managers), std::ref(filename_manager));
-        std::thread save_office_worker_info(saveWorkerInfo<OfficeWorker>, std::ref(office_workers),
-                                            std::ref(filename_office_worker));
-        std::thread save_auxiliary_position(saveWorkerInfo<AuxiliaryPosition>, std::ref(auxiliary_position_workers),
-                                            std::ref(filename_auxiliary_position));
-        save_manager_info.join();
-        save_office_worker_info.join();
-        save_auxiliary_position.join();
-    }
-    catch (...){
-        std::cerr << "\nСталася помилка збереження інформації\n";
-    }
-}

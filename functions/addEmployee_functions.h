@@ -1,6 +1,7 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H
 
+// declaration
 void gap();
 
 void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
@@ -20,6 +21,9 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers);
 void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
 
+
+
+// implementation
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
 }

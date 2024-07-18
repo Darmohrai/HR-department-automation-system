@@ -1,9 +1,13 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_TRAINEE_FUNCTIONS_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_TRAINEE_FUNCTIONS_H
 
+// declaration
 void addTrainee();
 
 
+
+
+// implementation
 void addTrainee(std::vector<Trainee> &trainees) {
     gap();
 
