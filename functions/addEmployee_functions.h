@@ -233,6 +233,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers) {
         }
     }
 
+    error = false;
     while (!error) {
         try {
             std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
@@ -246,7 +247,9 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers) {
         }
     }
 
-    OfficeWorker new_officeWorker;
+    OfficeWorker new_officeWorker(fullname, age, passport_number, education, entry_date, specialty,
+                                  department, position, salary, last_appointment, experience, id,
+                                  project_numbers);
     office_workers.push_back(std::move(new_officeWorker));
 }
 
@@ -300,7 +303,9 @@ void addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_wor
         }
     }
 
-    AuxiliaryPosition new_auxiliaryPosition;
+    AuxiliaryPosition new_auxiliaryPosition(fullname, age, passport_number, education, entry_date,
+                                            specialty, department, position, salary, last_appointment,
+                                            experience, phone_number);
     auxiliary_position_workers.push_back(std::move(new_auxiliaryPosition));
 }
 

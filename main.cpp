@@ -26,8 +26,9 @@ int main() {
 
 
     std::thread read_manager_info(readManager, std::ref(managers));
+    std::thread read_office_worker_info(readOfficeWorker, std::ref(office_workers));
     read_manager_info.join();
-
+    read_office_worker_info.join();
 
 
     bool exit = false;
@@ -71,10 +72,10 @@ int main() {
     }
 
 
-
-
     std::thread save_manager_info(saveManager, std::ref(managers));
+    std::thread save_office_worker_info(saveOfficeWorker, std::ref(office_workers));
     save_manager_info.join();
+    save_office_worker_info.join();
 
 
     return 0;
