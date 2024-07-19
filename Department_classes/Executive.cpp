@@ -1,7 +1,7 @@
 #include "Executive.h"
 
-Executive::Executive(std::string &manager, int income, int premium, int project_quantity, int average_time)
-        : Department(manager, income, premium), project_quantity{project_quantity}, average_time{average_time} {}
+Executive::Executive(int income, int premium, int project_quantity, int average_time)
+        : Department(income, premium), project_quantity{project_quantity}, average_time{average_time} {}
 
 Executive::Executive(Executive &&executive) : Department(std::move(executive)),
                                               project_quantity{executive.project_quantity},
@@ -10,6 +10,11 @@ Executive::Executive(Executive &&executive) : Department(std::move(executive)),
     executive.average_time = 0;
 }
 
+void Executive::setAllInfo(int income, int premium, int project_quantity, int average_time){
+    Department::setAllInfo(income, premium);
+    this->project_quantity = project_quantity;
+    this->average_time = average_time;
+}
 
 void Executive::getDepartmentInfo() {
     Department::getDepartmentInfo();

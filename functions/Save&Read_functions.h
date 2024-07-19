@@ -29,6 +29,13 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees);
 
 
+template<typename T_s>
+void saveDepartment(T_s &obj, std::string &filename);
+
+
+
+
+
 // definition
 void clear_file(std::string &filename) {
     std::ofstream fclear(filename, std::ios::trunc | std::ios::out);
@@ -150,6 +157,20 @@ void readDepartmentWorkers(std::vector<OfficeWorker> &office_workers,
                       else if (auxiliaryPosition.getDepartment() == "Legal") legal.setWorker(auxiliaryPosition);
                       else if (auxiliaryPosition.getDepartment() == "Executive") executive.setWorker(auxiliaryPosition);
                   });
+}
+
+
+template<typename T_s>
+void saveDepartment(T_s &obj, std::string &filename){
+    clear_file(filename);
+    try {
+        std::ofstream fout(filename, std::ios::in);
+        obj.saveInfo(fout);
+        fout.close();
+    }
+    catch (...) {
+        std::cout << "\nСталася помилка збереження інформації\n";
+    }
 }
 
 

@@ -9,16 +9,12 @@
 class Department {
 private:
     std::vector<std::unique_ptr<Employee>> workers;
-    std::string manager;
-    std::string name;
     int income;
     int premium;
 public:
-    Department() : manager{"None"}, name{"None"}, income{0}, premium{0} {}
+    Department() : income{0}, premium{0} {}
 
-    Department(std::string &manager, int income, int premium) : manager{manager},
-                                                                income{income},
-                                                                premium{premium} {}
+    Department(int income, int premium) : income{income}, premium{premium} {}
 
     Department(Department &&department) noexcept;
 
@@ -30,13 +26,13 @@ public:
 
 
     // methods set
+    void setAllInfo(int &income, int &premium);
+
     void setWorker(Employee &worker);
 
     void changeWorker(Employee &worker);
 
     void deleteWorker(std::string fullname);
-
-    void setManager(std::string &manager_in) { this->manager = manager_in; }
 
     void setIncome(int income_in) { this->income = income_in; }
 
@@ -52,15 +48,12 @@ public:
 
     int getPremium() { return premium; }
 
-    std::string getName() { return name; }
-
-    std::string getManager() { return manager; }
-
 
     // methods save
     virtual void saveInfo(std::ofstream &fout);
 
     virtual void readInfo(std::ifstream &fin);
+
 };
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_H

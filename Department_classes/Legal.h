@@ -10,7 +10,7 @@ private:
 public:
     Legal() : Department(), court_cases{0}, win_cases{0} {}
 
-    Legal(std::string &manager, int income, int premium, int court_cases, int win_cases);
+    Legal(int income, int premium, int court_cases, int win_cases);
 
     Legal(Legal &&legal) noexcept;
 
@@ -20,6 +20,8 @@ public:
 
 
     // set methods
+    void setAllInfo(int income, int premium, int court_cases, int win_cases);
+
     void setCourtCases(int court_cases_in) { this->court_cases = court_cases_in; }
 
     void setWinCases(int win_cases_in) { this->win_cases = win_cases_in; }

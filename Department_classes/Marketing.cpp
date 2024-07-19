@@ -1,13 +1,17 @@
 #include "Marketing.h"
 
-Marketing::Marketing(std::string &manager, int income, int premium, int ad_success_rate) :
-        Department(manager, income, premium), ad_success_rate{ad_success_rate} {}
+Marketing::Marketing(int income, int premium, int ad_success_rate) :
+        Department(income, premium), ad_success_rate{ad_success_rate} {}
 
 Marketing::Marketing(Marketing &&marketing) : Department(std::move(marketing)),
                                               ad_success_rate{marketing.ad_success_rate} {
     marketing.ad_success_rate = 0;
 }
 
+void Marketing::setAllInfo(int income, int premium, int ad_success_rate){
+    Department::setAllInfo(income, premium);
+    this->ad_success_rate = ad_success_rate;
+}
 
 void Marketing::getDepartmentInfo() {
     Department::getDepartmentInfo();

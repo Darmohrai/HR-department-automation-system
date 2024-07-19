@@ -10,7 +10,7 @@ private:
 public:
     Executive() : Department(), project_quantity{0}, average_time{0} {}
 
-    Executive(std::string &manager, int income, int premium, int project_quantity, int average_time);
+    Executive(int income, int premium, int project_quantity, int average_time);
 
     Executive(Executive &&executive);
 
@@ -20,6 +20,8 @@ public:
 
 
     // methods set
+    void setAllInfo(int income, int premium, int project_quantity, int average_time);
+
     void setProjectQuantity(int project_quantity_in) { this->project_quantity = project_quantity_in; }
 
     void setAverageTime(int average_time_in) { this->average_time = average_time_in; }

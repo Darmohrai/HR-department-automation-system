@@ -1,8 +1,6 @@
 #include "Department.h"
 
 Department::Department(Department &&department) noexcept: workers{std::move(department.workers)},
-                                                          manager{std::move(department.manager)},
-                                                          name{std::move(department.name)},
                                                           income{department.income},
                                                           premium{department.premium} {
     department.income = 0;
@@ -11,6 +9,11 @@ Department::Department(Department &&department) noexcept: workers{std::move(depa
 
 void Department::setWorker(Employee &worker) {
     workers.push_back(std::make_unique<Employee>(worker));
+}
+
+void Department::setAllInfo(int &income, int &premium){
+    this->income = income;
+    this->premium = premium;
 }
 
 void Department::changeWorker(Employee &worker){
@@ -43,16 +46,15 @@ void Department::getWorkersInfo() {
 
 void Department::getDepartmentInfo() {
     std::cout << "Кількість працівників - " << workers.size()
-              << "\nКерівник - " << manager
               << "\nДохід підприємства - " << income
               << "\nПреміальні кошти виділені на підприємство - " << premium;
 }
 
 
 void Department::saveInfo(std::ofstream &fout) {
-    fout << manager << "\n" << income << "\n" << premium << "\n";
+    fout << income << "\n" << premium << "\n";
 }
 
 void Department::readInfo(std::ifstream &fin) {
-    fin >> manager >> income >> premium;
+    fin >> income >> premium;
 }

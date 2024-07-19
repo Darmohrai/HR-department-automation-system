@@ -16,8 +16,6 @@ void caseIncomeOrPremium(T &obj, int choose);
 void addDepartmentInfo(int &income, int &premium);
 
 
-
-
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
     bool exit = false;
@@ -83,7 +81,7 @@ void changeMarketing(Marketing &marketing) {
                 }
                 case 3: {
                     std::string ad_success_rate;
-                    std::cout << "\n\nВведіть дохід підрозділу - ";
+                    std::cout << "\n\nВведіть відсоток успішності реклами - ";
                     std::cin >> ad_success_rate;
                     int ad_success_rate_int = std::stoi(ad_success_rate);
                     marketing.setAdSuccessRate(ad_success_rate_int);
@@ -93,12 +91,11 @@ void changeMarketing(Marketing &marketing) {
                 case 4: {
                     int income, premium, ad_success_rate_int;
                     addDepartmentInfo(income, premium);
-                    std::cout << "";
                     std::string ad_success_rate;
-                    std::cout << "\n\nВведіть дохід підрозділу - ";
+                    std::cout << "\n\nВведіть відсоток успішності реклами - ";
                     std::cin >> ad_success_rate;
                     ad_success_rate_int = std::stoi(ad_success_rate);
-                    marketing.setAdSuccessRate(ad_success_rate_int);
+                    marketing.setAllInfo(income, premium, ad_success_rate_int);
                     exit = true;
                     break;
                 }
@@ -163,12 +160,11 @@ void changeLegal(Legal &legal) {
                     std::cout << "\n\nВведіть кількість судових випадків - ";
                     std::cin >> court_cases;
                     court_cases_int = std::stoi(court_cases);
-                    legal.setCourtCases(court_cases_int);
                     std::string win_cases;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
                     std::cin >> win_cases;
                     win_cases_int = std::stoi(win_cases);
-                    legal.setWinCases(win_cases_int);
+                    legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
                     exit = true;
                     break;
                 }
@@ -231,12 +227,11 @@ void changeExecutive(Executive &executive) {
                     std::cout << "\n\nВведіть кількість судових випадків - ";
                     std::cin >> project_quantity;
                     project_quantity_int = std::stoi(project_quantity);
-                    executive.setProjectQuantity(project_quantity_int);
                     std::string average_time;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
                     std::cin >> average_time;
                     average_time_int = std::stoi(average_time);
-                    executive.setAverageTime(average_time_int);
+                    executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
                     exit = true;
                     break;
                 }
@@ -276,7 +271,7 @@ void addDepartmentInfo(int &income, int &premium) {
             std::cout << "\nВведіть дохід підрозділу - ";
             std::cin >> choose;
             income = std::stoi(choose);
-            std::cout << "\nВведіть дохід підрозділу - ";
+            std::cout << "\nВведіть преміальні кошти підрозділу - ";
             std::cin >> choose;
             premium = std::stoi(choose);
         }

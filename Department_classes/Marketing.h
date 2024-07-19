@@ -9,7 +9,7 @@ private:
 public:
     Marketing() : Department(), ad_success_rate{0} {}
 
-    Marketing(std::string &manager, int income, int premium, int ad_success_rate);
+    Marketing(int income, int premium, int ad_success_rate);
 
     Marketing(Marketing &&marketing);
 
@@ -20,6 +20,8 @@ public:
 
     // methods set
     void setAdSuccessRate(int ad_success_rate_in) { ad_success_rate = ad_success_rate_in; }
+
+    void setAllInfo(int income, int premium, int ad_success_rate);
 
 
     // methods get
@@ -32,6 +34,7 @@ public:
     void saveInfo(std::ofstream &fout) final;
 
     void readInfo(std::ifstream &fin) final;
+
 };
 
 
