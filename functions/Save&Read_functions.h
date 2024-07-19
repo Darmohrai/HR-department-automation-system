@@ -32,8 +32,7 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
 template<typename T_s>
 void saveDepartment(T_s &obj, std::string &filename);
 
-
-
+void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive);
 
 
 // definition
@@ -161,7 +160,7 @@ void readDepartmentWorkers(std::vector<OfficeWorker> &office_workers,
 
 
 template<typename T_s>
-void saveDepartment(T_s &obj, std::string &filename){
+void saveDepartment(T_s &obj, std::string &filename) {
     clear_file(filename);
     try {
         std::ofstream fout(filename, std::ios::in);
@@ -173,5 +172,30 @@ void saveDepartment(T_s &obj, std::string &filename){
     }
 }
 
+void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
+    try {
+        std::lock_guard<std::mutex> lockGuard(mtx_for_database);
+        std::string marketing_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\marketing_department.txt)";
+        std::string legal_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\legal_department.txt)";
+        std::string executive_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\executive_department.txt)";
+
+        std::thread save_marketing_info(saveDepartment<Marketing>, std::ref(marketing),
+                                        std::ref(marketing_filename));
+        std::thread save_legal_info(saveDepartment<Legal>, std::ref(legal),
+                                        std::ref(legal_filename));
+        std::thread save_executive_info(saveDepartment<Executive>, std::ref(executive),
+                                        std::ref(executive_filename));
+
+        save_marketing_info.join();
+        save_legal_info.join();
+        save_executive_info.join();
+    }
+    catch (...) {
+        std::cerr << "\nСталася помилка збереження інформації\n";
+    }
+}
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SAVE_READ_FUNCTIONS_H

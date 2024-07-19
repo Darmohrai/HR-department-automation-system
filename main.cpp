@@ -92,6 +92,8 @@ int main() {
 
     threadsSaveInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
+    threadsSaveDepartmentInfo(marketing, legal, executive);
+
     return 0;
 }
 
