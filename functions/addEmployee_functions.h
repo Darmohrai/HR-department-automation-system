@@ -208,21 +208,21 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
         case 1: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, marketing);
+                                last_appointment, premium, &marketing);
             managers.push_back(std::move(new_manager));
             break;
         }
         case 2: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, legal);
+                                last_appointment, premium, &legal);
             managers.push_back(std::move(new_manager));
             break;
         }
         case 3: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, executive);
+                                last_appointment, premium, &executive);
             managers.push_back(std::move(new_manager));
             break;
         }
@@ -300,7 +300,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
                                   department, position, salary, last_appointment, experience, id,
                                   project_numbers);
     office_workers.push_back(std::move(new_officeWorker));
-
+/*
     switch (department_int) {
         case 1:
             marketing.setWorker(office_workers.back());
@@ -311,7 +311,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
         case 3:
             executive.setWorker(office_workers.back());
             break;
-    }
+    }*/
 }
 
 void
@@ -371,7 +371,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
                                             specialty, department, position, salary, last_appointment,
                                             experience, phone_number);
     auxiliary_position_workers.push_back(std::move(new_auxiliaryPosition));
-
+/*
     switch (department_int) {
         case 1:
             marketing.setWorker(auxiliary_position_workers.back());
@@ -382,7 +382,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
         case 3:
             executive.setWorker(auxiliary_position_workers.back());
             break;
-    }
+    }*/
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H

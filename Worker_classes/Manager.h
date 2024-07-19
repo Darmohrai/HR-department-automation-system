@@ -7,7 +7,7 @@
 
 class Manager final : public Employee {
 private:
-    std::shared_ptr<Department> supervisory_department; // need to create 'has a relationship' with class Department
+    Department *supervisory_department; // need to create 'has a relationship' with class Department
     int premium;
 public:
     Manager() : Employee(), premium{0}, supervisory_department{nullptr} {}
@@ -15,13 +15,14 @@ public:
     Manager(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
             std::string &position, int salary, std::string &last_appointment, int premium,
-            Department &supervisory_department);
+            Department *supervisory_department);
 
     Manager(Manager &&manager) noexcept;
 
     Manager(Manager &manager);
 
-    ~Manager() { std::cout << "object deleted"; }
+    ~Manager() { delete supervisory_department;
+        std::cout << "object deleted"; }
 
 
     // methods get
@@ -40,6 +41,8 @@ public:
     void checkStatus() final { Employee::checkStatus(); }
 
     void setPremium() { std::cin >> premium; }
+
+    void setSupervisoryDepartment(Department &manager, Department &legal, Department &executive);
 
 
     // methods save
