@@ -35,8 +35,9 @@ int main() {
         manager.setSupervisoryDepartment(marketing, legal, executive);
     });
 
-    // need be threads for Department read
-    readDepartmentWorkers(office_workers, auxiliary_position_workers, marketing, legal, executive);
+
+    threadsReadDepartmentInfo(marketing, legal, executive, office_workers, auxiliary_position_workers);
+
 
 
     bool exit = false;

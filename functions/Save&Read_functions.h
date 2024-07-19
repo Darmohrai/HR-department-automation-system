@@ -34,6 +34,13 @@ void saveDepartment(T_s &obj, std::string &filename);
 
 void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive);
 
+template<typename T_r>
+void readDepartmentInfo(T_r &obj, std::string &filename);
+
+void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
+                               std::vector<OfficeWorker> &office_workers,
+                               std::vector<AuxiliaryPosition> &auxiliary_position_workers);
+
 
 // definition
 void clear_file(std::string &filename) {
@@ -185,7 +192,7 @@ void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
         std::thread save_marketing_info(saveDepartment<Marketing>, std::ref(marketing),
                                         std::ref(marketing_filename));
         std::thread save_legal_info(saveDepartment<Legal>, std::ref(legal),
-                                        std::ref(legal_filename));
+                                    std::ref(legal_filename));
         std::thread save_executive_info(saveDepartment<Executive>, std::ref(executive),
                                         std::ref(executive_filename));
 
@@ -195,6 +202,50 @@ void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
     }
     catch (...) {
         std::cerr << "\nСталася помилка збереження інформації\n";
+    }
+}
+
+template<typename T_r>
+void readDepartmentInfo(T_r &obj, std::string &filename) {
+    try {
+        std::ifstream fin(filename);
+        obj.readInfo(fin);
+    }
+    catch (...) {
+        std::cout << "\nСталася помилка зчитування інформації\n";
+    }
+}
+
+void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
+                               std::vector<OfficeWorker> &office_workers,
+                               std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
+    try {
+        std::lock_guard<std::mutex> read_lockGuard(mtx_for_database);
+
+        std::string marketing_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\marketing_department.txt)";
+        std::string legal_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\legal_department.txt)";
+        std::string executive_filename =
+                R"(D:\\course project\\HR-department-automation-system\\savings_file\\executive_department.txt)";
+
+        std::thread read_marketing_info(readDepartmentInfo<Marketing>, std::ref(marketing),
+                                        std::ref(marketing_filename));
+        std::thread read_legal_info(readDepartmentInfo<Legal>, std::ref(legal),
+                                    std::ref(legal_filename));
+        std::thread read_executive_info(readDepartmentInfo<Executive>, std::ref(executive),
+                                        std::ref(executive_filename));
+        std::thread read_department_workers(readDepartmentWorkers, std::ref(office_workers),
+                                            std::ref(auxiliary_position_workers), std::ref(marketing), std::ref(legal),
+                                            std::ref(executive));
+
+        read_marketing_info.join();
+        read_legal_info.join();
+        read_executive_info.join();
+        read_department_workers.join();
+    }
+    catch (...) {
+        std::cerr << "\nСталася помилка зчитування інформації\n";
     }
 }
 
