@@ -9,6 +9,11 @@ std::mutex mtx_for_database;
 // declaration
 void clear_file(std::string &filename);
 
+void readDepartmentWorkers(std::vector<OfficeWorker> &office_workers,
+                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing,
+                           Legal &legal,
+                           Executive &executive);
+
 
 template<typename T_s>
 void saveWorkerInfo(std::vector<T_s> &vector_obj, std::string &filename);
@@ -126,6 +131,25 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
     catch (...) {
         std::cerr << "\nСталася помилка зчитування інформації\n";
     }
+}
+
+void readDepartmentWorkers(std::vector<OfficeWorker> &office_workers,
+                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing,
+                           Legal &legal,
+                           Executive &executive) {
+    std::for_each(office_workers.begin(), office_workers.end(),
+                  [&marketing, &legal, &executive](OfficeWorker &officeWorker) {
+                      if (officeWorker.getDepartment() == "Marketing") marketing.setWorker(officeWorker);
+                      else if (officeWorker.getDepartment() == "Legal") legal.setWorker(officeWorker);
+                      else if (officeWorker.getDepartment() == "Executive") executive.setWorker(officeWorker);
+                  });
+
+    std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
+                  [&marketing, &legal, &executive](AuxiliaryPosition &auxiliaryPosition) {
+                      if (auxiliaryPosition.getDepartment() == "Marketing") marketing.setWorker(auxiliaryPosition);
+                      else if (auxiliaryPosition.getDepartment() == "Legal") legal.setWorker(auxiliaryPosition);
+                      else if (auxiliaryPosition.getDepartment() == "Executive") executive.setWorker(auxiliaryPosition);
+                  });
 }
 
 

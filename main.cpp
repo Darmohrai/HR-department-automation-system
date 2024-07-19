@@ -28,14 +28,14 @@ int main() {
     std::vector<AuxiliaryPosition> auxiliary_position_workers;
     std::vector<Trainee> trainees;
 
-    marketing.setVectors(&office_workers, &auxiliary_position_workers);
-
     threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
     std::for_each(managers.begin(), managers.end(), [&marketing, &legal, &executive](Manager &manager) {
         manager.setSupervisoryDepartment(marketing, legal, executive);
     });
 
+    // need be threads for Department read
+    readDepartmentWorkers(office_workers, auxiliary_position_workers, marketing, legal, executive);
 
 
     bool exit = false;

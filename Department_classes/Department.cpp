@@ -1,37 +1,29 @@
 #include "Department.h"
 
-Department::Department(Department &&department) noexcept: officeWorkers{std::move(department.officeWorkers)},
-                                                          auxiliaryPositionWorkers{
-                                                                  std::move(department.auxiliaryPositionWorkers)},
+Department::Department(Department &&department) noexcept: workers{std::move(department.workers)},
                                                           manager{std::move(department.manager)},
                                                           name{std::move(department.name)},
                                                           income{department.income},
                                                           premium{department.premium} {
     department.income = 0;
     department.premium = 0;
-    department.officeWorkers = nullptr;
-    department.auxiliaryPositionWorkers = nullptr;
 }
 
-Department::Department(Department &department) : officeWorkers{department.officeWorkers},
-                                                 auxiliaryPositionWorkers{department.auxiliaryPositionWorkers},
-                                                 manager{department.manager},
-                                                 name{department.name},
-                                                 income{department.income},
-                                                 premium{department.premium} {}
-
+void Department::setWorker(Employee &worker) {
+    workers.push_back(std::make_unique<Employee>(worker));
+}
 
 void Department::getWorkersInfo() {
-    std::for_each(officeWorkers->begin(), officeWorkers->end(), [](OfficeWorker &employee) {
+    std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
                       std::cout << "\n";
-                      employee.getBriefInfo();
+                      employee->getBriefInfo();
                   }
     );
 
 }
 
 void Department::getDepartmentInfo() {
-    std::cout << "Кількість працівників - " << officeWorkers->size()
+    std::cout << "Кількість працівників - " << workers.size()
               << "\nКерівник - " << manager
               << "\nДохід підприємства - " << income
               << "\nПреміальні кошти виділені на підприємство - " << premium;
