@@ -9,14 +9,13 @@ Department::Department(Department &&department) noexcept: workers{std::move(depa
     department.premium = 0;
 }
 
-
 void Department::setWorker(Employee worker) {
     workers.push_back(std::make_unique<Employee>(worker));
 }
 
 
 void Department::getWorkersInfo() {
-    std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
+    std::for_each(workers.begin(), workers.end(), [](std::shared_ptr<Employee> &employee) {
                       std::cout << "\n";
                       employee->getBriefInfo();
                   }

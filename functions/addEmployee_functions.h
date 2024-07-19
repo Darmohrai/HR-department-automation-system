@@ -15,7 +15,8 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                     std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                     std::string &position, int &salary, std::string &last_appointment, int &department_int);
 
-void addManager(std::vector<Manager> &managers);
+void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
+                Executive &executive);
 
 void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
                      Executive &executive);
@@ -49,7 +50,7 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
             if (choose.size() > 1) throw 0;
             switch (choose[0]) {
                 case '1':
-                    addManager(managers);
+                    addManager(managers, marketing, legal, executive);
                     exit = true;
                     break;
                 case '2':
@@ -167,7 +168,8 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
     std::cin >> last_appointment;
 }
 
-void addManager(std::vector<Manager> &managers) {
+void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
+                Executive &executive) {
     gap();
     int department_int;
 
@@ -202,10 +204,29 @@ void addManager(std::vector<Manager> &managers) {
         }
     }
 
-    Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position, salary,
-                        last_appointment, premium);
-
-    managers.push_back(std::move(new_manager));
+    switch (department_int) {
+        case 1: {
+            Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
+                                salary,
+                                last_appointment, premium, marketing);
+            managers.push_back(std::move(new_manager));
+            break;
+        }
+        case 2: {
+            Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
+                                salary,
+                                last_appointment, premium, legal);
+            managers.push_back(std::move(new_manager));
+            break;
+        }
+        case 3: {
+            Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
+                                salary,
+                                last_appointment, premium, executive);
+            managers.push_back(std::move(new_manager));
+            break;
+        }
+    }
 }
 
 void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,

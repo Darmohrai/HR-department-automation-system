@@ -13,6 +13,8 @@ public:
 
     Marketing(Marketing &&marketing);
 
+    Marketing(Marketing &marketing) = default;
+
     ~Marketing() { std::cout << "object deleted"; }
 
 

@@ -14,6 +14,8 @@ public:
 
     Executive(Executive &&executive);
 
+    Executive(Executive &executive) = default;
+
     ~Executive() { std::cout << "object deleted"; }
 
 

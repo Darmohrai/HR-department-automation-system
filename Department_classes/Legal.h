@@ -14,6 +14,8 @@ public:
 
     Legal(Legal &&legal) noexcept;
 
+    Legal(Legal &legal) = default;
+
     ~Legal() { std::cout << "object deleted"; }
 
 

@@ -7,14 +7,15 @@
 
 class Manager final : public Employee {
 private:
-    //std::shared_ptr<Department> supervisory_department; // need to create 'has a relationship' with class Department
+    std::shared_ptr<Department> supervisory_department; // need to create 'has a relationship' with class Department
     int premium;
 public:
-    Manager() : Employee(), premium{0} {}
+    Manager() : Employee(), premium{0}, supervisory_department{nullptr} {}
 
     Manager(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
-            std::string &position, int salary, std::string &last_appointment, int premium);
+            std::string &position, int salary, std::string &last_appointment, int premium,
+            Department &supervisory_department);
 
     Manager(Manager &&manager) noexcept;
 

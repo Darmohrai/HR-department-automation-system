@@ -8,7 +8,7 @@
 
 class Department {
 private:
-    std::vector<std::unique_ptr<Employee>> workers;
+    std::vector<std::shared_ptr<Employee>> workers;
     std::string manager;
     std::string name;
     int income;
@@ -20,6 +20,8 @@ public:
                                                                 premium{premium} {}
 
     Department(Department &&department) noexcept;
+
+    Department(Department &department) = default;
 
     ~Department() { std::cout << "object deleted"; }
 
