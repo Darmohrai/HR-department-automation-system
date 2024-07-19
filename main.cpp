@@ -12,6 +12,7 @@
 #include "functions/addEmployee_functions.h" // function gap() here
 #include "functions/Trainee_functions.h"
 #include "functions/Department_functions.h"
+#include "functions/changeEmployee_functions.h"
 
 
 void userInstruction();
@@ -48,6 +49,7 @@ int main() {
                      "2). Додати робітника\n"
                      "3). Додати практиканта\n"
                      "4). Змінити дані про підрозділи\n"
+                     "5). Змінити дані про робітника\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -71,6 +73,10 @@ int main() {
                     break;
                 case '4':
                     changeDepartmentInfo(marketing, legal, executive);
+                    break;
+                case '5':
+                    changeEmployeeInfo(managers, office_workers, auxiliary_position_workers,
+                                       marketing, legal, executive);
                     break;
             }
         }

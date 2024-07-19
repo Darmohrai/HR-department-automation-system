@@ -26,6 +26,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
                      Executive &executive);
 
 
+
 // definition
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
@@ -384,5 +385,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
             break;
     }
 }
+
+
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H

@@ -30,4 +30,6 @@ add_executable(HR_department_automation_system main.cpp
         functions/Trainee_functions.h
         functions/Save&Read_functions.h
         functions/Department_functions.h
+        functions/changeEmployee_functions.h
+        functions/changeEmployee_functions.h
 )

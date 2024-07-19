@@ -36,6 +36,14 @@ public:
 
 
     // methods set
+    void setDepartment(std::string &department_set) { this->department = department_set; }
+
+    void setLastAppointment(std::string &last_appointment_set) { this->last_appointment = last_appointment_set; }
+
+    void setPosition(std::string &position_set) { this->position = position_set; }
+
+    void setSalary(int salary_set) { this->salary = salary_set; }
+
     void prepareOrder() override;
 
     void checkStatus() override;

@@ -21,8 +21,10 @@ public:
 
     Manager(Manager &manager);
 
-    ~Manager() { delete supervisory_department;
-        std::cout << "object deleted"; }
+    ~Manager() {
+        delete supervisory_department;
+        std::cout << "object deleted";
+    }
 
 
     // methods get
@@ -40,7 +42,7 @@ public:
 
     void checkStatus() final { Employee::checkStatus(); }
 
-    void setPremium() { std::cin >> premium; }
+    void setPremium(int premium_set) { this->premium = premium_set; }
 
     void setSupervisoryDepartment(Department &manager, Department &legal, Department &executive);
 
