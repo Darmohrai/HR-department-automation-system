@@ -32,6 +32,10 @@ public:
     // methods set
     void setWorker(Employee &worker);
 
+    void changeWorker(Employee &worker);
+
+    void deleteWorker(std::string fullname);
+
     void setManager(std::string &manager_in) { this->manager = manager_in; }
 
     void setIncome(int income_in) { this->income = income_in; }

@@ -38,7 +38,7 @@ public:
 
     void checkStatus() final { Employee::checkStatus(); }
 
-    void setProjectNumbers() { std::cin >> project_numbers; }
+    void setProjectNumbers(int project_numbers_set) { this->project_numbers = project_numbers_set; }
 
 
     // methods save
