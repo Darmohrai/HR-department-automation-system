@@ -33,6 +33,8 @@ public:
 
 
     // methods set
+    void setPhoneNumber(int phone_number_set) { this->phone_number = phone_number_set; }
+
     void prepareOrder() final { Employee::prepareOrder(); }
 
     void checkStatus() final { Employee::checkStatus(); }
@@ -41,7 +43,7 @@ public:
     // methods save
     void saveInfo(std::ofstream &fout) final;
 
-    void readInfo(std::ifstream &fin)final;
+    void readInfo(std::ifstream &fin) final;
 };
 
 
