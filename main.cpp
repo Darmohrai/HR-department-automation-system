@@ -10,9 +10,9 @@
 
 #include "functions/Save&Read_functions.h"
 #include "functions/addEmployee_functions.h" // function gap() here
-#include "functions/Trainee_functions.h"
 #include "functions/Department_functions.h"
 #include "functions/changeEmployee_functions.h"
+#include "functions/Trainee_functions.h"
 #include "functions/seeEmployee_functions.h"
 
 
@@ -55,55 +55,62 @@ int main() {
                      "3). Додати практиканта\n"
                      "4). Змінити дані про підрозділи\n"
                      "5). Змінити дані про робітника\n"
-                     "6). Переглянути інформацію про всіх робітників\n"
-                     "7). Переглянути інформацію про підрозділи\n"
-                     "8). Перевірити статус робітників\n"
+                     "6). Змінити дані про практиканта\n"
+                     "7). Переглянути інформацію про всіх робітників\n"
+                     "8). Переглянути інформацію про підрозділи\n"
+                     "9). Переглянути інформацію про стажерів\n"
+                     "10). Перевірити статус робітників\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
         // need to improve exception;
 
         try {
-            if (answer.size() > 1) throw 0;
-            switch (answer[0]) {
-                case '0':
+            int answer_int = std::stoi(answer);
+            switch (answer_int) {
+                case 0:
                     exit = true;
                     break;
-                case '1':
+                case 1:
                     userInstruction();
                     break;
-                case '2':
+                case 2:
                     addEmployee(managers, office_workers, auxiliary_position_workers,
                                 marketing, legal, executive);
                     break;
-                case '3':
+                case 3:
                     addTrainee(trainees);
                     break;
-                case '4':
+                case 4:
                     changeDepartmentInfo(marketing, legal, executive);
                     break;
-                case '5':
+                case 5:
                     changeEmployeeInfo(managers, office_workers, auxiliary_position_workers,
                                        marketing, legal, executive);
                     break;
-                case '6':
+                case 6:
+                    changeTraineeInfo(trainees);
+                    break;
+                case 7:
                     seeEmployeeInfo(managers, office_workers, auxiliary_position_workers);
                     break;
-                case '7':
+                case 8:
                     seeDepartmentInfo(marketing, legal, executive, managers);
                     break;
-                case '8':
+                case 9:
+                    seeTraineeInfo(trainees);
+                    break;
+                case 10:
                     workerStatus(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
                                  executive);
                     break;
+                default:
+                    throw 0;
             }
         }
-        catch (int exception) { // should be improved
+        catch (...) { // should be improved
             gap();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-        }
-        catch (bool exception) {
-            std::cerr << "Error";
         }
     }
 
@@ -135,17 +142,19 @@ void userInstruction() {
 void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                   std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
                   Marketing &marketing, Legal &legal, Executive &executive) {
+    bool changes = false;
     int counter = 0;
-    std::for_each(managers.begin(), managers.end(), [&managers, &counter](Manager &manager) {
+    std::for_each(managers.begin(), managers.end(), [&managers, &counter, &changes](Manager &manager) {
         if (manager.checkStatus()) {
             managers.erase(managers.begin() + counter);
         }
         counter++;
+        changes = true;
     });
 
     counter = 0;
     std::for_each(office_workers.begin(), office_workers.end(),
-                  [&office_workers, &marketing, &legal, &executive, &counter](
+                  [&office_workers, &marketing, &legal, &executive, &counter, &changes](
                           OfficeWorker &officeWorker) {
                       if (officeWorker.checkStatus()) {
                           office_workers.erase(office_workers.begin() + counter);
@@ -157,11 +166,12 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                               executive.deleteWorker(officeWorker.getFullname());
                       }
                       counter++;
+                      changes = true;
                   });
 
     counter = 0;
     std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
-                  [&auxiliary_position_workers, &marketing, &legal, &executive, &counter](
+                  [&auxiliary_position_workers, &marketing, &legal, &executive, &counter, &changes](
                           AuxiliaryPosition &auxiliaryPosition) {
                       if (auxiliaryPosition.checkStatus()) {
                           auxiliary_position_workers.erase(auxiliary_position_workers.begin() + counter);
@@ -173,15 +183,19 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                               executive.deleteWorker(auxiliaryPosition.getFullname());
                       }
                       counter++;
+                      changes = true;
                   });
 
     counter = 0;
     std::for_each(trainees.begin(), trainees.end(),
-                  [&trainees, &office_workers, &marketing, &legal, &executive, &counter](Trainee &trainee) {
+                  [&trainees, &office_workers, &marketing, &legal, &executive, &counter, &changes](Trainee &trainee) {
                       if (trainee.checkStatus()) {
                           employ(trainee, office_workers, marketing, legal, executive);
                           trainees.erase(trainees.begin() + counter);
                       }
                       counter++;
+                      changes = true;
                   });
+
+    if(!changes) std::cout << "\n\nНемає суб'єктів для звільнення/приймання \n\n";
 }

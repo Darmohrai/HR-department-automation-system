@@ -343,10 +343,10 @@ template<typename T>
 void findWorker(std::vector<T> &obj, int &choose_worker) {
     gap();
 
-    std::cout << "Оберіть робітника\n";
+    std::cout << "Оберіть суб'єкт\n";
 
     if (obj.size() == 0) {
-        std::cout << "\nРобітників поки ще немає\n";
+        std::cout << "\nСуб'єктів поки ще немає\n";
         return;
     }
 

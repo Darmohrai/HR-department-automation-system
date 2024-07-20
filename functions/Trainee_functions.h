@@ -4,8 +4,14 @@
 // declaration
 void addTrainee();
 
+void changeTraineeInfo(std::vector<Trainee> &trainees);
+
+void performanceTrainee(std::string &performance);
+
 void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
             Executive &executive);
+
+void seeTraineeInfo(std::vector<Trainee> &trainees);
 
 
 // definition
@@ -42,7 +48,34 @@ void addTrainee(std::vector<Trainee> &trainees) {
         }
     }
 
-    error = false;
+    performanceTrainee(performance);
+
+    std::cout << "\nВведіть ПІБ ментора - ";
+    std::cin >> mentor;
+
+    Trainee new_Trainee(fullname, age, passport_number, education, entry_date, specialty,
+                        probation, performance, mentor);
+
+    trainees.push_back(std::move(new_Trainee));
+}
+
+void changeTraineeInfo(std::vector<Trainee> &trainees) {
+    int choose_trainee;
+
+    //import from file changeEmployee_functions
+    findWorker(trainees, choose_trainee);
+
+    int exit = false;
+    std::string performance;
+
+    performanceTrainee(performance);
+
+    trainees[choose_trainee-1].setPerformance(performance);
+}
+
+void performanceTrainee(std::string &performance) {
+    bool error = false;
+    std::string reader;
     while (!error) {
         try {
             int performance_int;
@@ -63,6 +96,8 @@ void addTrainee(std::vector<Trainee> &trainees) {
                 case 3:
                     performance = "bad";
                     break;
+                default:
+                    throw 0;
             }
         }
         catch (...) {
@@ -70,14 +105,6 @@ void addTrainee(std::vector<Trainee> &trainees) {
             error = false;
         }
     }
-
-    std::cout << "\nВведіть ПІБ ментора - ";
-    std::cin >> mentor;
-
-    Trainee new_Trainee(fullname, age, passport_number, education, entry_date, specialty,
-                        probation, performance, mentor);
-
-    trainees.push_back(std::move(new_Trainee));
 }
 
 void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
@@ -200,6 +227,43 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
         case 3:
             executive.setWorker(office_workers.back());
             break;
+    }
+}
+
+void seeTraineeInfo(std::vector<Trainee> &trainees){
+    bool exit = false;
+    std::string choose;
+
+    while (!exit){
+        std::cout << "\nОберіть тип інформації\n"
+                     "1). Повна\n"
+                     "2). Коротка\n";
+        try{
+            exit = true;
+            std::cin >> choose;
+            int choose_int = std::stoi(choose);
+            std::cout << "\n\n";
+            switch (choose_int) {
+                case 1:
+                    std::for_each(trainees.begin(), trainees.end(), [](Trainee &trainee){
+                        std::cout << "\n";
+                        trainee.getAllInfo();
+                    });
+                    break;
+                case 2:
+                    std::for_each(trainees.begin(), trainees.end(), [](Trainee &trainee){
+                        std::cout << "\n";
+                        trainee.getBriefInfo();
+                    });
+                    break;
+                default:
+                    throw 0;
+            }
+        }
+        catch (...) {
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            exit = false;
+        }
     }
 }
 

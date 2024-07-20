@@ -30,10 +30,11 @@ public:
 
 
     // methods set
-    [[nodiscard]] bool prepareOrder() override {return Person::prepareOrder(); };
+    [[nodiscard]] bool prepareOrder() override { return Person::prepareOrder(); };
 
     bool checkStatus() override;
 
+    void setPerformance(std::string &performance_set) { this->performance = performance_set; }
 
     // methods save
     void saveInfo(std::ofstream &fout) override;
