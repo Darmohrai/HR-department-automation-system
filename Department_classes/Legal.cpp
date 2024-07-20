@@ -1,7 +1,7 @@
 #include "Legal.h"
 
 Legal::Legal(int income, int premium, int court_cases, int win_cases) :
-        Department(income, premium), court_cases{court_cases}, win_cases{win_cases} {}
+        Department(income, premium), court_cases{court_cases}, win_cases{win_cases} { setName("Legal"); }
 
 Legal::Legal(Legal &&legal) noexcept: Department(std::move(legal)), court_cases{legal.court_cases},
                                       win_cases{legal.win_cases} {
@@ -13,6 +13,7 @@ void Legal::setAllInfo(int income, int premium, int court_cases, int win_cases) 
     Department::setAllInfo(income, premium);
     this->court_cases = court_cases;
     this->win_cases = win_cases;
+    setName("Legal");
 }
 
 void Legal::getDepartmentInfo() {

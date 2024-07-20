@@ -7,7 +7,7 @@
 
 class Manager final : public Employee {
 private:
-    Department *supervisory_department; // need to create 'has a relationship' with class Department
+    Department *supervisory_department = new Department; // need to create 'has a relationship' with class Department
     int premium;
 public:
     Manager() : Employee(), premium{0}, supervisory_department{nullptr} {}
@@ -22,7 +22,7 @@ public:
     Manager(Manager &manager);
 
     ~Manager() {
-        delete supervisory_department;
+        if (supervisory_department != nullptr) supervisory_department = nullptr;
         std::cout << "object deleted";
     }
 
@@ -59,6 +59,15 @@ public:
     void saveInfo(std::ofstream &fout) final;
 
     void readInfo(std::ifstream &fin) final;
+
+
+    Manager &operator=(const Manager &manager) = default;
+
+
+    // for department
+    bool operator<=(const Manager &manager) const {
+        return this->supervisory_department->getName() < manager.supervisory_department->getName();
+    }
 };
 
 

@@ -2,7 +2,8 @@
 
 Department::Department(Department &&department) noexcept: workers{std::move(department.workers)},
                                                           income{department.income},
-                                                          premium{department.premium} {
+                                                          premium{department.premium},
+                                                          name{std::move(department.name)} {
     department.income = 0;
     department.premium = 0;
 }
@@ -11,24 +12,24 @@ void Department::setWorker(Employee &worker) {
     workers.push_back(std::make_unique<Employee>(worker));
 }
 
-void Department::setAllInfo(int &income, int &premium){
+void Department::setAllInfo(int &income, int &premium) {
     this->income = income;
     this->premium = premium;
 }
 
-void Department::changeWorker(Employee &worker){
-    std::for_each(workers.begin(), workers.end(), [&worker](std::unique_ptr<Employee> &employee){
-        if(employee->getFullname() == worker.getFullname()) {
+void Department::changeWorker(Employee &worker) {
+    std::for_each(workers.begin(), workers.end(), [&worker](std::unique_ptr<Employee> &employee) {
+        if (employee->getFullname() == worker.getFullname()) {
             employee = std::make_unique<Employee>(worker);
         }
     });
 }
 
-void Department::deleteWorker(std::string fullname){
+void Department::deleteWorker(std::string fullname) {
     int numb;
     int count = 0;
-    std::for_each(workers.begin(), workers.end(), [&count, &fullname, &numb](std::unique_ptr<Employee> &employee){
-        if(employee->getFullname() == fullname) numb = count;
+    std::for_each(workers.begin(), workers.end(), [&count, &fullname, &numb](std::unique_ptr<Employee> &employee) {
+        if (employee->getFullname() == fullname) numb = count;
         count++;
     });
 
@@ -44,7 +45,7 @@ void Department::getWorkersInfo() {
 
 }
 
-void Department::getWorkers(){
+void Department::getWorkers() {
     std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
                       std::cout << "\n" << employee->getFullname();
                   }

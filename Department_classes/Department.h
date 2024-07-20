@@ -11,6 +11,7 @@ private:
     std::vector<std::unique_ptr<Employee>> workers;
     int income;
     int premium;
+    std::string name = "None";
 public:
     Department() : income{0}, premium{0} {}
 
@@ -29,6 +30,8 @@ public:
     void setAllInfo(int &income, int &premium);
 
     void setWorker(Employee &worker);
+
+    void setName(std::string name_set) { this->name = name_set; }
 
     void changeWorker(Employee &worker);
 
@@ -49,6 +52,8 @@ public:
     int getIncome() { return income; }
 
     int getPremium() { return premium; }
+
+    std::string getName() { return name; }
 
 
     // methods save

@@ -8,7 +8,7 @@ private:
     int project_quantity;
     int average_time; // average executive time
 public:
-    Executive() : Department(), project_quantity{0}, average_time{0} {}
+    Executive() : Department(), project_quantity{0}, average_time{0} { setName("Executive"); }
 
     Executive(int income, int premium, int project_quantity, int average_time);
 

@@ -14,6 +14,7 @@ void Executive::setAllInfo(int income, int premium, int project_quantity, int av
     Department::setAllInfo(income, premium);
     this->project_quantity = project_quantity;
     this->average_time = average_time;
+    setName("Executive");
 }
 
 void Executive::getDepartmentInfo() {
