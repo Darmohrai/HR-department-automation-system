@@ -49,6 +49,7 @@ public:
 
     OfficeWorker& operator=(const OfficeWorker &officeWorker) = default;
 
+    // for experience
     bool operator<=(const OfficeWorker &officeWorker) const {
         return this->experience <= officeWorker.experience;
     }

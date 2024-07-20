@@ -133,7 +133,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
             std::cout << "\nОберіть підрозділ \n"
                          "1). Маркетинговий\n"
                          "2). Юридичний\n"
-                         "3). Вмконавчий\n";
+                         "3). Виконавчий\n";
             std::cin >> reader;
             department_int = std::stoi(reader);
             error = true;

@@ -43,7 +43,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                     exit = true;
                     break;
                 case 3:
-
+                    chooseWorkerSort(auxiliary_position_workers);
                     exit = true;
                     break;
                 case 0:
@@ -141,6 +141,9 @@ void chooseWorkerSort(std::vector<T> &vec) {
             exit = false;
         }
     }
+
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити ";
+    system("pause");
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SEEEMPLOYEE_FUNCTIONS_H

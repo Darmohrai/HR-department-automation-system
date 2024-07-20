@@ -44,6 +44,14 @@ public:
     void saveInfo(std::ofstream &fout) final;
 
     void readInfo(std::ifstream &fin) final;
+
+
+    AuxiliaryPosition& operator=(const AuxiliaryPosition &auxiliaryPosition) = default;
+
+    // for experience
+    bool operator<=(const AuxiliaryPosition &auxiliaryPosition) const {
+        return this->experience <= auxiliaryPosition.experience;
+    }
 };
 
 
