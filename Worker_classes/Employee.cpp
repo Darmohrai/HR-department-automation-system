@@ -42,33 +42,6 @@ void Employee::getBriefInfo() {
 }
 
 
-bool Employee::prepareOrder() {
-    int answer;
-    bool numb = false;
-    std::cout << "\n\nНаказ про звільнення підготовлено, "
-                 "\nНатисніть '1', щоб підписати "
-                 "\nНатисніть '0', щоб скасувати ";
-
-    while (numb == false) {
-        try {
-            numb = true;
-            std::cin >> answer;
-            if (answer == 1) {
-                std::cout << getFullname() << "\nЗвільнено\n";
-                Employee::~Employee();
-                return true;
-            } else if (answer == 0) {
-                std::cout << "\nНаказ скасовано\n";
-                return false;
-            } else throw false;
-        }
-        catch (bool n) {
-            std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
-            numb = false;
-        }
-    }
-}
-
 bool Employee::checkStatus() {
     if (getAge() >= 65) {
         std::cout << "\n" << getFullname() << " рекомендовано звільнити"

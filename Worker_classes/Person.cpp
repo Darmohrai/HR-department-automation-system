@@ -40,10 +40,34 @@ void Person::getBriefInfo() {
 }
 
 bool Person::checkStatus() {
-    if (age >= 65) std::cout << "Працівника можна відправити на пенсію";
-    else if (age >= 55)
-        std::cout << "Працівник передпенсійного віку, до пенсійного віку залишилося - " << 65 - age << " років";
-    else std::cout << "Працівник не є пенсійного або передпенсійного віку";
+    if (age >= 65) return true;
+    else return false;
+}
+
+bool Person::prepareOrder(){
+    int answer;
+    bool numb = false;
+    std::cout << "\n\nНаказ про звільнення підготовлено, "
+                 "\nНатисніть '1', щоб підписати "
+                 "\nНатисніть '0', щоб скасувати ";
+
+    while (numb == false) {
+        try {
+            numb = true;
+            std::cin >> answer;
+            if (answer == 1) {
+                std::cout << getFullname() << "\nНаказ підписано\n";
+                return true;
+            } else if (answer == 0) {
+                std::cout << "\nНаказ скасовано\n";
+                return false;
+            } else throw false;
+        }
+        catch (bool n) {
+            std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
+            numb = false;
+        }
+    }
 }
 
 void Person::saveInfo(std::ofstream &fout) {

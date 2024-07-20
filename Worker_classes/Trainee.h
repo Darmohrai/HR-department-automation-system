@@ -30,7 +30,7 @@ public:
 
 
     // methods set
-    [[nodiscard]] bool prepareOrder() override;
+    [[nodiscard]] bool prepareOrder() override {return Person::prepareOrder(); };
 
     bool checkStatus() override;
 
@@ -39,6 +39,8 @@ public:
     void saveInfo(std::ofstream &fout) override;
 
     void readInfo(std::ifstream &fin) override;
+
+    Trainee &operator=(const Trainee &employee) = default;
 };
 
 

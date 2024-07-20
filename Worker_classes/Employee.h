@@ -44,7 +44,7 @@ public:
 
     void setSalary(int salary_set) { this->salary = salary_set; }
 
-    [[nodiscard]] bool prepareOrder() override;
+    [[nodiscard]] bool prepareOrder() override { return Person::prepareOrder(); }
 
     [[nodiscard]] bool checkStatus() override;
 

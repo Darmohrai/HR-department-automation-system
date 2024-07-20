@@ -174,4 +174,14 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                       }
                       counter++;
                   });
+
+    counter = 0;
+    std::for_each(trainees.begin(), trainees.end(),
+                  [&trainees, &office_workers, &marketing, &legal, &executive, &counter](Trainee &trainee) {
+                      if (trainee.checkStatus()) {
+                          employ(trainee, office_workers, marketing, legal, executive);
+                          trainees.erase(trainees.begin() + counter);
+                      }
+                      counter++;
+                  });
 }

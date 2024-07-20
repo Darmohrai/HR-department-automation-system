@@ -354,6 +354,7 @@ void findWorker(std::vector<T> &obj, int &choose_worker) {
     std::for_each(obj.begin(), obj.end(),
                   [&count](T &obj) {
                       std::cout << count << "). " << obj.getFullname() << "\n";
+                      count++;
                   });
 
     bool exit = false;

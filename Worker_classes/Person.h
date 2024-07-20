@@ -36,10 +36,19 @@ public:
 
     [[nodiscard]] int getAge() const { return age; }
 
+    [[nodiscard]] int getPassportNumber() const { return passport_number; }
+
+    [[nodiscard]] std::string getEducation() const { return education; }
+
+    [[nodiscard]] std::string getEntryDate() const { return entry_date; }
+
+    [[nodiscard]] std::string getSpecialty() const { return specialty; }
+
 
     // methods set
     bool checkStatus() override;
 
+    bool prepareOrder() override;
 
     // methods save
     void saveInfo(std::ofstream &fout) override;

@@ -35,13 +35,6 @@ void Trainee::getBriefInfo() {
               << "\nПродуктивність - " << performance;
 }
 
-bool Trainee::prepareOrder() {
-    std::cout << "\nНаказ підготовлений"
-                 "\nНатисніть 1, щоб підписати"
-                 "\nНатисніть 0, щоб скасувати\n";
-    // need to update ...
-}
-
 bool Trainee::checkStatus() {
     if (performance == "well") {
         std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
@@ -49,37 +42,60 @@ bool Trainee::checkStatus() {
                      "\nВведіть '2', щоб побачити коротку інформацію про претендента"
                      "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
                      "\nВведіть '0', щоб вийти\n";
-        int answer = 1;
+        bool exit = false;
 
-        while (answer == 1 or answer == 2) {
-            std::cin >> answer;
-            switch (answer) {
-                case 1:
-                    getAllInfo();
-                    std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
-                                 "\nВведіть '0', щоб вийти\n";
-                case 2:
-                    getBriefInfo();
-                    std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
-                                 "\nВведіть '0', щоб вийти\n";
-                case 3:
-                    prepareOrder();
-                case 0:
-                    std::cout << "\n\nВи вийшли\n\n";
-                default:
-                    std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
+        while (!exit) {
+            exit = true;
+            try {
+                std::string choose;
+                std::cin >> choose;
+                int answer;
+                answer = std::stoi(choose);
+                while (answer == 1 or answer == 2) {
+                    answer = std::stoi(choose);
+                    switch (answer) {
+                        case 1:
+                            getAllInfo();
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            system("pause");
+                            std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                                         "\nВведіть '0', щоб вийти\n";
+                            break;
+                        case 2:
+                            getBriefInfo();
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            system("pause");
+                            std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                                         "\nВведіть '0', щоб вийти\n";
+                            break;
+                        case 3:
+                            return prepareOrder();
+                        case 0:
+                            std::cout << "\n\nВи вийшли\n\n";
+                            return false;
+                        default:
+                            throw 0;
+                    }
+                    std::cin >> choose;
+                }
+            }
+            catch (...) {
+                std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+                exit = false;
             }
         }
     }
+    return false;
+
 }
 
 
-void Trainee::saveInfo(std::ofstream &fout){
+void Trainee::saveInfo(std::ofstream &fout) {
     Person::saveInfo(fout);
     fout << probation << "\n" << performance << "\n" << mentor << "\n\n";
 }
 
-void Trainee::readInfo(std::ifstream &fin){
+void Trainee::readInfo(std::ifstream &fin) {
     std::string reader;
     Person::readInfo(fin);
     fin >> probation >> performance >> mentor;
