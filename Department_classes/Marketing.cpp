@@ -11,7 +11,7 @@ Marketing::Marketing(Marketing &&marketing) : Department(std::move(marketing)),
 void Marketing::setAllInfo(int income, int premium, int ad_success_rate) {
     Department::setAllInfo(income, premium);
     this->ad_success_rate = ad_success_rate;
-    setName("Executive");
+    setName("Marketing");
 }
 
 void Marketing::getDepartmentInfo() {

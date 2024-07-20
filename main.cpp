@@ -53,6 +53,7 @@ int main() {
                      "4). Змінити дані про підрозділи\n"
                      "5). Змінити дані про робітника\n"
                      "6). Переглянути інформацію про всіх робітників\n"
+                     "7). Переглянути інформацію про підрозділи\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -83,6 +84,9 @@ int main() {
                     break;
                 case '6':
                     seeEmployeeInfo(managers, office_workers, auxiliary_position_workers);
+                    break;
+                case '7':
+                    seeDepartmentInfo(marketing, legal, executive, managers);
                     break;
             }
         }

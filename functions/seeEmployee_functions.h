@@ -6,7 +6,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
 template<typename T>
-void chooseWorkerSort(std::vector<T> &vec, T &arr_obj, std::string &choose, bool &exit);
+void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit);
 
 void seeManagerInfo(std::vector<Manager> &managers);
 

@@ -7,7 +7,7 @@ class Marketing final : public Department {
 private:
     int ad_success_rate;
 public:
-    Marketing() : Department(), ad_success_rate{0} { setName("Manager"); }
+    Marketing() : Department(), ad_success_rate{0} { setName("Marketing"); }
 
     Marketing(int income, int premium, int ad_success_rate);
 

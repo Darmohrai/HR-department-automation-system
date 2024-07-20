@@ -15,6 +15,12 @@ void caseIncomeOrPremium(T &obj, int choose);
 
 void addDepartmentInfo(int &income, int &premium);
 
+void seeDepartmentInfo(Marketing &marketing, Legal &legal,
+                       Executive &executive,
+                       std::vector<Manager> &managers); // could be optimized to changeDepartmentInfo
+
+template<typename T>
+void chooseInfoForWatching(T &obj, std::vector<Manager> &managers);
 
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
@@ -278,6 +284,90 @@ void addDepartmentInfo(int &income, int &premium) {
         catch (...) {
             std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
             exit = false;
+        }
+    }
+}
+
+void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers) {
+    bool exit = false;
+    std::string choose;
+
+    while (!exit) {
+        std::cout << "Оберіть підрозділ\n"
+                     "1). Маркетинговий\n"
+                     "2). Юридичний\n"
+                     "3). Виконавчий\n";
+
+        std::cin >> choose;
+        try {
+            if (choose.size() > 1) throw 0;
+
+            int choose_int = std::stoi(choose);
+            switch (choose_int) {
+                case 1:
+                    chooseInfoForWatching(marketing, managers);
+                    exit = true;
+                    break;
+                case 2:
+                    chooseInfoForWatching(legal, managers);
+                    exit = true;
+                    break;
+                case 3:
+                    chooseInfoForWatching(executive, managers);
+                    exit = true;
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+            }
+        }
+        catch (...) {
+            gap();
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
+        }
+    }
+}
+
+template<typename T>
+void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
+    bool exit = false;
+    std::string choose;
+
+    while (!exit) {
+        std::cout << "Оберіть яку інформацію хочете побачити\n"
+                     "1). Керівний склад\n"
+                     "2). Працівників\n"
+                     "3). Загальну інформацію\n";
+
+        std::cin >> choose;
+        try {
+            if (choose.size() > 1) throw 0;
+
+            int choose_int = std::stoi(choose);
+            switch (choose_int) {
+                case 1:
+                    std::cout << "\n\nКерівний склад: \n";
+                    std::for_each(managers.begin(), managers.end(), [&obj](Manager &manager) {
+                        if (obj.getName() == manager.getDepartment()) std::cout << " " << manager.getFullname() << "\n";
+                    });
+                    exit = true;
+                    break;
+                case 2:
+                    obj.getWorkersInfo();
+                    exit = true;
+                    break;
+                case 3:
+                    obj.getDepartmentInfo();
+                    exit = true;
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+            }
+        }
+        catch (...) {
+            gap();
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
         }
     }
 }
