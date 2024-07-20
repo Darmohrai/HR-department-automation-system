@@ -42,6 +42,8 @@ public:
     // methods get
     void getWorkersInfo();
 
+    void getWorkers();
+
     virtual void getDepartmentInfo();
 
     int getIncome() { return income; }

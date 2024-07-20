@@ -32,4 +32,5 @@ add_executable(HR_department_automation_system main.cpp
         functions/Department_functions.h
         functions/changeEmployee_functions.h
         functions/changeEmployee_functions.h
+        functions/seeEmployee_functions.h
 )

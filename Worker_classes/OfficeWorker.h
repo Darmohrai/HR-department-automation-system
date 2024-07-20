@@ -46,6 +46,13 @@ public:
 
     void readInfo(std::ifstream &fin) final;
 
+
+    OfficeWorker& operator=(const OfficeWorker &officeWorker) = default;
+
+    bool operator<=(const OfficeWorker &officeWorker) const {
+        return this->experience <= officeWorker.experience;
+    }
+
 };
 
 

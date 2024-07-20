@@ -45,6 +45,9 @@ public:
     void saveInfo(std::ofstream &fout) override;
 
     void readInfo(std::ifstream &fin) override;
+
+
+    Person &operator=(const Person &employee) = default;
 };
 
 

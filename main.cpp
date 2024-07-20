@@ -13,6 +13,7 @@
 #include "functions/Trainee_functions.h"
 #include "functions/Department_functions.h"
 #include "functions/changeEmployee_functions.h"
+#include "functions/seeEmployee_functions.h"
 
 
 void userInstruction();
@@ -51,6 +52,7 @@ int main() {
                      "3). Додати практиканта\n"
                      "4). Змінити дані про підрозділи\n"
                      "5). Змінити дані про робітника\n"
+                     "6). Переглянути інформацію про всіх робітників\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -78,6 +80,9 @@ int main() {
                 case '5':
                     changeEmployeeInfo(managers, office_workers, auxiliary_position_workers,
                                        marketing, legal, executive);
+                    break;
+                case '6':
+                    seeEmployeeInfo(managers, office_workers, auxiliary_position_workers);
                     break;
             }
         }

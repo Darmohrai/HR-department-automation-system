@@ -44,6 +44,13 @@ void Department::getWorkersInfo() {
 
 }
 
+void Department::getWorkers(){
+    std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
+                      std::cout << "\n" << employee->getFullname();
+                  }
+    );
+}
+
 void Department::getDepartmentInfo() {
     std::cout << "Кількість працівників - " << workers.size()
               << "\nДохід підприємства - " << income

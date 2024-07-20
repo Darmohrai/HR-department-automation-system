@@ -32,6 +32,14 @@ public:
 
     void getBriefInfo() final;
 
+    void getSubordinateInfo() { supervisory_department->getWorkersInfo(); }
+
+    void getSubordinate() { supervisory_department->getWorkersInfo(); }
+
+    void getSupervisoryDepartmentInfo() { supervisory_department->getWorkersInfo(); }
+
+    //void
+
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
     [[nodiscard]] int getPremium() { return premium; }
