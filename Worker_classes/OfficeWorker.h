@@ -34,9 +34,9 @@ public:
 
 
     // methods set
-    void prepareOrder() final { Employee::prepareOrder(); }
+    [[nodiscard]] bool prepareOrder() final { return Employee::prepareOrder(); }
 
-    void checkStatus() final { Employee::checkStatus(); }
+    [[nodiscard]] bool checkStatus() final { return Employee::checkStatus(); }
 
     void setProjectNumbers(int project_numbers_set) { this->project_numbers = project_numbers_set; }
 

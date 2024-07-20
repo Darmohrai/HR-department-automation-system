@@ -38,7 +38,7 @@ public:
 
 
     // methods set
-    void checkStatus() override;
+    bool checkStatus() override;
 
 
     // methods save

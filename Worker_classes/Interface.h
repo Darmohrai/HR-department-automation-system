@@ -14,9 +14,9 @@ public:
 
 
     // methods set
-    virtual void prepareOrder() = 0;
+    [[nodiscard]] virtual bool prepareOrder() = 0;
 
-    virtual void checkStatus() = 0;
+    [[nodiscard]] virtual bool checkStatus() = 0;
 
 
     // methods save

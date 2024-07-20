@@ -44,9 +44,9 @@ public:
 
     void setSalary(int salary_set) { this->salary = salary_set; }
 
-    void prepareOrder() override;
+    [[nodiscard]] bool prepareOrder() override;
 
-    void checkStatus() override;
+    [[nodiscard]] bool checkStatus() override;
 
 
     // methods save

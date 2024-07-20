@@ -46,9 +46,9 @@ public:
 
 
     // methods set
-    void prepareOrder() final { Employee::prepareOrder(); }
+    [[nodiscard]] bool prepareOrder() final { return Employee::prepareOrder(); }
 
-    void checkStatus() final { Employee::checkStatus(); }
+    [[nodiscard]] bool checkStatus() final { return Employee::checkStatus(); }
 
     void setPremium(int premium_set) { this->premium = premium_set; }
 

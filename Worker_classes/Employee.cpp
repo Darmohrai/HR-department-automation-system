@@ -42,7 +42,7 @@ void Employee::getBriefInfo() {
 }
 
 
-void Employee::prepareOrder() {
+bool Employee::prepareOrder() {
     int answer;
     bool numb = false;
     std::cout << "\n\nНаказ про звільнення підготовлено, "
@@ -56,8 +56,11 @@ void Employee::prepareOrder() {
             if (answer == 1) {
                 std::cout << getFullname() << "\nЗвільнено\n";
                 Employee::~Employee();
-            } else if (answer == 0) std::cout << "\nНаказ скасовано\n";
-            else throw false;
+                return true;
+            } else if (answer == 0) {
+                std::cout << "\nНаказ скасовано\n";
+                return false;
+            } else throw false;
         }
         catch (bool n) {
             std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
@@ -66,35 +69,55 @@ void Employee::prepareOrder() {
     }
 }
 
-void Employee::checkStatus() {
+bool Employee::checkStatus() {
     if (getAge() >= 65) {
         std::cout << "\n" << getFullname() << " рекомендовано звільнити"
                   << "\nВведіть '1', щоб побачити повну інформацію про робітника"
                      "\nВведіть '2', щоб побачити коротку інформацію про робітника"
                      "\nВведіть '3', щоб підготувати наказ про звільнення"
                      "\nВведіть '0', щоб вийти\n";
-        int answer = 1;
-
-        while (answer == 1 or answer == 2) {
-            std::cin >> answer;
-            switch (answer) {
-                case 1:
-                    getAllInfo();
-                    std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
-                                 "\nВведіть '0', щоб вийти\n";
-                case 2:
-                    getBriefInfo();
-                    std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
-                                 "\nВведіть '0', щоб вийти\n";
-                case 3:
-                    prepareOrder();
-                case 0:
-                    std::cout << "\n\nВи вийшли\n\n";
-                default:
-                    std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
+        bool exit = false;
+        while (!exit) {
+            exit = true;
+            try {
+                std::string choose;
+                std::cin >> choose;
+                int answer;
+                answer = std::stoi(choose);
+                while (answer == 1 or answer == 2) {
+                    answer = std::stoi(choose);
+                    switch (answer) {
+                        case 1:
+                            getAllInfo();
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            system("pause");
+                            std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
+                                         "\nВведіть '0', щоб вийти\n";
+                            break;
+                        case 2:
+                            getBriefInfo();
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            system("pause");
+                            std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
+                                         "\nВведіть '0', щоб вийти\n";
+                            break;
+                        case 3:
+                            return prepareOrder();
+                        case 0:
+                            std::cout << "\n\nВи вийшли\n\n";
+                            return false;
+                        default: throw 0;
+                    }
+                    std::cin >> choose;
+                }
+            }
+            catch (...) {
+                std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+                exit = false;
             }
         }
     }
+    return false;
 }
 
 

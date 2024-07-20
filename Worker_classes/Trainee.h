@@ -30,9 +30,9 @@ public:
 
 
     // methods set
-    void prepareOrder() override;
+    [[nodiscard]] bool prepareOrder() override;
 
-    void checkStatus() override;
+    bool checkStatus() override;
 
 
     // methods save

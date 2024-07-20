@@ -18,6 +18,10 @@
 
 void userInstruction();
 
+void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
+                  Marketing &marketing, Legal &legal, Executive &executive);
+
 
 int main() {
     system("chcp 65001");
@@ -40,7 +44,6 @@ int main() {
     threadsReadDepartmentInfo(marketing, legal, executive, office_workers, auxiliary_position_workers);
 
 
-
     bool exit = false;
     std::string answer;
 
@@ -54,6 +57,7 @@ int main() {
                      "5). Змінити дані про робітника\n"
                      "6). Переглянути інформацію про всіх робітників\n"
                      "7). Переглянути інформацію про підрозділи\n"
+                     "8). Перевірити статус робітників\n"
                      "0). Вийти з програми\n";
         std::cin >> answer;
 
@@ -87,6 +91,10 @@ int main() {
                     break;
                 case '7':
                     seeDepartmentInfo(marketing, legal, executive, managers);
+                    break;
+                case '8':
+                    workerStatus(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
+                                 executive);
                     break;
             }
         }
@@ -124,3 +132,46 @@ void userInstruction() {
     }
 }
 
+void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
+                  Marketing &marketing, Legal &legal, Executive &executive) {
+    int counter = 0;
+    std::for_each(managers.begin(), managers.end(), [&managers, &counter](Manager &manager) {
+        if (manager.checkStatus()) {
+            managers.erase(managers.begin() + counter);
+        }
+        counter++;
+    });
+
+    counter = 0;
+    std::for_each(office_workers.begin(), office_workers.end(),
+                  [&office_workers, &marketing, &legal, &executive, &counter](
+                          OfficeWorker &officeWorker) {
+                      if (officeWorker.checkStatus()) {
+                          office_workers.erase(office_workers.begin() + counter);
+                          if (officeWorker.getDepartment() == "Marketing")
+                              marketing.deleteWorker(officeWorker.getFullname());
+                          else if (officeWorker.getDepartment() == "Legal")
+                              legal.deleteWorker(officeWorker.getFullname());
+                          else if (officeWorker.getDepartment() == "Executive")
+                              executive.deleteWorker(officeWorker.getFullname());
+                      }
+                      counter++;
+                  });
+
+    counter = 0;
+    std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
+                  [&auxiliary_position_workers, &marketing, &legal, &executive, &counter](
+                          AuxiliaryPosition &auxiliaryPosition) {
+                      if (auxiliaryPosition.checkStatus()) {
+                          auxiliary_position_workers.erase(auxiliary_position_workers.begin() + counter);
+                          if (auxiliaryPosition.getDepartment() == "Marketing")
+                              marketing.deleteWorker(auxiliaryPosition.getFullname());
+                          else if (auxiliaryPosition.getDepartment() == "Legal")
+                              legal.deleteWorker(auxiliaryPosition.getFullname());
+                          else if (auxiliaryPosition.getDepartment() == "Executive")
+                              executive.deleteWorker(auxiliaryPosition.getFullname());
+                      }
+                      counter++;
+                  });
+}

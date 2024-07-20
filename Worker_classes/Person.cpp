@@ -39,7 +39,7 @@ void Person::getBriefInfo() {
               << "\nВік - " << age;
 }
 
-void Person::checkStatus() {
+bool Person::checkStatus() {
     if (age >= 65) std::cout << "Працівника можна відправити на пенсію";
     else if (age >= 55)
         std::cout << "Працівник передпенсійного віку, до пенсійного віку залишилося - " << 65 - age << " років";

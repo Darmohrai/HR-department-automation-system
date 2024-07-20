@@ -35,14 +35,14 @@ void Trainee::getBriefInfo() {
               << "\nПродуктивність - " << performance;
 }
 
-void Trainee::prepareOrder() {
+bool Trainee::prepareOrder() {
     std::cout << "\nНаказ підготовлений"
                  "\nНатисніть 1, щоб підписати"
                  "\nНатисніть 0, щоб скасувати\n";
     // need to update ...
 }
 
-void Trainee::checkStatus() {
+bool Trainee::checkStatus() {
     if (performance == "well") {
         std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
                   << "\nВведіть '1', щоб побачити повну інформацію про претендента"
