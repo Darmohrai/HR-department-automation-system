@@ -31,7 +31,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
 
 
         try {
-            std::cin >> choose;
+            cin_line(choose);
             if (choose.size() > 1) throw 0;
             choose_int = std::stoi(choose);
 
@@ -70,7 +70,7 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit) {
     std::copy(vec.begin(), vec.end(), arr_obj);
 
     try {
-        std::cin >> choose;
+        cin_line(choose);
         if (choose.size() > 1) throw 0;
         choose_int = std::stoi(choose);
 

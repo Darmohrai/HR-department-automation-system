@@ -45,7 +45,7 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
                      "\n2). Офісний працівник"
                      "\n3). Додаткова посада\n";
 
-        std::cin >> choose;
+        cin_line(choose);
 
         try {
             if (choose.size() > 1) throw 0;
@@ -80,12 +80,12 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     std::string reader;
 
     std::cout << "\nВведіть ПІБ - ";
-    std::cin >> fullname;
+    cin_line(fullname);
 
     while (!error) {
         try {
             std::cout << "\nВведіть вік - ";
-            std::cin >> reader;
+            cin_line(reader);
             age = std::stoi(reader);
             error = true;
         }
@@ -99,7 +99,7 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     while (!error) {
         try {
             std::cout << "\nВведіть паспортні дані (номер) - ";
-            std::cin >> reader;
+            cin_line(reader);;
             passport_number = std::stoi(reader);
             error = true;
         }
@@ -110,13 +110,13 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     }
 
     std::cout << "\nВведіть ВНЗ, який закінчував - ";
-    std::cin >> education;
+    cin_line(education);
 
     std::cout << "\nВведіть дату прийняття на роботу - ";
-    std::cin >> entry_date;
+    cin_line(entry_date);
 
     std::cout << "\nВведіть спеціальність - ";
-    std::cin >> specialty;
+    cin_line(specialty);
 }
 
 void readerEmployee(std::string &fullname, int &age, int &passport_number,
@@ -134,7 +134,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                          "1). Маркетинговий\n"
                          "2). Юридичний\n"
                          "3). Виконавчий\n";
-            std::cin >> reader;
+            cin_line(reader);
             department_int = std::stoi(reader);
             error = true;
             if (department_int == 1) department = "Marketing";
@@ -149,13 +149,13 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
     }
 
     std::cout << "\nВведіть посаду - ";
-    std::cin >> position;
+    cin_line(position);
 
     error = false;
     while (!error) {
         try {
             std::cout << "\nВведіть зарплату - ";
-            std::cin >> reader;
+            cin_line(reader);
             salary = std::stoi(reader);
             error = true;
         }
@@ -166,7 +166,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
     }
 
     std::cout << "\nВведіть дату останнього призначення - ";
-    std::cin >> last_appointment;
+    cin_line(last_appointment);
 }
 
 void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
@@ -195,7 +195,7 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
     while (!error) {
         try {
             std::cout << "\nВведіть премію - ";
-            std::cin >> reader;
+            cin_line(reader);
             premium = std::stoi(reader);
             error = true;
         }
@@ -259,7 +259,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
     while (!error) {
         try {
             std::cout << "\nВведіть досвід роботи (в роках) - ";
-            std::cin >> reader;
+            cin_line(reader);
             experience = std::stoi(reader);
             error = true;
         }
@@ -273,7 +273,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
     while (!error) {
         try {
             std::cout << "\nВведіть id - ";
-            std::cin >> reader;
+            cin_line(reader);
             id = std::stoi(reader);
             error = true;
         }
@@ -287,7 +287,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
     while (!error) {
         try {
             std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
-            std::cin >> reader;
+            cin_line(reader);
             project_numbers = std::stoi(reader);
             error = true;
         }
@@ -344,7 +344,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
     while (!error) {
         try {
             std::cout << "\nВведіть досвід роботи (в роках) - ";
-            std::cin >> reader;
+            cin_line(reader);
             experience = std::stoi(reader);
             error = true;
         }
@@ -358,7 +358,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
     while (!error) {
         try {
             std::cout << "\nВведіть номер телефону - ";
-            std::cin >> reader;
+            cin_line(reader);
             phone_number = std::stoi(reader);
             error = true;
         }

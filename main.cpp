@@ -1,5 +1,7 @@
 #include <iostream>
 
+#define cin_line(string) (std::getline(std::cin, string))
+
 #include "Worker_classes/Trainee.h"
 #include "Worker_classes/Manager.h"
 #include "Worker_classes/OfficeWorker.h"
@@ -61,9 +63,7 @@ int main() {
                      "9). Переглянути інформацію про стажерів\n"
                      "10). Перевірити статус робітників\n"
                      "0). Вийти з програми\n";
-        std::cin >> answer;
-
-        // need to improve exception;
+        cin_line(answer);
 
         try {
             int answer_int = std::stoi(answer);
@@ -108,7 +108,7 @@ int main() {
                     throw 0;
             }
         }
-        catch (...) { // should be improved
+        catch (...) {
             gap();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n";
         }
@@ -130,12 +130,12 @@ void userInstruction() {
                  "\nЩоб повернутися до головного меню введіть '0'\n";
 
     std::string answer;
-    std::cin >> answer;
+    cin_line(answer);
 
     while (answer != "0") {
         gap();
         std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-        std::cin >> answer;
+        cin_line(answer);
     }
 }
 
@@ -147,9 +147,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
     std::for_each(managers.begin(), managers.end(), [&managers, &counter, &changes](Manager &manager) {
         if (manager.checkStatus()) {
             managers.erase(managers.begin() + counter);
+            changes = true;
         }
         counter++;
-        changes = true;
     });
 
     counter = 0;
@@ -164,9 +164,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                               legal.deleteWorker(officeWorker.getFullname());
                           else if (officeWorker.getDepartment() == "Executive")
                               executive.deleteWorker(officeWorker.getFullname());
+                          changes = true;
                       }
                       counter++;
-                      changes = true;
                   });
 
     counter = 0;
@@ -181,9 +181,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                               legal.deleteWorker(auxiliaryPosition.getFullname());
                           else if (auxiliaryPosition.getDepartment() == "Executive")
                               executive.deleteWorker(auxiliaryPosition.getFullname());
+                          changes = true;
                       }
                       counter++;
-                      changes = true;
                   });
 
     counter = 0;
@@ -192,10 +192,10 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                       if (trainee.checkStatus()) {
                           employ(trainee, office_workers, marketing, legal, executive);
                           trainees.erase(trainees.begin() + counter);
+                          changes = true;
                       }
                       counter++;
-                      changes = true;
                   });
 
-    if(!changes) std::cout << "\n\nНемає суб'єктів для звільнення/приймання \n\n";
+    if (!changes) std::cout << "\n\nНемає суб'єктів для звільнення/приймання \n\n";
 }

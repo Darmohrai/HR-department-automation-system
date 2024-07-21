@@ -10,10 +10,9 @@ Trainee::Trainee(std::string &fullname, int age, int passport_number,
 }
 
 Trainee::Trainee(Trainee &&trainee) noexcept: Person(std::move(trainee)), probation{trainee.probation},
-                                              performance{trainee.performance}, mentor{trainee.mentor} {
+                                              performance{std::move(trainee.performance)},
+                                              mentor{std::move(trainee.mentor)} {
     trainee.probation = 0;
-    trainee.performance = "";
-    trainee.mentor = "";
 }
 
 Trainee::Trainee(Trainee &trainee) : Person(trainee) {
@@ -48,7 +47,7 @@ bool Trainee::checkStatus() {
             exit = true;
             try {
                 std::string choose;
-                std::cin >> choose;
+                cin_line(choose);
                 int answer;
                 answer = std::stoi(choose);
                 while (answer == 1 or answer == 2) {
@@ -76,7 +75,7 @@ bool Trainee::checkStatus() {
                         default:
                             throw 0;
                     }
-                    std::cin >> choose;
+                    cin_line(choose);
                 }
             }
             catch (...) {
@@ -96,7 +95,9 @@ void Trainee::saveInfo(std::ofstream &fout) {
 }
 
 void Trainee::readInfo(std::ifstream &fin) {
-    std::string reader;
     Person::readInfo(fin);
-    fin >> probation >> performance >> mentor;
+    std::string reader;
+    fin_int(fin, probation, reader);
+    fin_line(fin, performance);
+    fin_line(fin, mentor);
 }

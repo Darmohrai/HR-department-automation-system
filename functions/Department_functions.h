@@ -33,7 +33,7 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
 
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
 
@@ -73,7 +73,7 @@ void changeMarketing(Marketing &marketing) {
                      "2). Премія\n"
                      "3). Відсоток успішності реклами\n"
                      "4). Змінити всю інформацію\n";
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
             int choose_int = std::stoi(choose);
@@ -88,7 +88,7 @@ void changeMarketing(Marketing &marketing) {
                 case 3: {
                     std::string ad_success_rate;
                     std::cout << "\n\nВведіть відсоток успішності реклами - ";
-                    std::cin >> ad_success_rate;
+                    cin_line(ad_success_rate);
                     int ad_success_rate_int = std::stoi(ad_success_rate);
                     marketing.setAdSuccessRate(ad_success_rate_int);
                     exit = true;
@@ -99,7 +99,7 @@ void changeMarketing(Marketing &marketing) {
                     addDepartmentInfo(income, premium);
                     std::string ad_success_rate;
                     std::cout << "\n\nВведіть відсоток успішності реклами - ";
-                    std::cin >> ad_success_rate;
+                    cin_line(ad_success_rate);
                     ad_success_rate_int = std::stoi(ad_success_rate);
                     marketing.setAllInfo(income, premium, ad_success_rate_int);
                     exit = true;
@@ -128,7 +128,7 @@ void changeLegal(Legal &legal) {
                      "3). Кількість судових випадків\n"
                      "4). Кількість виграних судів\n"
                      "5). Змінити всю інформацію\n";
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
             int choose_int = std::stoi(choose);
@@ -144,7 +144,7 @@ void changeLegal(Legal &legal) {
                 case 3: {
                     std::string court_cases;
                     std::cout << "\n\nВведіть кількість судових випадків - ";
-                    std::cin >> court_cases;
+                    cin_line(court_cases);
                     int court_cases_int = std::stoi(court_cases);
                     legal.setCourtCases(court_cases_int);
                     exit = true;
@@ -153,7 +153,7 @@ void changeLegal(Legal &legal) {
                 case 4: {
                     std::string win_cases;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
-                    std::cin >> win_cases;
+                    cin_line(win_cases);
                     int win_cases_int = std::stoi(win_cases);
                     legal.setWinCases(win_cases_int);
                     exit = true;
@@ -164,11 +164,11 @@ void changeLegal(Legal &legal) {
                     addDepartmentInfo(income, premium);
                     std::string court_cases;
                     std::cout << "\n\nВведіть кількість судових випадків - ";
-                    std::cin >> court_cases;
+                    cin_line(court_cases);
                     court_cases_int = std::stoi(court_cases);
                     std::string win_cases;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
-                    std::cin >> win_cases;
+                    cin_line(win_cases);
                     win_cases_int = std::stoi(win_cases);
                     legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
                     exit = true;
@@ -196,7 +196,7 @@ void changeExecutive(Executive &executive) {
                      "3). Кількість проєктів\n"
                      "4). Середній час виконання проєкту (в тижнях)\n"
                      "5). Змінити всю інформацію\n";
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
             int choose_int = std::stoi(choose);
@@ -211,7 +211,7 @@ void changeExecutive(Executive &executive) {
                 case 3: {
                     std::string project_quantity;
                     std::cout << "\n\nВведіть кількість судових випадків - ";
-                    std::cin >> project_quantity;
+                    cin_line(project_quantity);
                     int project_quantity_int = std::stoi(project_quantity);
                     executive.setProjectQuantity(project_quantity_int);
                     exit = true;
@@ -220,7 +220,7 @@ void changeExecutive(Executive &executive) {
                 case 4: {
                     std::string average_time;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
-                    std::cin >> average_time;
+                    cin_line(average_time);
                     int average_time_int = std::stoi(average_time);
                     executive.setAverageTime(average_time_int);
                     exit = true;
@@ -231,11 +231,11 @@ void changeExecutive(Executive &executive) {
                     addDepartmentInfo(income, premium);
                     std::string project_quantity;
                     std::cout << "\n\nВведіть кількість судових випадків - ";
-                    std::cin >> project_quantity;
+                    cin_line(project_quantity);
                     project_quantity_int = std::stoi(project_quantity);
                     std::string average_time;
                     std::cout << "\n\nВведіть кількість виграних судів - ";
-                    std::cin >> average_time;
+                    cin_line(average_time);
                     average_time_int = std::stoi(average_time);
                     executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
                     exit = true;
@@ -255,13 +255,13 @@ void caseIncomeOrPremium(T &obj, int choose) {
     if (choose == 1) {
         std::string income;
         std::cout << "\n\nВведіть дохід підрозділу - ";
-        std::cin >> income;
+        cin_line(income);
         int income_int = std::stoi(income);
         obj.setIncome(income_int);
     } else {
         std::string premium;
         std::cout << "\n\nВведіть дохід підрозділу - ";
-        std::cin >> premium;
+        cin_line(premium);
         int premium_int = std::stoi(premium);
         obj.setPremium(premium_int);
     }
@@ -275,10 +275,10 @@ void addDepartmentInfo(int &income, int &premium) {
         try {
             exit = true;
             std::cout << "\nВведіть дохід підрозділу - ";
-            std::cin >> choose;
+            cin_line(choose);
             income = std::stoi(choose);
             std::cout << "\nВведіть преміальні кошти підрозділу - ";
-            std::cin >> choose;
+            cin_line(choose);
             premium = std::stoi(choose);
         }
         catch (...) {
@@ -298,7 +298,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
 
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
 
@@ -339,7 +339,7 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                      "2). Працівників\n"
                      "3). Загальну інформацію\n";
 
-        std::cin >> choose;
+        cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
 

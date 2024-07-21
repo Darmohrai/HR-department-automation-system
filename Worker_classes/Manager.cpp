@@ -46,5 +46,6 @@ void Manager::saveInfo(std::ofstream &fout) {
 
 void Manager::readInfo(std::ifstream &fin) {
     Employee::readInfo(fin);
-    fin >> premium;
+    std::string reader;
+    fin_int(fin, premium, reader);
 }

@@ -1,6 +1,12 @@
 #ifndef HR_DEPARTMENT_AUTOMATION_SYSTEM_INTERFACE_H
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_INTERFACE_H
 
+// macros use in daughters classes
+#define cin_line(string) (std::getline(std::cin, string))
+#define fin_line(fin, string) (std::getline(fin, string))
+#define fin_int(fin, int_variable, string) (std::getline(fin, string), int_variable = std::stoi(string)) \
+
+
 #include <string>
 
 class Interface {

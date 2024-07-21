@@ -45,5 +45,8 @@ void OfficeWorker::saveInfo(std::ofstream &fout) {
 
 void OfficeWorker::readInfo(std::ifstream &fin) {
     Employee::readInfo(fin);
-    fin >> experience >> id >> project_numbers;
+    std::string reader;
+    fin_int(fin, experience, reader);
+    fin_int(fin, id, reader);
+    fin_int(fin, project_numbers, reader);
 }

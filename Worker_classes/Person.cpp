@@ -45,7 +45,7 @@ bool Person::checkStatus() {
 }
 
 bool Person::prepareOrder(){
-    int answer;
+    int answer_int;
     bool numb = false;
     std::cout << "\n\nНаказ про звільнення підготовлено, "
                  "\nНатисніть '1', щоб підписати "
@@ -53,17 +53,19 @@ bool Person::prepareOrder(){
 
     while (numb == false) {
         try {
+            std::string answer;
             numb = true;
-            std::cin >> answer;
-            if (answer == 1) {
+            cin_line(answer);
+            answer_int = std::stoi(answer);
+            if (answer_int == 1) {
                 std::cout << getFullname() << "\nНаказ підписано\n";
                 return true;
-            } else if (answer == 0) {
+            } else if (answer_int == 0) {
                 std::cout << "\nНаказ скасовано\n";
                 return false;
             } else throw false;
         }
-        catch (bool n) {
+        catch (...) {
             std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";
             numb = false;
         }
@@ -71,14 +73,17 @@ bool Person::prepareOrder(){
 }
 
 void Person::saveInfo(std::ofstream &fout) {
-    //std::ofstream fout(file_name, std::ios::app);
     fout << fullname << "\n" << age << "\n" << passport_number << "\n" << education << "\n" << entry_date << "\n"
          << specialty << "\n";
-    //fout.close();
 }
 
 void Person::readInfo(std::ifstream &fin) {
-    //std::ifstream fin(file_name, std::ios::app);
-    fin >> fullname >> age >> passport_number >> education >> entry_date >> specialty;
-    // need to update ...
+    std::string reader;
+    fin_line(fin, reader);
+    fin_line(fin, fullname);
+    fin_int(fin, age, reader);
+    fin_int(fin, passport_number, reader);
+    fin_line(fin, education);
+    fin_line(fin, entry_date);
+    fin_line(fin, specialty);
 }

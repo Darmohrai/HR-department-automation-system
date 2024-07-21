@@ -54,7 +54,7 @@ bool Employee::checkStatus() {
             exit = true;
             try {
                 std::string choose;
-                std::cin >> choose;
+                cin_line(choose);
                 int answer;
                 answer = std::stoi(choose);
                 while (answer == 1 or answer == 2) {
@@ -79,9 +79,10 @@ bool Employee::checkStatus() {
                         case 0:
                             std::cout << "\n\nВи вийшли\n\n";
                             return false;
-                        default: throw 0;
+                        default:
+                            throw 0;
                     }
-                    std::cin >> choose;
+                    cin_line(choose);
                 }
             }
             catch (...) {
@@ -101,5 +102,9 @@ void Employee::saveInfo(std::ofstream &fout) {
 
 void Employee::readInfo(std::ifstream &fin) {
     Person::readInfo(fin);
-    fin >> department >> salary >> position >> last_appointment;
+    std::string reader;
+    fin_line(fin, department);
+    fin_int(fin, salary, reader);
+    fin_line(fin, position);
+    fin_line(fin, last_appointment);
 }

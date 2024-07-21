@@ -39,7 +39,7 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
                                  "1). Маркетинговий\n"
                                  "2). Юридичний\n"
                                  "3). Вмконавчий\n";
-                    std::cin >> reader;
+                    cin_line(reader);
                     department_int = std::stoi(reader);
                     error = true;
                     if (department_int == 1) str_change = "Marketing";
@@ -56,7 +56,7 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
         }
         case 2:
             std::cout << "\n\nВведіть нову посаду - ";
-            std::cin >> str_change;
+            cin_line(str_change);
             break;
         case 3:
             bool exit = false;
@@ -66,7 +66,7 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
                     std::cout << "\n\nВведіть нову зарплату - ";
                     exit = true;
                     std::string choose;
-                    std::cin >> choose;
+                    cin_line(choose);
                     int_change = std::stoi(choose);
                 }
                 catch (...) {
@@ -97,7 +97,7 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
         try {
             exit = true;
             std::string choose;
-            std::cin >> choose;
+            cin_line(choose);
             choose_change = std::stoi(choose);
             if (choose_change < 1 or choose_change > 4) throw 0;
         }
@@ -116,14 +116,14 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
             managers[choose_manager - 1].setDepartment(change_str);
             managers[choose_manager - 1].setSupervisoryDepartment(marketing, legal, executive);
             std::cout << "\nВведіть сьогоднішню дату - \n";
-            std::cin >> change_str;
+            cin_line(change_str);
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 2:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             managers[choose_manager - 1].setPosition(change_str);
             std::cout << "\nВведіть сьогоднішню дату - \n";
-            std::cin >> change_str;
+            cin_line(change_str);
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 3:
@@ -139,7 +139,7 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
                     std::cout << "\n\nВведіть премію - ";
                     exit = true;
                     std::string choose;
-                    std::cin >> choose;
+                    cin_line(choose);
                     premium = std::stoi(choose);
                 }
                 catch (...) {
@@ -165,7 +165,7 @@ void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker
                      "\n2). Офісний працівник"
                      "\n3). Додаткова посада\n";
 
-        std::cin >> choose;
+        cin_line(choose);
 
         try {
             if (choose.size() > 1) throw 0;
@@ -214,7 +214,7 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
         try {
             exit = true;
             std::string choose;
-            std::cin >> choose;
+            cin_line(choose);
             choose_change = std::stoi(choose);
             if (choose_change < 1 or choose_change > 4) throw 0;
         }
@@ -232,8 +232,9 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
         case 1:
         case 2:
         case 3:
-            cases_Office_Auxiliary<OfficeWorker>(office_workers, choose_office_worker, choose_change, change_str, change_int,
-                                   marketing, legal, executive);
+            cases_Office_Auxiliary<OfficeWorker>(office_workers, choose_office_worker, choose_change, change_str,
+                                                 change_int,
+                                                 marketing, legal, executive);
             break;
         case 4:
             exit = false;
@@ -244,7 +245,7 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
                     std::cout << "\n\nВведіть кількість проєктів - ";
                     exit = true;
                     std::string choose;
-                    std::cin >> choose;
+                    cin_line(choose);
                     project_numbers = std::stoi(choose);
                 }
                 catch (...) {
@@ -287,7 +288,7 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
         try {
             exit = true;
             std::string choose;
-            std::cin >> choose;
+            cin_line(choose);
             choose_change = std::stoi(choose);
             if (choose_change < 1 or choose_change > 4) throw 0;
         }
@@ -305,8 +306,9 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
         case 1:
         case 2:
         case 3:
-            cases_Office_Auxiliary<AuxiliaryPosition>(auxiliary_position_workers, choose_auxiliary_position, choose_change, change_str,
-                                   change_int, marketing, legal, executive);
+            cases_Office_Auxiliary<AuxiliaryPosition>(auxiliary_position_workers, choose_auxiliary_position,
+                                                      choose_change, change_str,
+                                                      change_int, marketing, legal, executive);
             break;
         case 4:
             exit = false;
@@ -317,7 +319,7 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                     std::cout << "\n\nВведіть номер телефону - ";
                     exit = true;
                     std::string choose;
-                    std::cin >> choose;
+                    cin_line(choose);
                     phone_number = std::stoi(choose);
                 }
                 catch (...) {
@@ -363,7 +365,7 @@ void findWorker(std::vector<T> &obj, int &choose_worker) {
         try {
             exit = true;
             std::string choose;
-            std::cin >> choose;
+            cin_line(choose);
             choose_worker = std::stoi(choose);
             if (choose_worker < 1 or choose_worker > obj.size()) throw 0;
         }
@@ -389,7 +391,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
 
             vec[choose_worker - 1].setDepartment(change_str);
             std::cout << "\nВведіть сьогоднішню дату - \n";
-            std::cin >> change_str;
+            std::getline(std::cin, change_str);
             vec[choose_worker - 1].setLastAppointment(change_str);
 
             if (vec[choose_worker - 1].getDepartment() == "Marketing")
@@ -404,7 +406,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
             ChangeEmployeeFields(choose_change, change_str, change_int);
             vec[choose_worker - 1].setPosition(change_str);
             std::cout << "\nВведіть сьогоднішню дату - \n";
-            std::cin >> change_str;
+            cin_line(change_str);
             vec[choose_worker - 1].setLastAppointment(change_str);
 
             break;

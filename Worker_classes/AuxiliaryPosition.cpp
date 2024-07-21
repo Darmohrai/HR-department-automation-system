@@ -43,5 +43,7 @@ void AuxiliaryPosition::saveInfo(std::ofstream &fout) {
 
 void AuxiliaryPosition::readInfo(std::ifstream &fin) {
     Employee::readInfo(fin);
-    fin >> experience >> phone_number;
+    std::string read;
+    fin_int(fin, experience, read);
+    fin_int(fin, phone_number, read);
 }

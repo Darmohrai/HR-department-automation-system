@@ -70,12 +70,15 @@ void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename) {
     try {
         std::ifstream fin(filename);
         int count = 0;
-        fin >> count;
+        std::string reader;
+        std::getline(fin, reader);
+        count = std::stoi(reader);
         for (int i = 0; i < count; i++) {
             T_r obj;
             obj.readInfo(fin);
             vector_obj.push_back(std::move(obj));
         }
+        fin.close();
     }
     catch (...) {
         std::cout << "\nСталася помилка зчитування інформації\n";
