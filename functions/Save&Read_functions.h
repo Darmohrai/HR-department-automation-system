@@ -69,6 +69,7 @@ template<typename T_r>
 void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename) {
     try {
         std::ifstream fin(filename);
+        if(!fin.is_open()) return;
         int count = 0;
         std::string reader;
         std::getline(fin, reader);
@@ -92,13 +93,13 @@ void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         std::lock_guard<std::mutex> save_lockGuard(mtx_for_database);
 
         std::string filename_manager =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt)";
+                R"(..\\savings_file\\manager.txt)";
         std::string filename_office_worker =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt)";
+                R"(..\\savings_file\\office_worker.txt)";
         std::string filename_auxiliary_position =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt)";
+                R"(..\\savings_file\\auxiliary_position.txt)";
         std::string filename_trainee =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\trainee.txt)";
+                R"(..\\savings_file\\trainee.txt)";
 
 
         std::thread save_manager_info(saveWorkerInfo<Manager>, std::ref(managers), std::ref(filename_manager));
@@ -123,13 +124,13 @@ void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         std::lock_guard<std::mutex> read_lockGuard(mtx_for_database);
 
         std::string filename_manager =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\manager.txt)";
+                R"(..\\savings_file\\manager.txt)";
         std::string filename_office_worker =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\office_worker.txt)";
+                R"(..\\savings_file\\office_worker.txt)";
         std::string filename_auxiliary_position =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\auxiliary_position.txt)";
+                R"(..\\savings_file\\auxiliary_position.txt)";
         std::string filename_trainee =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\trainee.txt)";
+                R"(..\\savings_file\\trainee.txt)";
 
         std::thread read_manager_info(readWorkerInfo<Manager>, std::ref(managers), std::ref(filename_manager));
         std::thread read_office_worker_info(readWorkerInfo<OfficeWorker>, std::ref(office_workers),
@@ -186,11 +187,11 @@ void threadsSaveDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
     try {
         std::lock_guard<std::mutex> lockGuard(mtx_for_database);
         std::string marketing_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\marketing_department.txt)";
+                R"(..\\savings_file\\marketing_department.txt)";
         std::string legal_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\legal_department.txt)";
+                R"(..\\savings_file\\legal_department.txt)";
         std::string executive_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\executive_department.txt)";
+                R"(..\\savings_file\\executive_department.txt)";
 
         std::thread save_marketing_info(saveDepartment<Marketing>, std::ref(marketing),
                                         std::ref(marketing_filename));
@@ -212,6 +213,7 @@ template<typename T_r>
 void readDepartmentInfo(T_r &obj, std::string &filename) {
     try {
         std::ifstream fin(filename);
+        if(!fin.is_open()) return;
         obj.readInfo(fin);
     }
     catch (...) {
@@ -226,11 +228,11 @@ void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
         std::lock_guard<std::mutex> read_lockGuard(mtx_for_database);
 
         std::string marketing_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\marketing_department.txt)";
+                R"(..\\savings_file\\marketing_department.txt)";
         std::string legal_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\legal_department.txt)";
+                R"(..\\savings_file\\legal_department.txt)";
         std::string executive_filename =
-                R"(D:\\course project\\HR-department-automation-system\\savings_file\\executive_department.txt)";
+                R"(..\\savings_file\\executive_department.txt)";
 
         std::thread read_marketing_info(readDepartmentInfo<Marketing>, std::ref(marketing),
                                         std::ref(marketing_filename));

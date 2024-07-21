@@ -145,7 +145,7 @@ void seeManagerInfo(std::vector<Manager> &managers) {
         return;
     }
     if (managers.size() == 0) {
-        std::cout << "Робітників поки немає";
+        std::cout << "\n\nРобітників поки немає\n\n";
         return;
     }
 
@@ -171,7 +171,7 @@ void seeWorkerInfo(std::vector<T> &vec) {
         return;
     }
     if (vec.size() == 0) {
-        std::cout << "Робітників поки немає";
+        std::cout << "\n\nРобітників поки немає\n\n";
         return;
     }
 

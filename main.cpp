@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem> // C++ 17 !!!
 
 #define cin_line(string) (std::getline(std::cin, string))
 
@@ -24,9 +25,13 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                   std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
                   Marketing &marketing, Legal &legal, Executive &executive);
 
+void createDirectory();
 
 int main() {
     system("chcp 65001");
+
+    createDirectory();
+
     Marketing marketing;
     Legal legal;
     Executive executive;
@@ -198,4 +203,11 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                   });
 
     if (!changes) std::cout << "\n\nНемає суб'єктів для звільнення/приймання \n\n";
+}
+
+void createDirectory() {
+    const std::string path = "..//savings_file";
+    if (!std::filesystem::exists(path)) {
+        std::filesystem::create_directory(path);
+    }
 }

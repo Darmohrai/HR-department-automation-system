@@ -60,6 +60,8 @@ void addTrainee(std::vector<Trainee> &trainees) {
 }
 
 void changeTraineeInfo(std::vector<Trainee> &trainees) {
+    if(trainees.empty()) {
+        std::cout << "\nПрактикантів поки немає\n";return;}
     int choose_trainee;
 
     //import from file changeEmployee_functions
@@ -234,11 +236,17 @@ void seeTraineeInfo(std::vector<Trainee> &trainees){
     bool exit = false;
     std::string choose;
 
+    if(trainees.empty()){
+        std::cout << "\nСтажерів поки немає\n";
+        return;
+    }
+
     while (!exit){
         std::cout << "\nОберіть тип інформації\n"
                      "1). Повна\n"
                      "2). Коротка\n";
         try{
+
             exit = true;
             cin_line(choose);
             int choose_int = std::stoi(choose);

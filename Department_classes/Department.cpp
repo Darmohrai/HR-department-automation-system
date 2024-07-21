@@ -46,6 +46,10 @@ void Department::getWorkersInfo() {
 }
 
 void Department::getWorkers() {
+    if(workers.empty()) {
+        std::cout << "\nРобітників поки немає\n";
+        return;
+    }
     std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
                       std::cout << "\n" << employee->getFullname();
                   }
