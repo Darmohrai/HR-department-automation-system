@@ -22,6 +22,13 @@ void Legal::getDepartmentInfo() {
               << "\nКількість виграних справ - " << win_cases;
 }
 
+void Legal::getSalaryInformation() {
+    int success;
+    if(court_cases != 0) success = win_cases * 100 / court_cases;
+    else success = 0;
+    std::cout << "\nВідсоток успішності судових справ - " << success << "%";
+    Department::getSalaryInformation();
+}
 
 void Legal::saveInfo(std::ofstream &fout) {
     Department::saveInfo(fout);

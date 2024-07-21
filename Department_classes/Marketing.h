@@ -29,6 +29,8 @@ public:
 
     int getADSuccessRate() { return ad_success_rate; }
 
+    void getSalaryInformation() final;
+
 
     // methods save
     void saveInfo(std::ofstream &fout) final;

@@ -34,6 +34,8 @@ public:
 
     int getAverageTime() { return average_time; }
 
+    void getSalaryInformation() final;
+
 
     // methods save
     void saveInfo(std::ofstream &fout) final;

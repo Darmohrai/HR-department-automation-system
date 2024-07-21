@@ -53,6 +53,8 @@ public:
 
     int getPremium() { return premium; }
 
+    virtual void getSalaryInformation();
+
     std::string getName() { return name; }
 
 

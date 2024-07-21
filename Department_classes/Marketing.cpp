@@ -16,7 +16,12 @@ void Marketing::setAllInfo(int income, int premium, int ad_success_rate) {
 
 void Marketing::getDepartmentInfo() {
     Department::getDepartmentInfo();
-    std::cout << "\nУспішність реклами (%)" << ad_success_rate;
+    std::cout << "\nУспішність реклами (%) - " << ad_success_rate;
+}
+
+void Marketing::getSalaryInformation(){
+    std::cout << "\nУспішність реклами - " << ad_success_rate << "%";
+    Department::getSalaryInformation();
 }
 
 

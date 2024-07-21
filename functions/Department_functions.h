@@ -22,13 +22,16 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal,
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers);
 
+void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive);
+
+
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
     bool exit = false;
     std::string choose;
 
     while (!exit) {
-        std::cout << "Оберіть підрозділ\n"
+        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
@@ -293,7 +296,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
     std::string choose;
 
     while (!exit) {
-        std::cout << "Оберіть підрозділ\n"
+        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
@@ -358,6 +361,47 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                     break;
                 case 3:
                     obj.getDepartmentInfo();
+                    exit = true;
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+            }
+        }
+        catch (...) {
+            gap();
+            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
+        }
+    }
+}
+
+void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive) {
+    gap();
+    bool exit = false;
+    std::string choose;
+
+    while (!exit) {
+        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
+                     "1). Маркетинговий\n"
+                     "2). Юридичний\n"
+                     "3). Виконавчий\n";
+
+        cin_line(choose);
+        try {
+            if (choose.size() > 1) throw 0;
+
+            int choose_int = std::stoi(choose);
+            switch (choose_int) {
+                case 1:
+                    marketing.getSalaryInformation();
+                    exit = true;
+                    break;
+                case 2:
+                    legal.getSalaryInformation();
+                    exit = true;
+                    break;
+                case 3:
+                    executive.getSalaryInformation();
                     exit = true;
                     break;
                 case 0:

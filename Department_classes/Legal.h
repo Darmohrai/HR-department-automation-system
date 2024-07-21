@@ -34,6 +34,8 @@ public:
 
     int getWinCases() { return win_cases; }
 
+    void getSalaryInformation() final;
+
 
     // save methods
     void saveInfo(std::ofstream &fout) final;

@@ -67,6 +67,7 @@ int main() {
                      "8). Переглянути інформацію про підрозділи\n"
                      "9). Переглянути інформацію про стажерів\n"
                      "10). Перевірити статус робітників\n"
+                     "11). Переглянути зарплатні відомості\n"
                      "0). Вийти з програми\n";
         cin_line(answer);
 
@@ -108,6 +109,9 @@ int main() {
                 case 10:
                     workerStatus(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
                                  executive);
+                    break;
+                case 11:
+                    seeDepartmentSalaryInfo(marketing, legal, executive);
                     break;
                 default:
                     throw 0;

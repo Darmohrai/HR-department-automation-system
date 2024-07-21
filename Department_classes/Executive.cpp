@@ -10,7 +10,7 @@ Executive::Executive(Executive &&executive) : Department(std::move(executive)),
     executive.average_time = 0;
 }
 
-void Executive::setAllInfo(int income, int premium, int project_quantity, int average_time){
+void Executive::setAllInfo(int income, int premium, int project_quantity, int average_time) {
     Department::setAllInfo(income, premium);
     this->project_quantity = project_quantity;
     this->average_time = average_time;
@@ -21,6 +21,11 @@ void Executive::getDepartmentInfo() {
     Department::getDepartmentInfo();
     std::cout << "\nКількість проєктів - " << project_quantity
               << "\nСередній час виконання (в днях)" << average_time;
+}
+
+void Executive::getSalaryInformation() {
+    std::cout << "\nЧас на виконання всіх проєктів - " << average_time * project_quantity << " тижнів";
+    Department::getSalaryInformation();
 }
 
 

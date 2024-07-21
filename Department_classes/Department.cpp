@@ -46,7 +46,7 @@ void Department::getWorkersInfo() {
 }
 
 void Department::getWorkers() {
-    if(workers.empty()) {
+    if (workers.empty()) {
         std::cout << "\nРобітників поки немає\n";
         return;
     }
@@ -60,6 +60,26 @@ void Department::getDepartmentInfo() {
     std::cout << "Кількість працівників - " << workers.size()
               << "\nДохід підприємства - " << income
               << "\nПреміальні кошти виділені на підприємство - " << premium;
+}
+
+void Department::getSalaryInformation() {
+    std::cout << "\n---Зарплатана відомість підрозділу---\n";
+
+    int total_salary;
+    Employee richest_employee;
+    std::for_each(workers.begin(), workers.end(),
+                  [&total_salary, &richest_employee](std::unique_ptr<Employee> &employee) {
+                      total_salary += employee->getSalary();
+
+                      if (richest_employee.getSalary() < employee->getSalary()) richest_employee = *employee;
+                  });
+
+    std::cout << "\nЗагальний прибуток - " << income
+              << "\nЧистий прибуток - " << income - total_salary - premium
+              << "\nЗагальні витрати на зарплати - " << total_salary
+              << "\nПреміальні кошти - " << premium
+              << "\nНайвища зарплатня " << richest_employee.getSalary() << " у робітника "
+              << richest_employee.getFullname() << "\n\n";
 }
 
 
