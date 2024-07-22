@@ -80,6 +80,11 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
 
 void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Legal &legal, Executive &executive) {
 
+    if (managers.empty()) {
+        std::cout << "\nСуб'єктів поки ще немає\n";
+        return;
+    }
+
     int choose_manager;
     findWorker<Manager>(managers, choose_manager);
 
@@ -197,6 +202,11 @@ void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker
 void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
                             Executive &executive) {
 
+    if (office_workers.empty()) {
+        std::cout << "\nСуб'єктів поки ще немає\n";
+        return;
+    }
+
     int choose_office_worker;
     findWorker<OfficeWorker>(office_workers, choose_office_worker);
 
@@ -271,11 +281,15 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                                  Legal &legal,
                                  Executive &executive) {
 
+    if (auxiliary_position_workers.empty()) {
+        std::cout << "\nСуб'єктів поки ще немає\n";
+        return;
+    }
+
     int choose_auxiliary_position;
     findWorker<AuxiliaryPosition>(auxiliary_position_workers, choose_auxiliary_position);
 
-
-    std::cout << "\n\nОберіть які дані хочете змінити\n"
+        std::cout << "\n\nОберіть які дані хочете змінити\n"
                  "1). Підрозділ\n"
                  "2). Посада\n"
                  "3). Зарплата\n"
@@ -346,11 +360,6 @@ void findWorker(std::vector<T> &obj, int &choose_worker) {
     gap();
 
     std::cout << "Оберіть суб'єкт\n";
-
-    if (obj.size() == 0) {
-        std::cout << "\nСуб'єктів поки ще немає\n";
-        return;
-    }
 
     int count = 1;
     std::for_each(obj.begin(), obj.end(),

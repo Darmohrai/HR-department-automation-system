@@ -37,6 +37,10 @@ void Department::deleteWorker(std::string fullname) {
 }
 
 void Department::getWorkersInfo() {
+    if(workers.empty()){
+        std::cout << "\n\nРобітників поки що немає\n\n";
+        return;
+    }
     std::for_each(workers.begin(), workers.end(), [](std::unique_ptr<Employee> &employee) {
                       std::cout << "\n";
                       employee->getBriefInfo();

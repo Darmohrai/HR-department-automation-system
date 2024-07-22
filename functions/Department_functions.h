@@ -345,14 +345,16 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
         cin_line(choose);
         try {
             if (choose.size() > 1) throw 0;
-
+            bool exist = false;
             int choose_int = std::stoi(choose);
             switch (choose_int) {
                 case 1:
                     std::cout << "\n\nКерівний склад: \n";
-                    std::for_each(managers.begin(), managers.end(), [&obj](Manager &manager) {
-                        if (obj.getName() == manager.getDepartment()) std::cout << " " << manager.getFullname() << "\n";
+                    std::for_each(managers.begin(), managers.end(), [&obj, &exist](Manager &manager) {
+                        if (obj.getName() == manager.getDepartment()) {std::cout << " " << manager.getFullname() << "\n";
+                            exist = true; }
                     });
+                    if (!exist) std::cout << "\n\nКерівників поки що немає\n\n";
                     exit = true;
                     break;
                 case 2:
