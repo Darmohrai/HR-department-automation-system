@@ -329,6 +329,9 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
             std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
         }
     }
+
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    system("pause");
 }
 
 template<typename T>
@@ -416,6 +419,9 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
             std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
         }
     }
+
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    system("pause");
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_FUNCTIONS_H

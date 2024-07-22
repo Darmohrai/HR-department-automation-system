@@ -60,6 +60,8 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
             exit = false;
         }
     }
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    system("pause");
 }
 
 template<typename T>
@@ -158,8 +160,6 @@ void seeManagerInfo(std::vector<Manager> &managers) {
                      "\n3). Відділами\n";
         chooseWorkerSort<Manager>(managers, choose, exit);
     }
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
-    system("pause");
 }
 
 template<typename T>
@@ -184,8 +184,6 @@ void seeWorkerInfo(std::vector<T> &vec) {
                      "\n3). Стаж\n";
         chooseWorkerSort<T>(vec, choose, exit);
     }
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
-    system("pause");
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SEEEMPLOYEE_FUNCTIONS_H
