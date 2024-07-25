@@ -51,10 +51,9 @@ bool Person::prepareOrder(){
                  "\nНатисніть '1', щоб підписати "
                  "\nНатисніть '0', щоб скасувати ";
 
-    while (numb == false) {
+    while (!numb) {
         try {
             std::string answer;
-            numb = true;
             cin_line(answer);
             answer_int = std::stoi(answer);
             if (answer_int == 1) {

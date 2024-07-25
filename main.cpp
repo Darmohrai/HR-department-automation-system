@@ -145,6 +145,7 @@ void checkCinAnswer(Function &&func){
         catch (...) {
             gap();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            exit = false;
         }
     }
 }

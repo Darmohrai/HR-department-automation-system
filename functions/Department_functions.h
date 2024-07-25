@@ -284,7 +284,8 @@ void addDepartmentInfo(int &income, int &premium) {
 void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers) {
     checkCinAnswer([&marketing, &legal, &executive, &managers](bool &exit, std::string &choose) {
         {
-            std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
+            gap();
+            std::cout << "\nОберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                          "1). Маркетинговий\n"
                          "2). Юридичний\n"
                          "3). Виконавчий\n";
@@ -320,6 +321,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
     checkCinAnswer([&obj, &managers](bool &exit, std::string &choose) {
+        gap();
         std::cout << "Оберіть яку інформацію хочете побачити\n"
                      "1). Керівний склад\n"
                      "2). Працівників\n"
