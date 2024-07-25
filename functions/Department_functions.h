@@ -2,7 +2,7 @@
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_FUNCTIONS_H
 
 // declaration
-void changeDepartmentInfo(Marketing &marketing);
+void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive);
 
 void changeMarketing(Marketing &marketing);
 
@@ -27,6 +27,35 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
 
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
+    checkCinAnswer([&marketing, &legal, &executive](bool &exit, std::string &choose) {
+        gap();
+        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
+                     "1). Маркетинговий\n"
+                     "2). Юридичний\n"
+                     "3). Виконавчий\n";
+
+        cin_line(choose);
+        if (choose.size() > 1) throw 0;
+
+        int choose_int = std::stoi(choose);
+        switch (choose_int) {
+            case 1:
+                changeMarketing(marketing);
+                exit = true;
+                break;
+            case 2:
+                changeLegal(legal);
+                exit = true;
+                break;
+            case 3:
+                changeExecutive(executive);
+            case 0:
+                exit = true;
+                break;
+        }
+    });
+    /*
+
     bool exit = false;
     std::string choose;
 
@@ -61,70 +90,56 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
             gap();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
         }
-    }
+    }*/
 }
 
 void changeMarketing(Marketing &marketing) {
-    gap();
-
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
+    checkCinAnswer([&marketing](bool &exit, std::string &choose) {
+        gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
                      "2). Премія\n"
                      "3). Відсоток успішності реклами\n"
                      "4). Змінити всю інформацію\n";
         cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
-            int choose_int = std::stoi(choose);
 
-            switch (choose_int) {
-                case 1:
-                case 2: {
-                    caseIncomeOrPremium(marketing, choose_int);
-                    exit = true;
-                    break;
-                }
-                case 3: {
-                    std::string ad_success_rate;
-                    std::cout << "\n\nВведіть відсоток успішності реклами - ";
-                    cin_line(ad_success_rate);
-                    int ad_success_rate_int = std::stoi(ad_success_rate);
-                    marketing.setAdSuccessRate(ad_success_rate_int);
-                    exit = true;
-                    break;
-                }
-                case 4: {
-                    int income, premium, ad_success_rate_int;
-                    addDepartmentInfo(income, premium);
-                    std::string ad_success_rate;
-                    std::cout << "\n\nВведіть відсоток успішності реклами - ";
-                    cin_line(ad_success_rate);
-                    ad_success_rate_int = std::stoi(ad_success_rate);
-                    marketing.setAllInfo(income, premium, ad_success_rate_int);
-                    exit = true;
-                    break;
-                }
+        if (choose.size() > 1) throw 0;
+        int choose_int = std::stoi(choose);
+
+        switch (choose_int) {
+            case 1:
+            case 2: {
+                caseIncomeOrPremium(marketing, choose_int);
+                exit = true;
+                break;
+            }
+            case 3: {
+                std::string ad_success_rate;
+                std::cout << "\n\nВведіть відсоток успішності реклами - ";
+                cin_line(ad_success_rate);
+                int ad_success_rate_int = std::stoi(ad_success_rate);
+                marketing.setAdSuccessRate(ad_success_rate_int);
+                exit = true;
+                break;
+            }
+            case 4: {
+                int income, premium, ad_success_rate_int;
+                addDepartmentInfo(income, premium);
+                std::string ad_success_rate;
+                std::cout << "\n\nВведіть відсоток успішності реклами - ";
+                cin_line(ad_success_rate);
+                ad_success_rate_int = std::stoi(ad_success_rate);
+                marketing.setAllInfo(income, premium, ad_success_rate_int);
+                exit = true;
+                break;
             }
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 }
 
 void changeLegal(Legal &legal) {
-    gap();
-
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
-
+    checkCinAnswer([&legal](bool &exit, std::string &choose) {
+        gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
                      "2). Премія\n"
@@ -132,67 +147,57 @@ void changeLegal(Legal &legal) {
                      "4). Кількість виграних судів\n"
                      "5). Змінити всю інформацію\n";
         cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
-            int choose_int = std::stoi(choose);
+        if (choose.size() > 1) throw 0;
+        int choose_int = std::stoi(choose);
 
-            switch (choose_int) {
-                case 1:
-                case 2: {
-                    caseIncomeOrPremium(legal, choose_int);
-                    exit = true;
-                    break;
-                }
+        switch (choose_int) {
+            case 1:
+            case 2: {
+                caseIncomeOrPremium(legal, choose_int);
+                exit = true;
+                break;
+            }
 
-                case 3: {
-                    std::string court_cases;
-                    std::cout << "\n\nВведіть кількість судових випадків - ";
-                    cin_line(court_cases);
-                    int court_cases_int = std::stoi(court_cases);
-                    legal.setCourtCases(court_cases_int);
-                    exit = true;
-                    break;
-                }
-                case 4: {
-                    std::string win_cases;
-                    std::cout << "\n\nВведіть кількість виграних судів - ";
-                    cin_line(win_cases);
-                    int win_cases_int = std::stoi(win_cases);
-                    legal.setWinCases(win_cases_int);
-                    exit = true;
-                    break;
-                }
-                case 5: {
-                    int income, premium, court_cases_int, win_cases_int;
-                    addDepartmentInfo(income, premium);
-                    std::string court_cases;
-                    std::cout << "\n\nВведіть кількість судових випадків - ";
-                    cin_line(court_cases);
-                    court_cases_int = std::stoi(court_cases);
-                    std::string win_cases;
-                    std::cout << "\n\nВведіть кількість виграних судів - ";
-                    cin_line(win_cases);
-                    win_cases_int = std::stoi(win_cases);
-                    legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
-                    exit = true;
-                    break;
-                }
+            case 3: {
+                std::string court_cases;
+                std::cout << "\n\nВведіть кількість судових випадків - ";
+                cin_line(court_cases);
+                int court_cases_int = std::stoi(court_cases);
+                legal.setCourtCases(court_cases_int);
+                exit = true;
+                break;
+            }
+            case 4: {
+                std::string win_cases;
+                std::cout << "\n\nВведіть кількість виграних судів - ";
+                cin_line(win_cases);
+                int win_cases_int = std::stoi(win_cases);
+                legal.setWinCases(win_cases_int);
+                exit = true;
+                break;
+            }
+            case 5: {
+                int income, premium, court_cases_int, win_cases_int;
+                addDepartmentInfo(income, premium);
+                std::string court_cases;
+                std::cout << "\n\nВведіть кількість судових випадків - ";
+                cin_line(court_cases);
+                court_cases_int = std::stoi(court_cases);
+                std::string win_cases;
+                std::cout << "\n\nВведіть кількість виграних судів - ";
+                cin_line(win_cases);
+                win_cases_int = std::stoi(win_cases);
+                legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
+                exit = true;
+                break;
             }
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 }
 
 void changeExecutive(Executive &executive) {
-    gap();
-
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
+    checkCinAnswer([&executive](bool &exit, std::string choose) {
+        gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
                      "2). Премія\n"
@@ -200,57 +205,51 @@ void changeExecutive(Executive &executive) {
                      "4). Середній час виконання проєкту (в тижнях)\n"
                      "5). Змінити всю інформацію\n";
         cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
-            int choose_int = std::stoi(choose);
+        if (choose.size() > 1) throw 0;
+        int choose_int = std::stoi(choose);
 
-            switch (choose_int) {
-                case 1:
-                case 2: {
-                    caseIncomeOrPremium(executive, choose_int);
-                    exit = true;
-                    break;
-                }
-                case 3: {
-                    std::string project_quantity;
-                    std::cout << "\n\nВведіть кількість судових випадків - ";
-                    cin_line(project_quantity);
-                    int project_quantity_int = std::stoi(project_quantity);
-                    executive.setProjectQuantity(project_quantity_int);
-                    exit = true;
-                    break;
-                }
-                case 4: {
-                    std::string average_time;
-                    std::cout << "\n\nВведіть кількість виграних судів - ";
-                    cin_line(average_time);
-                    int average_time_int = std::stoi(average_time);
-                    executive.setAverageTime(average_time_int);
-                    exit = true;
-                    break;
-                }
-                case 5: {
-                    int income, premium, project_quantity_int, average_time_int;
-                    addDepartmentInfo(income, premium);
-                    std::string project_quantity;
-                    std::cout << "\n\nВведіть кількість судових випадків - ";
-                    cin_line(project_quantity);
-                    project_quantity_int = std::stoi(project_quantity);
-                    std::string average_time;
-                    std::cout << "\n\nВведіть кількість виграних судів - ";
-                    cin_line(average_time);
-                    average_time_int = std::stoi(average_time);
-                    executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
-                    exit = true;
-                    break;
-                }
+        switch (choose_int) {
+            case 1:
+            case 2: {
+                caseIncomeOrPremium(executive, choose_int);
+                exit = true;
+                break;
+            }
+            case 3: {
+                std::string project_quantity;
+                std::cout << "\n\nВведіть кількість судових випадків - ";
+                cin_line(project_quantity);
+                int project_quantity_int = std::stoi(project_quantity);
+                executive.setProjectQuantity(project_quantity_int);
+                exit = true;
+                break;
+            }
+            case 4: {
+                std::string average_time;
+                std::cout << "\n\nВведіть кількість виграних судів - ";
+                cin_line(average_time);
+                int average_time_int = std::stoi(average_time);
+                executive.setAverageTime(average_time_int);
+                exit = true;
+                break;
+            }
+            case 5: {
+                int income, premium, project_quantity_int, average_time_int;
+                addDepartmentInfo(income, premium);
+                std::string project_quantity;
+                std::cout << "\n\nВведіть кількість судових випадків - ";
+                cin_line(project_quantity);
+                project_quantity_int = std::stoi(project_quantity);
+                std::string average_time;
+                std::cout << "\n\nВведіть кількість виграних судів - ";
+                cin_line(average_time);
+                average_time_int = std::stoi(average_time);
+                executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
+                exit = true;
+                break;
             }
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 }
 
 template<typename T>
@@ -271,38 +270,26 @@ void caseIncomeOrPremium(T &obj, int choose) {
 }
 
 void addDepartmentInfo(int &income, int &premium) {
-    std::string choose;
-    bool exit = false;
-
-    while (!exit) {
-        try {
-            exit = true;
-            std::cout << "\nВведіть дохід підрозділу - ";
-            cin_line(choose);
-            income = std::stoi(choose);
-            std::cout << "\nВведіть преміальні кошти підрозділу - ";
-            cin_line(choose);
-            premium = std::stoi(choose);
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-            exit = false;
-        }
-    }
+    checkCinAnswer([&income, &premium](bool &exit, std::string &choose) {
+        exit = true;
+        std::cout << "\nВведіть дохід підрозділу - ";
+        cin_line(choose);
+        income = std::stoi(choose);
+        std::cout << "\nВведіть преміальні кошти підрозділу - ";
+        cin_line(choose);
+        premium = std::stoi(choose);
+    });
 }
 
 void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers) {
-    bool exit = false;
-    std::string choose;
+    checkCinAnswer([&marketing, &legal, &executive, &managers](bool &exit, std::string &choose) {
+        {
+            std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
+                         "1). Маркетинговий\n"
+                         "2). Юридичний\n"
+                         "3). Виконавчий\n";
 
-    while (!exit) {
-        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
-                     "1). Маркетинговий\n"
-                     "2). Юридичний\n"
-                     "3). Виконавчий\n";
-
-        cin_line(choose);
-        try {
+            cin_line(choose);
             if (choose.size() > 1) throw 0;
 
             int choose_int = std::stoi(choose);
@@ -324,11 +311,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                     break;
             }
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
     system("pause");
@@ -336,89 +319,71 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
 
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
+    checkCinAnswer([&obj, &managers](bool &exit, std::string &choose) {
         std::cout << "Оберіть яку інформацію хочете побачити\n"
                      "1). Керівний склад\n"
                      "2). Працівників\n"
                      "3). Загальну інформацію\n";
-
         cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
-            bool exist = false;
-            int choose_int = std::stoi(choose);
-            switch (choose_int) {
-                case 1:
-                    std::cout << "\n\nКерівний склад: \n";
-                    std::for_each(managers.begin(), managers.end(), [&obj, &exist](Manager &manager) {
-                        if (obj.getName() == manager.getDepartment()) {std::cout << " " << manager.getFullname() << "\n";
-                            exist = true; }
-                    });
-                    if (!exist) std::cout << "\n\nКерівників поки що немає\n\n";
-                    exit = true;
-                    break;
-                case 2:
-                    obj.getWorkersInfo();
-                    exit = true;
-                    break;
-                case 3:
-                    obj.getDepartmentInfo();
-                    exit = true;
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-            }
+        if (choose.size() > 1) throw 0;
+        bool exist = false;
+        int choose_int = std::stoi(choose);
+        switch (choose_int) {
+            case 1:
+                std::cout << "\n\nКерівний склад: \n";
+                std::for_each(managers.begin(), managers.end(), [&obj, &exist](Manager &manager) {
+                    if (obj.getName() == manager.getDepartment()) {
+                        std::cout << " " << manager.getFullname() << "\n";
+                        exist = true;
+                    }
+                });
+                if (!exist) std::cout << "\n\nКерівників поки що немає\n\n";
+                exit = true;
+                break;
+            case 2:
+                obj.getWorkersInfo();
+                exit = true;
+                break;
+            case 3:
+                obj.getDepartmentInfo();
+                exit = true;
+                break;
+            case 0:
+                exit = true;
+                break;
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 }
 
 void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive) {
-    gap();
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
+    checkCinAnswer([&marketing, &legal, &executive](bool &exit, std::string &choose) {
+        gap();
         std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
-
         cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
+        if (choose.size() > 1) throw 0;
+        int choose_int = std::stoi(choose);
 
-            int choose_int = std::stoi(choose);
-            switch (choose_int) {
-                case 1:
-                    marketing.getSalaryInformation();
-                    exit = true;
-                    break;
-                case 2:
-                    legal.getSalaryInformation();
-                    exit = true;
-                    break;
-                case 3:
-                    executive.getSalaryInformation();
-                    exit = true;
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-            }
+        switch (choose_int) {
+            case 1:
+                marketing.getSalaryInformation();
+                exit = true;
+                break;
+            case 2:
+                legal.getSalaryInformation();
+                exit = true;
+                break;
+            case 3:
+                executive.getSalaryInformation();
+                exit = true;
+                break;
+            case 0:
+                exit = true;
+                break;
         }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }
+    });
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
     system("pause");

@@ -26,7 +26,6 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
                      Executive &executive);
 
 
-
 // definition
 void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
@@ -35,19 +34,16 @@ void gap() {
 void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                  Executive &executive) {
-    bool exit = false;
-    std::string choose;
+    checkCinAnswer([&managers, &office_workers, &auxiliary_position_workers, &marketing, &legal, &executive]
+                           (bool &exit, std::string &choose) {
+        {
+            gap();
+            std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
+                         "\n1). Керівник"
+                         "\n2). Офісний працівник"
+                         "\n3). Додаткова посада\n";
 
-    while (!exit) {
-        gap();
-        std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
-                     "\n1). Керівник"
-                     "\n2). Офісний працівник"
-                     "\n3). Додаткова посада\n";
-
-        cin_line(choose);
-
-        try {
+            cin_line(choose);
             if (choose.size() > 1) throw 0;
             switch (choose[0]) {
                 case '1':
@@ -67,47 +63,29 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
                     break;
             }
         }
-        catch (int exception) { // should be improved
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-        }
-    }
+    });
 }
 
 void readerPerson(std::string &fullname, int &age, int &passport_number,
                   std::string &education, std::string &entry_date, std::string &specialty) {
-    bool error = false;
-    std::string reader;
-
     std::cout << "\nВведіть ПІБ - ";
     cin_line(fullname);
 
-    while (!error) {
-        try {
-            std::cout << "\nВведіть вік - ";
-            cin_line(reader);
-            age = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&age](bool &error, std::string &reader) {
+                       std::cout << "\nВведіть вік - ";
+                       cin_line(reader);
+                       age = std::stoi(reader);
+                       error = true;
+                   }
+    );
 
-    error = false;
-    while (!error) {
-        try {
-            std::cout << "\nВведіть паспортні дані (номер) - ";
-            cin_line(reader);;
-            passport_number = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&passport_number](bool &error, std::string reader) {
+                       std::cout << "\nВведіть паспортні дані (номер) - ";
+                       cin_line(reader);;
+                       passport_number = std::stoi(reader);
+                       error = true;
+                   }
+    );
 
     std::cout << "\nВведіть ВНЗ, який закінчував - ";
     cin_line(education);
@@ -124,46 +102,31 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                     std::string &position, int &salary, std::string &last_appointment, int &department_int) {
     readerPerson(fullname, age, passport_number, education, entry_date, specialty);
 
-    bool error = false;
-    std::string reader;
-
-
-    while (!error) {
-        try {
-            std::cout << "\nОберіть підрозділ \n"
-                         "1). Маркетинговий\n"
-                         "2). Юридичний\n"
-                         "3). Виконавчий\n";
-            cin_line(reader);
-            department_int = std::stoi(reader);
-            error = true;
-            if (department_int == 1) department = "Marketing";
-            else if (department_int == 2) department = "Legal";
-            else if (department_int == 3) department = "Executive";
-            else throw 0;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&department, &department_int](bool &error, std::string reader) {
+                       std::cout << "\nОберіть підрозділ \n"
+                                    "1). Маркетинговий\n"
+                                    "2). Юридичний\n"
+                                    "3). Виконавчий\n";
+                       cin_line(reader);
+                       department_int = std::stoi(reader);
+                       error = true;
+                       if (department_int == 1) department = "Marketing";
+                       else if (department_int == 2) department = "Legal";
+                       else if (department_int == 3) department = "Executive";
+                       else throw 0;
+                   }
+    );
 
     std::cout << "\nВведіть посаду - ";
     cin_line(position);
 
-    error = false;
-    while (!error) {
-        try {
-            std::cout << "\nВведіть зарплату - ";
-            cin_line(reader);
-            salary = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&salary](bool &error, std::string reader) {
+                       std::cout << "\nВведіть зарплату - ";
+                       cin_line(reader);
+                       salary = std::stoi(reader);
+                       error = true;
+                   }
+    );
 
     std::cout << "\nВведіть дату останнього призначення - ";
     cin_line(last_appointment);
@@ -188,22 +151,15 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
     readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department, position, salary,
                    last_appointment, department_int);
 
-    bool error = false;
-    std::string reader;
     int premium;
 
-    while (!error) {
-        try {
-            std::cout << "\nВведіть премію - ";
-            cin_line(reader);
-            premium = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&premium](bool &error, std::string reader) {
+                       std::cout << "\nВведіть премію - ";
+                       cin_line(reader);
+                       premium = std::stoi(reader);
+                       error = true;
+                   }
+    );
 
     switch (department_int) {
         case 1: {
@@ -249,53 +205,30 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
     readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department,
                    position, salary, last_appointment, department_int);
 
-    bool error = false;
-    std::string reader;
-
     int experience;
     int id;
     int project_numbers;
 
-    while (!error) {
-        try {
-            std::cout << "\nВведіть досвід роботи (в роках) - ";
-            cin_line(reader);
-            experience = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&experience](bool &error, std::string &reader) {
+        std::cout << "\nВведіть досвід роботи (в роках) - ";
+        cin_line(reader);
+        experience = std::stoi(reader);
+        error = true;
+    });
 
-    error = false;
-    while (!error) {
-        try {
-            std::cout << "\nВведіть id - ";
-            cin_line(reader);
-            id = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&id](bool &error, std::string reader) {
+        std::cout << "\nВведіть id - ";
+        cin_line(reader);
+        id = std::stoi(reader);
+        error = true;
+    });
 
-    error = false;
-    while (!error) {
-        try {
-            std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
-            cin_line(reader);
-            project_numbers = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&project_numbers](bool &error, std::string &reader) {
+        std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
+        cin_line(reader);
+        project_numbers = std::stoi(reader);
+        error = true;
+    });
 
     OfficeWorker new_officeWorker(fullname, age, passport_number, education, entry_date, specialty,
                                   department, position, salary, last_appointment, experience, id,
@@ -334,39 +267,22 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
 
     readerEmployee(fullname, age, passport_number, education, entry_date, specialty, department,
                    position, salary, last_appointment, department_int);
-
-    bool error = false;
-    std::string reader;
-
     int experience;
     int phone_number;
 
-    while (!error) {
-        try {
-            std::cout << "\nВведіть досвід роботи (в роках) - ";
-            cin_line(reader);
-            experience = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&experience](bool &error, std::string &reader) {
+        std::cout << "\nВведіть досвід роботи (в роках) - ";
+        cin_line(reader);
+        experience = std::stoi(reader);
+        error = true;
+    });
 
-    error = false;
-    while (!error) {
-        try {
-            std::cout << "\nВведіть номер телефону - ";
-            cin_line(reader);
-            phone_number = std::stoi(reader);
-            error = true;
-        }
-        catch (...) {
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
-            error = false;
-        }
-    }
+    checkCinAnswer([&phone_number](bool &error, std::string &reader) {
+        std::cout << "\nВведіть номер телефону - ";
+        cin_line(reader);
+        phone_number = std::stoi(reader);
+        error = true;
+    });
 
     AuxiliaryPosition new_auxiliaryPosition(fullname, age, passport_number, education, entry_date,
                                             specialty, department, position, salary, last_appointment,
@@ -385,7 +301,6 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
             break;
     }
 }
-
 
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H
