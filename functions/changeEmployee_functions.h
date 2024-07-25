@@ -25,6 +25,13 @@ void cases_Office_Auxiliary(std::vector<T> &obj, int &choose_worker, int &choose
                             int &change_int, Marketing &marketing,
                             Legal &legal, Executive &executive);
 
+void fireEmployeeTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                         std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
+                         Marketing &marketing, Legal &legal, Executive &executive);
+
+template<typename T>
+void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive);
+
 
 // definition
 void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_change) {
@@ -330,9 +337,70 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
         case 3:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             vec[choose_worker - 1].setSalary(change_int);
-
             break;
     }
+}
+
+void fireEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
+                  Marketing &marketing, Legal &legal, Executive &executive) {
+    checkCinAnswer([&](bool &exit, std::string &choose) {
+        exit = true;
+        gap();
+        std::cout << "Оберіть тип"
+                     "\n 1). Керівник"
+                     "\n 2). Офісний працівник"
+                     "\n 3). Додаткова посада"
+                     "\n 4). Стажер\n";
+        cin_line(choose);
+        int choose_int = std::stoi(choose);
+        switch (choose_int) {
+            case 1:
+                fireEmployee<Manager>(managers, marketing, legal, executive);
+                break;
+            case 2:
+                fireEmployee<OfficeWorker>(office_workers, marketing, legal, executive);
+                break;
+            case 3:
+                fireEmployee<AuxiliaryPosition>(auxiliary_position_workers, marketing, legal, executive);
+                break;
+            case 4:
+                break;
+            default:
+                throw 0;
+        }
+    });
+}
+
+template<typename T>
+void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive) {
+    checkCinAnswer([&](bool &exit, std::string &choose) {
+        exit = true;
+        if (vec.empty()) {
+            std::cout << "\nДаного типу робітників немає\n";
+            return;
+        }
+        int count = 1;
+        gap();
+        std::cout << "\nОберіть робітника";
+        std::for_each(vec.begin(), vec.end(), [&count](T &obj) {
+            std::cout << "\n " << count++ << "). " << obj.getFullname();
+        });
+        cin_line(choose);
+        int choose_int = std::stoi(choose);
+        if (choose_int < 1 or choose_int > vec.size()) throw 0;
+        else if (vec[choose_int - 1].prepareOrder()) {
+            if (typeid(T) == typeid(OfficeWorker) or typeid(T) == typeid(AuxiliaryPosition)) {
+                if (vec[choose_int - 1].getDepartment() == "Marketing")
+                    marketing.deleteWorker(vec[choose_int - 1].getFullname());
+                else if (vec[choose_int - 1].getDepartment() == "Legal")
+                    legal.deleteWorker(vec[choose_int - 1].getFullname());
+                else if (vec[choose_int - 1].getDepartment() == "Executive")
+                    executive.deleteWorker(vec[choose_int - 1].getFullname());
+            }
+            vec.erase(vec.begin() + choose_int - 1);
+        }
+    });
 }
 
 

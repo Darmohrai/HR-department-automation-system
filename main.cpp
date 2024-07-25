@@ -3,7 +3,7 @@
 
 #define cin_line(string) (std::getline(std::cin, string))
 
-template <typename Function>
+template<typename Function>
 void checkCinAnswer(Function &&func);
 
 #include "Worker_classes/Trainee.h"
@@ -72,6 +72,7 @@ int main() {
                          "9). Переглянути інформацію про стажерів\n"
                          "10). Перевірити статус робітників\n"
                          "11). Переглянути зарплатні відомості\n"
+                         "12). Звільнити робітника/стажера\n"
                          "0). Вийти з програми\n";
             cin_line(answer);
             int answer_int = std::stoi(answer);
@@ -115,6 +116,10 @@ int main() {
                 case 11:
                     seeDepartmentSalaryInfo(marketing, legal, executive);
                     break;
+                case 12:
+                    fireEmployee(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
+                                 executive);
+                    break;
                 default:
                     throw 0;
             }
@@ -133,8 +138,8 @@ int main() {
     return 0;
 }
 
-template <typename Function>
-void checkCinAnswer(Function &&func){
+template<typename Function>
+void checkCinAnswer(Function &&func) {
     bool exit = false;
     std::string choose;
 

@@ -47,9 +47,9 @@ bool Person::checkStatus() {
 bool Person::prepareOrder(){
     int answer_int;
     bool numb = false;
-    std::cout << "\n\nНаказ про звільнення підготовлено, "
+    std::cout << "\n\nНаказ підготовлено, "
                  "\nНатисніть '1', щоб підписати "
-                 "\nНатисніть '0', щоб скасувати ";
+                 "\nНатисніть '0', щоб скасувати \n";
 
     while (!numb) {
         try {
@@ -57,10 +57,10 @@ bool Person::prepareOrder(){
             cin_line(answer);
             answer_int = std::stoi(answer);
             if (answer_int == 1) {
-                std::cout << getFullname() << "\nНаказ підписано\n";
+                std::cout << getFullname() << "\n\nНаказ підписано\n\n";
                 return true;
             } else if (answer_int == 0) {
-                std::cout << "\nНаказ скасовано\n";
+                std::cout << "\n\nНаказ скасовано\n\n";
                 return false;
             } else throw false;
         }
