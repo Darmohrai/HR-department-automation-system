@@ -21,13 +21,12 @@ template<typename T>
 void findWorker(std::vector<T> &obj, int &choose_worker);
 
 template<typename T>
-void cases_Office_Auxiliary(std::vector<T> &obj, int &choose_worker, int &choose_change, std::string &change_str,
-                            int &change_int, Marketing &marketing,
-                            Legal &legal, Executive &executive);
+void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose_change, std::string &change_str,
+                            int &change_int, Marketing &marketing, Legal &legal, Executive &executive);
 
-void fireEmployeeTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
-                         std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
-                         Marketing &marketing, Legal &legal, Executive &executive);
+void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
+                           Marketing &marketing, Legal &legal, Executive &executive);
 
 template<typename T>
 void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive);
@@ -341,13 +340,13 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
     }
 }
 
-void fireEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
-                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
-                  Marketing &marketing, Legal &legal, Executive &executive) {
+void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
+                           Marketing &marketing, Legal &legal, Executive &executive) {
     checkCinAnswer([&](bool &exit, std::string &choose) {
         exit = true;
         gap();
-        std::cout << "Оберіть тип"
+        std::cout << "Оберіть тип (введіть '0', щоб повернутися назад)"
                      "\n 1). Керівник"
                      "\n 2). Офісний працівник"
                      "\n 3). Додаткова посада"
@@ -366,6 +365,8 @@ void fireEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                 break;
             case 4:
                 break;
+            case 0:
+                break;
             default:
                 throw 0;
         }
@@ -382,9 +383,9 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
         }
         int count = 1;
         gap();
-        std::cout << "\nОберіть робітника";
+        std::cout << "\nОберіть робітника\n";
         std::for_each(vec.begin(), vec.end(), [&count](T &obj) {
-            std::cout << "\n " << count++ << "). " << obj.getFullname();
+            std::cout << count++ << "). " << obj.getFullname() << "\n ";
         });
         cin_line(choose);
         int choose_int = std::stoi(choose);

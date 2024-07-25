@@ -69,6 +69,7 @@ bool Person::prepareOrder(){
             numb = false;
         }
     }
+    return false;
 }
 
 void Person::saveInfo(std::ofstream &fout) {

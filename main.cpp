@@ -117,7 +117,7 @@ int main() {
                     seeDepartmentSalaryInfo(marketing, legal, executive);
                     break;
                 case 12:
-                    fireEmployee(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
+                    fireEmployeeOrTrainee(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
                                  executive);
                     break;
                 default:
