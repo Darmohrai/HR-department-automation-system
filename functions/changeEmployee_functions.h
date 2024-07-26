@@ -31,6 +31,8 @@ void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWor
 template<typename T>
 void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive);
 
+void fireTrainee(std::vector<Trainee> &trainees);
+
 
 // definition
 void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_change) {
@@ -341,7 +343,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
 }
 
 void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
-                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainee,
+                           std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
                            Marketing &marketing, Legal &legal, Executive &executive) {
     checkCinAnswer([&](bool &exit, std::string &choose) {
         exit = true;
@@ -364,6 +366,7 @@ void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWor
                 fireEmployee<AuxiliaryPosition>(auxiliary_position_workers, marketing, legal, executive);
                 break;
             case 4:
+                fireTrainee(trainees);
                 break;
             case 0:
                 break;
@@ -383,7 +386,7 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
         }
         int count = 1;
         gap();
-        std::cout << "\nОберіть робітника\n";
+        std::cout << "\nОберіть робітника\n ";
         std::for_each(vec.begin(), vec.end(), [&count](T &obj) {
             std::cout << count++ << "). " << obj.getFullname() << "\n ";
         });
@@ -401,6 +404,25 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
             }
             vec.erase(vec.begin() + choose_int - 1);
         }
+    });
+}
+
+void fireTrainee(std::vector<Trainee> &trainees) {
+    checkCinAnswer([&](bool &exit, std::string &choose) {
+        exit = true;
+        if (trainees.empty()) {
+            std::cout << "\nДаного типу робітників немає\n";
+            return;
+        }
+        int count = 1;
+        gap();
+        std::cout << "\nОберіть робітника\n ";
+        std::for_each(trainees.begin(), trainees.end(), [&count](Trainee &trainee) {
+            std::cout << count++ << "). " << trainee.getFullname() << "\n ";
+        });
+        cin_line(choose);
+        int choose_int = std::stoi(choose);
+        if (trainees[choose_int - 1].prepareOrder()) trainees.erase(trainees.begin() + choose_int - 1);
     });
 }
 
