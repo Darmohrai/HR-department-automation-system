@@ -14,7 +14,7 @@ public:
 
     Manager(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
-            std::string &position, int salary, std::string &last_appointment, int premium,
+            std::string &position, int salary, std::string &last_appointment, int id, int premium,
             Department *supervisory_department);
 
     Manager(Manager &&manager) noexcept;

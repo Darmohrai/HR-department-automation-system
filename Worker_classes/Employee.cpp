@@ -3,27 +3,29 @@
 Employee::Employee(std::string &fullname, int age, int passport_number,
                    std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                    std::string &position, int salary,
-                   std::string &last_appointment) : Person(fullname, age,
+                   std::string &last_appointment, int id) : Person(fullname, age,
                                                            passport_number, education,
                                                            entry_date, specialty) {
     this->department = department;
     this->salary = salary;
     this->position = position;
     this->last_appointment = last_appointment;
+    this->id = id;
 }
 
 Employee::Employee(Employee &&employee) noexcept: Person(std::move(employee)), department{employee.department},
                                                   salary{employee.salary}, position{employee.position},
-                                                  last_appointment{employee.last_appointment} {
+                                                  last_appointment{employee.last_appointment}, id(employee.id){
     employee.department = "";
     employee.salary = 0;
     employee.position = "";
     employee.last_appointment = "";
+    employee.id = 0;
 }
 
 Employee::Employee(Employee &employee) : Person(employee), department{employee.department},
                                          salary{employee.salary}, position{employee.position},
-                                         last_appointment{employee.last_appointment} {}
+                                         last_appointment{employee.last_appointment}, id(employee.id) {}
 
 
 void Employee::getAllInfo() {
@@ -31,14 +33,16 @@ void Employee::getAllInfo() {
     std::cout << "\nПідрозділ -" << department
               << "\nПосада - " << position
               << "\nОклад - " << salary
-              << "\nОстаннє призначення - " << last_appointment;
+              << "\nОстаннє призначення - " << last_appointment
+              << "\nID - " << id;
 }
 
 void Employee::getBriefInfo() {
     Person::getBriefInfo();
     std::cout << "\nПідрозділ - " << department
               << "\nПосада - " << position
-              << "\nОклад - " << salary;
+              << "\nОклад - " << salary
+              << "\nID - " << id;
 }
 
 
@@ -97,7 +101,7 @@ bool Employee::checkStatus() {
 
 void Employee::saveInfo(std::ofstream &fout) {
     Person::saveInfo(fout);
-    fout << department << "\n" << salary << "\n" << position << "\n" << last_appointment << "\n";
+    fout << department << "\n" << salary << "\n" << position << "\n" << last_appointment << "\n" << id << "\n";
 }
 
 void Employee::readInfo(std::ifstream &fin) {
@@ -107,4 +111,5 @@ void Employee::readInfo(std::ifstream &fin) {
     fin_int(fin, salary, reader);
     fin_line(fin, position);
     fin_line(fin, last_appointment);
+    fin_int(fin, id, reader);
 }

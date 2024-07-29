@@ -92,7 +92,7 @@ void performanceTrainee(std::string &performance) {
 }
 
 void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
-            Executive &executive) {
+            Executive &executive, int &id) {
     std::string department;
     std::string position;
     int salary;
@@ -128,19 +128,12 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
 
 
     int experience;
-    int id;
     int project_numbers;
 
     checkCinAnswer([&experience](bool &error, std::string &reader) {
         std::cout << "\nВведіть досвід роботи (в роках) - ";
         cin_line(reader);
         experience = std::stoi(reader);
-        error = true;
-    });
-    checkCinAnswer([&id](bool &error, std::string &reader) {
-        std::cout << "\nВведіть id - ";
-        cin_line(reader);
-        id = std::stoi(reader);
         error = true;
     });
 
@@ -158,7 +151,7 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
     std::string specialty = trainee.getSpecialty();
 
     OfficeWorker new_officeWorker(fullname, age, passport_number, education, last_appointment, specialty,
-                                  department, position, salary, last_appointment, experience, id,
+                                  department, position, salary, last_appointment, id, experience,
                                   project_numbers);
     office_workers.push_back(std::move(new_officeWorker));
 

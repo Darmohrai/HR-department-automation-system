@@ -6,14 +6,14 @@
 class OfficeWorker final : public Employee {
 private:
     int experience;
-    int id;
+
     int project_numbers;
 public:
-    OfficeWorker() : Employee(), experience{0}, id{0}, project_numbers{0} {}
+    OfficeWorker() : Employee(), experience{0}, project_numbers{0} {}
 
     OfficeWorker(std::string &fullname, int age, int passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
-                 std::string &position, int salary, std::string &last_appointment, int experience, int id,
+                 std::string &position, int salary, std::string &last_appointment, int id, int experience,
                  int project_numbers);
 
     OfficeWorker(OfficeWorker &&officeWorker);
@@ -47,7 +47,7 @@ public:
     void readInfo(std::ifstream &fin) final;
 
 
-    OfficeWorker& operator=(const OfficeWorker &officeWorker) = default;
+    OfficeWorker &operator=(const OfficeWorker &officeWorker) = default;
 
     // for experience
     bool operator<=(const OfficeWorker &officeWorker) const {

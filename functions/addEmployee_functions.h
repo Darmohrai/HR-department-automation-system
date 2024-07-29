@@ -4,6 +4,9 @@
 // declaration
 void gap();
 
+void setID(int &id, std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+           std::vector<AuxiliaryPosition> &auxiliary_position_workers);
+
 void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                  Executive &executive);
@@ -16,14 +19,14 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                     std::string &position, int &salary, std::string &last_appointment, int &department_int);
 
 void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
-                Executive &executive);
+                Executive &executive, int &id);
 
 void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
-                     Executive &executive);
+                     Executive &executive, int &id);
 
 void
 addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
-                     Executive &executive);
+                     Executive &executive, int &id);
 
 
 // definition
@@ -31,31 +34,49 @@ void gap() {
     std::cout << "\n--------------------------------------------------------------\n";
 }
 
+void setID(int &id, std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+           std::vector<AuxiliaryPosition> &auxiliary_position_workers){
+    int id_managers, id_office_workers, id_auxiliary_position;
+    if (!managers.empty()) id_managers = managers[managers.size() - 1].getID();
+    else id_managers = 0;
+    if (!office_workers.empty()) id_office_workers = office_workers[office_workers.size() - 1].getID();
+    else id_office_workers = 0;
+    if (!auxiliary_position_workers.empty())
+        id_auxiliary_position = auxiliary_position_workers[auxiliary_position_workers.size() - 1].getID();
+    else id_auxiliary_position = 0;
+    if (id_managers > id_office_workers and id_managers > id_auxiliary_position) id = id_managers + 1;
+    else if (id_office_workers > id_managers and id_office_workers > id_auxiliary_position) id = id_office_workers + 1;
+    else id = id_auxiliary_position + 1;
+}
+
 void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                  Executive &executive) {
-    checkCinAnswer([&managers, &office_workers, &auxiliary_position_workers, &marketing, &legal, &executive]
+    int id;
+    setID(id, managers, office_workers, auxiliary_position_workers);
+    checkCinAnswer([&managers, &office_workers, &auxiliary_position_workers, &marketing, &legal, &executive, &id]
                            (bool &exit, std::string &choose) {
         {
             gap();
             std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
-                         "\n1). Керівник"
-                         "\n2). Офісний працівник"
-                         "\n3). Додаткова посада\n";
+                         "\n  ID робітника буде - " << id <<
+                      "\n1). Керівник"
+                      "\n2). Офісний працівник"
+                      "\n3). Додаткова посада\n";
 
             cin_line(choose);
             if (choose.size() > 1) throw 0;
             switch (choose[0]) {
                 case '1':
-                    addManager(managers, marketing, legal, executive);
+                    addManager(managers, marketing, legal, executive, id);
                     exit = true;
                     break;
                 case '2':
-                    addOfficeWorker(office_workers, marketing, legal, executive);
+                    addOfficeWorker(office_workers, marketing, legal, executive, id);
                     exit = true;
                     break;
                 case '3':
-                    addAuxiliaryPosition(auxiliary_position_workers, marketing, legal, executive);
+                    addAuxiliaryPosition(auxiliary_position_workers, marketing, legal, executive, id);
                     exit = true;
                     break;
                 case '0':
@@ -157,7 +178,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
 }
 
 void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
-                Executive &executive) {
+                Executive &executive, int &id) {
     gap();
     int department_int;
 
@@ -189,21 +210,21 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
         case 1: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, &marketing);
+                                last_appointment, id, premium, &marketing);
             managers.push_back(std::move(new_manager));
             break;
         }
         case 2: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, &legal);
+                                last_appointment, id, premium, &legal);
             managers.push_back(std::move(new_manager));
             break;
         }
         case 3: {
             Manager new_manager(fullname, age, passport_number, education, entry_date, specialty, department, position,
                                 salary,
-                                last_appointment, premium, &executive);
+                                last_appointment, id, premium, &executive);
             managers.push_back(std::move(new_manager));
             break;
         }
@@ -211,7 +232,7 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
 }
 
 void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
-                     Executive &executive) {
+                     Executive &executive, int &id) {
     gap();
     int department_int;
 
@@ -230,20 +251,12 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
                    position, salary, last_appointment, department_int);
 
     int experience;
-    int id;
     int project_numbers;
 
     checkCinAnswer([&experience](bool &error, std::string &reader) {
         std::cout << "\nВведіть досвід роботи (в роках) - ";
         cin_line(reader);
         experience = std::stoi(reader);
-        error = true;
-    });
-
-    checkCinAnswer([&id](bool &error, std::string reader) {
-        std::cout << "\nВведіть id - ";
-        cin_line(reader);
-        id = std::stoi(reader);
         error = true;
     });
 
@@ -255,7 +268,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
     });
 
     OfficeWorker new_officeWorker(fullname, age, passport_number, education, entry_date, specialty,
-                                  department, position, salary, last_appointment, experience, id,
+                                  department, position, salary, last_appointment, id, experience,
                                   project_numbers);
     office_workers.push_back(std::move(new_officeWorker));
 
@@ -274,7 +287,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
 
 void
 addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
-                     Executive &executive) {
+                     Executive &executive, int &id) {
     gap();
     int department_int;
 
@@ -309,7 +322,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
     });
 
     AuxiliaryPosition new_auxiliaryPosition(fullname, age, passport_number, education, entry_date,
-                                            specialty, department, position, salary, last_appointment,
+                                            specialty, department, position, salary, last_appointment, id,
                                             experience, phone_number);
     auxiliary_position_workers.push_back(std::move(new_auxiliaryPosition));
 

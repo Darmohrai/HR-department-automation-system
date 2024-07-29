@@ -117,8 +117,9 @@ int main() {
                     seeDepartmentSalaryInfo(marketing, legal, executive);
                     break;
                 case 12:
-                    fireEmployeeOrTrainee(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
-                                 executive);
+                    fireEmployeeOrTrainee(managers, office_workers, auxiliary_position_workers, trainees, marketing,
+                                          legal,
+                                          executive);
                     break;
                 default:
                     throw 0;
@@ -231,11 +232,14 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                   });
 
     counter = 0;
+    int new_id;
+    setID(new_id, managers, office_workers, auxiliary_position_workers);
     std::for_each(trainees.begin(), trainees.end(),
-                  [&trainees, &office_workers, &marketing, &legal, &executive, &counter, &changes](Trainee &trainee) {
+                  [&trainees, &office_workers, &marketing, &legal, &executive, &counter, &changes, &new_id](
+                          Trainee &trainee) {
                       if (trainee.checkStatus()) {
                           changes = true;
-                          employ(trainee, office_workers, marketing, legal, executive);
+                          employ(trainee, office_workers, marketing, legal, executive, new_id);
                           trainees.erase(trainees.begin() + counter);
                       }
                       counter++;
