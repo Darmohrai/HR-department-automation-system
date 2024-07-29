@@ -146,7 +146,8 @@ void checkCinAnswer(Function &&func) {
 
     while (!exit) {
         try {
-            func(exit, choose);
+            exit = true;
+            func(choose);
         }
         catch (...) {
             gap();

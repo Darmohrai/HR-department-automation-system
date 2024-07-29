@@ -31,11 +31,10 @@ void addTrainee(std::vector<Trainee> &trainees) {
     std::string performance;
     std::string mentor;
 
-    checkCinAnswer([&probation](bool &error, std::string &reader) {
+    checkCinAnswer([&probation](std::string &reader) {
         std::cout << "\nВведіть кількість днів стажування - ";
         cin_line(reader);
         probation = std::stoi(reader);
-        error = true;
     });
 
     performanceTrainee(performance);
@@ -66,7 +65,7 @@ void changeTraineeInfo(std::vector<Trainee> &trainees) {
 }
 
 void performanceTrainee(std::string &performance) {
-    checkCinAnswer([&](bool &exit, std::string &choose) {
+    checkCinAnswer([&](std::string &choose) {
         int performance_int;
         std::cout << "\nВведіть продуктивність\n"
                      "1). Добре\n"
@@ -74,7 +73,6 @@ void performanceTrainee(std::string &performance) {
                      "3). Погано\n";
         cin_line(choose);
         performance_int = std::stoi(choose);
-        exit = true;
         switch (performance_int) {
             case 1:
                 performance = "well";
@@ -99,14 +97,13 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
     std::string last_appointment;
     int department_int;
 
-    checkCinAnswer([&department_int, &department](bool &error, std::string &reader) {
+    checkCinAnswer([&department_int, &department](std::string &reader) {
         std::cout << "\nОберіть підрозділ \n"
                      "1). Маркетинговий\n"
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
         cin_line(reader);
         department_int = std::stoi(reader);
-        error = true;
         if (department_int == 1) department = "Marketing";
         else if (department_int == 2) department = "Legal";
         else if (department_int == 3) department = "Executive";
@@ -116,11 +113,10 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
     std::cout << "\nВведіть посаду - ";
     cin_line(position);
 
-    checkCinAnswer([&salary](bool &error, std::string &reader) {
+    checkCinAnswer([&salary](std::string &reader) {
         std::cout << "\nВведіть зарплату - ";
         cin_line(reader);
         salary = std::stoi(reader);
-        error = true;
     });
 
     std::cout << "\nВведіть дату останнього призначення - ";
@@ -130,18 +126,16 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
     int experience;
     int project_numbers;
 
-    checkCinAnswer([&experience](bool &error, std::string &reader) {
+    checkCinAnswer([&experience](std::string &reader) {
         std::cout << "\nВведіть досвід роботи (в роках) - ";
         cin_line(reader);
         experience = std::stoi(reader);
-        error = true;
     });
 
-    checkCinAnswer([&project_numbers](bool &error, std::string &reader) {
+    checkCinAnswer([&project_numbers](std::string &reader) {
         std::cout << "\nВведіть кількість проєктів у яких бере участь - ";
         cin_line(reader);
         project_numbers = std::stoi(reader);
-        error = true;
     });
 
     std::string fullname = trainee.getFullname();
@@ -169,20 +163,16 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
 }
 
 void seeTraineeInfo(std::vector<Trainee> &trainees) {
-    bool exit = false;
-    std::string choose;
-
     if (trainees.empty()) {
         std::cout << "\nСтажерів поки немає\n";
         return;
     }
-    checkCinAnswer([&](bool &error, std::string &reader) {
+    checkCinAnswer([&](std::string &reader) {
         std::cout << "\nОберіть тип інформації\n"
                      "1). Повна\n"
                      "2). Коротка\n";
-        exit = true;
-        cin_line(choose);
-        int choose_int = std::stoi(choose);
+        cin_line(reader);
+        int choose_int = std::stoi(reader);
         std::cout << "\n\n";
         switch (choose_int) {
             case 1:

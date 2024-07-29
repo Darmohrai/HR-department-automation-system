@@ -38,14 +38,13 @@ void fireTrainee(std::vector<Trainee> &trainees);
 void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_change) {
     switch (choose_change) {
         case 1: {
-            checkCinAnswer([&str_change](bool &exit, std::string &reader) {
+            checkCinAnswer([&str_change](std::string &reader) {
                 std::cout << "\nОберіть підрозділ \n"
                              "1). Маркетинговий\n"
                              "2). Юридичний\n"
                              "3). Вмконавчий\n";
                 cin_line(reader);
                 int department_int = std::stoi(reader);
-                exit = true;
                 if (department_int == 1) str_change = "Marketing";
                 else if (department_int == 2) str_change = "Legal";
                 else if (department_int == 3) str_change = "Executive";
@@ -58,9 +57,8 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
             cin_line(str_change);
             break;
         case 3:
-            checkCinAnswer([&int_change](bool &exit, std::string &reader) {
+            checkCinAnswer([&int_change](std::string &reader) {
                 std::cout << "\n\nВведіть нову зарплату - ";
-                exit = true;
                 std::string choose;
                 cin_line(choose);
                 int_change = std::stoi(choose);
@@ -85,8 +83,7 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
                  "4). Премія\n";
 
     int choose_change;
-    checkCinAnswer([&choose_change](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&choose_change](std::string &choose) {
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -117,9 +114,8 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
             break;
         case 4:
             int premium;
-            checkCinAnswer([&premium](bool &exit, std::string choose) {
+            checkCinAnswer([&premium](std::string choose) {
                 std::cout << "\n\nВведіть премію - ";
-                exit = true;
                 cin_line(choose);
                 premium = std::stoi(choose);
             });
@@ -131,7 +127,7 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
 void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                         std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                         Executive &executive) {
-    checkCinAnswer([&](bool &exit, std::string &choose) {
+    checkCinAnswer([&](std::string &choose) {
         gap();
         std::cout << "Оберіть дані якого робітника Ви хочете змінити (щоб повернутися до головного меню введіть '0')"
                      "\n1). Керівник"
@@ -142,18 +138,14 @@ void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker
         switch (choose[0]) {
             case '1':
                 changeManagerInfo(managers, marketing, legal, executive);
-                exit = true;
                 break;
             case '2':
                 changeOfficeWorkerInfo(office_workers, marketing, legal, executive);
-                exit = true;
                 break;
             case '3':
                 changeAuxiliaryPositionInfo(auxiliary_position_workers, marketing, legal, executive);
-                exit = true;
                 break;
             case '0':
-                exit = true;
                 break;
         }
     });
@@ -179,8 +171,7 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
 
     int choose_change;
 
-    checkCinAnswer([&choose_change](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&choose_change](std::string &choose) {
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -199,9 +190,8 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
             break;
         case 4:
             int project_numbers;
-            checkCinAnswer([&project_numbers](bool &exit, std::string &choose) {
+            checkCinAnswer([&project_numbers](std::string &choose) {
                 std::cout << "\n\nВведіть кількість проєктів - ";
-                exit = true;
                 cin_line(choose);
                 project_numbers = std::stoi(choose);
             });
@@ -239,8 +229,7 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
 
     int choose_change;
 
-    checkCinAnswer([&choose_change](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&choose_change](std::string &choose) {
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -260,9 +249,8 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
             break;
         case 4:
             int phone_number;
-            checkCinAnswer([&phone_number](bool &exit, std::string &choose) {
+            checkCinAnswer([&phone_number](std::string &choose) {
                 std::cout << "\n\nВведіть номер телефону - ";
-                exit = true;
                 cin_line(choose);
                 phone_number = std::stoi(choose);
             });
@@ -293,8 +281,7 @@ void findWorker(std::vector<T> &obj, int &choose_worker) {
                       count++;
                   });
 
-    checkCinAnswer([&choose_worker, &obj](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&choose_worker, &obj](std::string &choose) {
         cin_line(choose);
         choose_worker = std::stoi(choose);
         if (choose_worker < 1 or choose_worker > obj.size()) throw 0;
@@ -345,8 +332,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
 void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                            std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees,
                            Marketing &marketing, Legal &legal, Executive &executive) {
-    checkCinAnswer([&](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&](std::string &choose) {
         gap();
         std::cout << "Оберіть тип (введіть '0', щоб повернутися назад)"
                      "\n 1). Керівник"
@@ -378,8 +364,7 @@ void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWor
 
 template<typename T>
 void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive) {
-    checkCinAnswer([&](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&](std::string &choose) {
         if (vec.empty()) {
             std::cout << "\nДаного типу робітників немає\n";
             return;
@@ -408,8 +393,7 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
 }
 
 void fireTrainee(std::vector<Trainee> &trainees) {
-    checkCinAnswer([&](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&](std::string &choose) {
         if (trainees.empty()) {
             std::cout << "\nДаного типу робітників немає\n";
             return;

@@ -6,7 +6,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
 template<typename T>
-void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit);
+void chooseWorkerSort(std::vector<T> &vec, std::string &choose);
 
 void seeManagerInfo(std::vector<Manager> &managers);
 
@@ -22,7 +22,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
     int choose_int;
 
-    checkCinAnswer([&](bool &exit, std::string &choose) {
+    checkCinAnswer([&](std::string &choose) {
         gap();
         std::cout
                 << "Оберіть тип робітників, інформацію про яких Ви хочете побачити (щоб повернутися до головного меню введіть '0')"
@@ -36,18 +36,14 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         switch (choose_int) {
             case 1:
                 seeManagerInfo(managers);
-                exit = true;
                 break;
             case 2:
                 seeWorkerInfo(office_workers);
-                exit = true;
                 break;
             case 3:
                 seeWorkerInfo(auxiliary_position_workers);
-                exit = true;
                 break;
             case 0:
-                exit = true;
                 break;
         }
     });
@@ -57,7 +53,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
 }
 
 template<typename T>
-void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit) {
+void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
     int choose_int;
     T arr_obj[vec.size()];
     std::copy(vec.begin(), vec.end(), arr_obj);
@@ -81,7 +77,6 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit) {
                 std::cout << "\n";
                 arr_obj[i].getAllInfo();
             }
-            exit = true;
             break;
         case 2:
             for (int i = 0; i < vec.size() - 1; ++i) {
@@ -97,7 +92,6 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit) {
                 std::cout << "\n";
                 arr_obj[i].getAllInfo();
             }
-            exit = true;
             break;
         case 3:
             for (int i = 0; i < vec.size() - 1; ++i) {
@@ -113,10 +107,8 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose, bool &exit) {
                 std::cout << "\n";
                 arr_obj[i].getAllInfo();
             }
-            exit = true;
             break;
         case 0:
-            exit = true;
             break;
     }
 }
@@ -132,13 +124,13 @@ void seeManagerInfo(std::vector<Manager> &managers) {
         return;
     }
 
-    checkCinAnswer([&managers](bool &exit, std::string &choose) {
+    checkCinAnswer([&managers](std::string &choose) {
         gap();
         std::cout << "Оберіть за чим сортувати керівників (щоб повернутися до головного меню введіть '0')"
                      "\n1). Прізвище"
                      "\n2). Оклад"
                      "\n3). Відділами\n";
-        chooseWorkerSort<Manager>(managers, choose, exit);
+        chooseWorkerSort<Manager>(managers, choose);
     });
 }
 
@@ -153,13 +145,13 @@ void seeWorkerInfo(std::vector<T> &vec) {
         return;
     }
 
-    checkCinAnswer([&vec](bool &exit, std::string &choose) {
+    checkCinAnswer([&vec](std::string &choose) {
         gap();
         std::cout << "Оберіть за чим сортувати керівників (щоб повернутися до головного меню введіть '0')"
                      "\n1). Прізвище"
                      "\n2). Оклад"
                      "\n3). Стаж\n";
-        chooseWorkerSort<T>(vec, choose, exit);
+        chooseWorkerSort<T>(vec, choose);
     });
 }
 
@@ -167,9 +159,8 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
                     std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
     bool worker_exist = false;
     int id;
-    checkCinAnswer([&id](bool &exit, std::string &choose) {
+    checkCinAnswer([&id](std::string &choose) {
         gap();
-        exit = true;
         std::cout << "\nВведіть ID робітника якого хочете знайти - ";
         cin_line(choose);
         id = std::stoi(choose);

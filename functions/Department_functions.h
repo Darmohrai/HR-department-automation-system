@@ -27,7 +27,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
 
 // definition
 void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive) {
-    checkCinAnswer([&marketing, &legal, &executive](bool &exit, std::string &choose) {
+    checkCinAnswer([&marketing, &legal, &executive](std::string &choose) {
         gap();
         std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
@@ -41,60 +41,20 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
         switch (choose_int) {
             case 1:
                 changeMarketing(marketing);
-                exit = true;
                 break;
             case 2:
                 changeLegal(legal);
-                exit = true;
                 break;
             case 3:
                 changeExecutive(executive);
             case 0:
-                exit = true;
                 break;
         }
     });
-    /*
-
-    bool exit = false;
-    std::string choose;
-
-    while (!exit) {
-        std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
-                     "1). Маркетинговий\n"
-                     "2). Юридичний\n"
-                     "3). Виконавчий\n";
-
-        cin_line(choose);
-        try {
-            if (choose.size() > 1) throw 0;
-
-            int choose_int = std::stoi(choose);
-            switch (choose_int) {
-                case 1:
-                    changeMarketing(marketing);
-                    exit = true;
-                    break;
-                case 2:
-                    changeLegal(legal);
-                    exit = true;
-                    break;
-                case 3:
-                    changeExecutive(executive);
-                case 0:
-                    exit = true;
-                    break;
-            }
-        }
-        catch (...) {
-            gap();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n\n";
-        }
-    }*/
 }
 
 void changeMarketing(Marketing &marketing) {
-    checkCinAnswer([&marketing](bool &exit, std::string &choose) {
+    checkCinAnswer([&marketing](std::string &choose) {
         gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
@@ -110,7 +70,6 @@ void changeMarketing(Marketing &marketing) {
             case 1:
             case 2: {
                 caseIncomeOrPremium(marketing, choose_int);
-                exit = true;
                 break;
             }
             case 3: {
@@ -119,7 +78,6 @@ void changeMarketing(Marketing &marketing) {
                 cin_line(ad_success_rate);
                 int ad_success_rate_int = std::stoi(ad_success_rate);
                 marketing.setAdSuccessRate(ad_success_rate_int);
-                exit = true;
                 break;
             }
             case 4: {
@@ -130,7 +88,6 @@ void changeMarketing(Marketing &marketing) {
                 cin_line(ad_success_rate);
                 ad_success_rate_int = std::stoi(ad_success_rate);
                 marketing.setAllInfo(income, premium, ad_success_rate_int);
-                exit = true;
                 break;
             }
         }
@@ -138,7 +95,7 @@ void changeMarketing(Marketing &marketing) {
 }
 
 void changeLegal(Legal &legal) {
-    checkCinAnswer([&legal](bool &exit, std::string &choose) {
+    checkCinAnswer([&legal](std::string &choose) {
         gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
@@ -154,7 +111,6 @@ void changeLegal(Legal &legal) {
             case 1:
             case 2: {
                 caseIncomeOrPremium(legal, choose_int);
-                exit = true;
                 break;
             }
 
@@ -164,7 +120,6 @@ void changeLegal(Legal &legal) {
                 cin_line(court_cases);
                 int court_cases_int = std::stoi(court_cases);
                 legal.setCourtCases(court_cases_int);
-                exit = true;
                 break;
             }
             case 4: {
@@ -173,7 +128,6 @@ void changeLegal(Legal &legal) {
                 cin_line(win_cases);
                 int win_cases_int = std::stoi(win_cases);
                 legal.setWinCases(win_cases_int);
-                exit = true;
                 break;
             }
             case 5: {
@@ -188,7 +142,6 @@ void changeLegal(Legal &legal) {
                 cin_line(win_cases);
                 win_cases_int = std::stoi(win_cases);
                 legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
-                exit = true;
                 break;
             }
         }
@@ -196,7 +149,7 @@ void changeLegal(Legal &legal) {
 }
 
 void changeExecutive(Executive &executive) {
-    checkCinAnswer([&executive](bool &exit, std::string choose) {
+    checkCinAnswer([&executive](std::string choose) {
         gap();
         std::cout << "Оберіть що хочете змінити\n"
                      "1). Дохід\n"
@@ -212,7 +165,6 @@ void changeExecutive(Executive &executive) {
             case 1:
             case 2: {
                 caseIncomeOrPremium(executive, choose_int);
-                exit = true;
                 break;
             }
             case 3: {
@@ -221,7 +173,6 @@ void changeExecutive(Executive &executive) {
                 cin_line(project_quantity);
                 int project_quantity_int = std::stoi(project_quantity);
                 executive.setProjectQuantity(project_quantity_int);
-                exit = true;
                 break;
             }
             case 4: {
@@ -230,7 +181,6 @@ void changeExecutive(Executive &executive) {
                 cin_line(average_time);
                 int average_time_int = std::stoi(average_time);
                 executive.setAverageTime(average_time_int);
-                exit = true;
                 break;
             }
             case 5: {
@@ -245,7 +195,6 @@ void changeExecutive(Executive &executive) {
                 cin_line(average_time);
                 average_time_int = std::stoi(average_time);
                 executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
-                exit = true;
                 break;
             }
         }
@@ -270,8 +219,7 @@ void caseIncomeOrPremium(T &obj, int choose) {
 }
 
 void addDepartmentInfo(int &income, int &premium) {
-    checkCinAnswer([&income, &premium](bool &exit, std::string &choose) {
-        exit = true;
+    checkCinAnswer([&income, &premium](std::string &choose) {
         std::cout << "\nВведіть дохід підрозділу - ";
         cin_line(choose);
         income = std::stoi(choose);
@@ -282,7 +230,7 @@ void addDepartmentInfo(int &income, int &premium) {
 }
 
 void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers) {
-    checkCinAnswer([&marketing, &legal, &executive, &managers](bool &exit, std::string &choose) {
+    checkCinAnswer([&marketing, &legal, &executive, &managers](std::string &choose) {
         {
             gap();
             std::cout << "\nОберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
@@ -297,18 +245,14 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
             switch (choose_int) {
                 case 1:
                     chooseInfoForWatching(marketing, managers);
-                    exit = true;
                     break;
                 case 2:
                     chooseInfoForWatching(legal, managers);
-                    exit = true;
                     break;
                 case 3:
                     chooseInfoForWatching(executive, managers);
-                    exit = true;
                     break;
                 case 0:
-                    exit = true;
                     break;
             }
         }
@@ -320,7 +264,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
 
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
-    checkCinAnswer([&obj, &managers](bool &exit, std::string &choose) {
+    checkCinAnswer([&obj, &managers](std::string &choose) {
         gap();
         std::cout << "Оберіть яку інформацію хочете побачити\n"
                      "1). Керівний склад\n"
@@ -340,25 +284,21 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                     }
                 });
                 if (!exist) std::cout << "\n\nКерівників поки що немає\n\n";
-                exit = true;
                 break;
             case 2:
                 obj.getWorkersInfo();
-                exit = true;
                 break;
             case 3:
                 obj.getDepartmentInfo();
-                exit = true;
                 break;
             case 0:
-                exit = true;
                 break;
         }
     });
 }
 
 void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive) {
-    checkCinAnswer([&marketing, &legal, &executive](bool &exit, std::string &choose) {
+    checkCinAnswer([&marketing, &legal, &executive](std::string &choose) {
         gap();
         std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
@@ -371,18 +311,14 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
         switch (choose_int) {
             case 1:
                 marketing.getSalaryInformation();
-                exit = true;
                 break;
             case 2:
                 legal.getSalaryInformation();
-                exit = true;
                 break;
             case 3:
                 executive.getSalaryInformation();
-                exit = true;
                 break;
             case 0:
-                exit = true;
                 break;
         }
     });
