@@ -90,6 +90,7 @@ bool Trainee::checkStatus() {
 }
 
 
+
 void Trainee::saveInfo(std::ofstream &fout) {
     Person::saveInfo(fout);
     fout << probation << "\n" << performance << "\n" << mentor << "\n\n";

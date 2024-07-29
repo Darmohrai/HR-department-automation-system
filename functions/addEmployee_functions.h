@@ -79,7 +79,7 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
                    }
     );
 
-    checkCinAnswer([&passport_number](bool &error, std::string reader) {
+    checkCinAnswer([&passport_number](bool &error, std::string &reader) {
                        std::cout << "\nВведіть паспортні дані (номер) - ";
                        cin_line(reader);;
                        passport_number = std::stoi(reader);
@@ -90,8 +90,21 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     std::cout << "\nВведіть ВНЗ, який закінчував - ";
     cin_line(education);
 
-    std::cout << "\nВведіть дату прийняття на роботу - ";
-    cin_line(entry_date);
+
+    checkCinAnswer([&entry_date](bool &error, std::string &reader) {
+        std::cout << "\nВведіть дату прийняття на роботу (приклад: 24/08/1991) - ";
+        cin_line(reader);
+        entry_date = reader;
+        std::stringstream ss_reader(reader);
+        int data;
+        for (int i = 0; i < 3; i++) {
+            if (ss_reader.eof()) throw 0;
+            std::getline(ss_reader, reader, '/');
+            data = std::stoi(reader);
+        }
+        error = true;
+    });
+
 
     std::cout << "\nВведіть спеціальність - ";
     cin_line(specialty);
@@ -128,8 +141,19 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                    }
     );
 
-    std::cout << "\nВведіть дату останнього призначення - ";
-    cin_line(last_appointment);
+    checkCinAnswer([&last_appointment](bool &error, std::string &reader) {
+        std::cout << "\nВведіть дату останнього призначення (приклад: 24/08/1991) - ";
+        cin_line(reader);
+        last_appointment = reader;
+        std::stringstream ss_reader(reader);
+        int data;
+        for (int i = 0; i < 3; i++) {
+            if (ss_reader.eof()) throw 0;
+            std::getline(ss_reader, reader, '/');
+            data = std::stoi(reader);
+        }
+        error = true;
+    });
 }
 
 void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &legal,
