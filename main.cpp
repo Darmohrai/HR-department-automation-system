@@ -32,7 +32,6 @@ void createDirectory();
 
 int main() {
     system("chcp 65001");
-
     createDirectory();
 
     Marketing marketing;
@@ -49,7 +48,6 @@ int main() {
     std::for_each(managers.begin(), managers.end(), [&marketing, &legal, &executive](Manager &manager) {
         manager.setSupervisoryDepartment(marketing, legal, executive);
     });
-
 
     threadsReadDepartmentInfo(marketing, legal, executive, office_workers, auxiliary_position_workers);
 
@@ -73,6 +71,7 @@ int main() {
                          "10). Перевірити статус робітників\n"
                          "11). Переглянути зарплатні відомості\n"
                          "12). Звільнити робітника/стажера\n"
+                         "13). Знайти робітника за ID\n"
                          "0). Вийти з програми\n";
             cin_line(answer);
             int answer_int = std::stoi(answer);
@@ -121,6 +120,9 @@ int main() {
                                           legal,
                                           executive);
                     break;
+                case 13:
+                    searchEmployee(managers, office_workers, auxiliary_position_workers);
+                    break;
                 default:
                     throw 0;
             }
@@ -131,9 +133,7 @@ int main() {
         }
     }
 
-
     threadsSaveInfo(managers, office_workers, auxiliary_position_workers, trainees);
-
     threadsSaveDepartmentInfo(marketing, legal, executive);
 
     return 0;

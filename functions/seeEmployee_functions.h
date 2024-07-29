@@ -13,6 +13,9 @@ void seeManagerInfo(std::vector<Manager> &managers);
 template<typename T>
 void seeWorkerInfo(std::vector<T> &vec);
 
+void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                    std::vector<AuxiliaryPosition> &auxiliary_position_workers);
+
 
 //definition
 void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
@@ -158,6 +161,55 @@ void seeWorkerInfo(std::vector<T> &vec) {
                      "\n3). Стаж\n";
         chooseWorkerSort<T>(vec, choose, exit);
     });
+}
+
+void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+                    std::vector<AuxiliaryPosition> &auxiliary_position_workers) {
+    bool worker_exist = false;
+    int id;
+    checkCinAnswer([&id](bool &exit, std::string &choose) {
+        gap();
+        exit = true;
+        std::cout << "\nВведіть ID робітника якого хочете знайти - ";
+        cin_line(choose);
+        id = std::stoi(choose);
+    });
+
+    std::thread searchManager([&managers, &id, &worker_exist]() {
+        std::for_each(managers.begin(), managers.end(), [&id, &worker_exist](Manager &manager) {
+            if (manager.getID() == id) {
+                manager.getAllInfo();
+                worker_exist = true;
+            }
+        });
+    });
+
+    std::thread searchOfficeWorker([&office_workers, &id, &worker_exist]() {
+        std::for_each(office_workers.begin(), office_workers.end(), [&id, &worker_exist](OfficeWorker &officeWorker) {
+            if (officeWorker.getID() == id) {
+                officeWorker.getAllInfo();
+                worker_exist = true;
+            }
+        });
+    });
+
+    std::thread searchAuxiliaryPosition([&auxiliary_position_workers, &id, &worker_exist]() {
+        std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
+                      [&id, &worker_exist](AuxiliaryPosition &auxiliaryPosition) {
+                          if (auxiliaryPosition.getID() == id) {
+                              auxiliaryPosition.getAllInfo();
+                              worker_exist = true;
+                          }
+                      });
+    });
+
+    searchManager.join();
+    searchOfficeWorker.join();
+    searchAuxiliaryPosition.join();
+
+    if (!worker_exist) std::cout << "\nРобітника із даним ID немає\n";
+    std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+    system("pause");
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SEEEMPLOYEE_FUNCTIONS_H
