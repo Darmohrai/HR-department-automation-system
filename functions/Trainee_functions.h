@@ -50,7 +50,9 @@ void addTrainee(std::vector<Trainee> &trainees) {
 
 void changeTraineeInfo(std::vector<Trainee> &trainees) {
     if (trainees.empty()) {
+        make_cout_red();
         std::cout << "\nПрактикантів поки немає\n";
+        make_cout_normal();
         return;
     }
     int choose_trainee;
@@ -164,7 +166,9 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
 
 void seeTraineeInfo(std::vector<Trainee> &trainees) {
     if (trainees.empty()) {
+        make_cout_yellow();
         std::cout << "\nСтажерів поки немає\n";
+        make_cout_normal();
         return;
     }
     checkCinAnswer([&](std::string &reader) {
@@ -174,6 +178,7 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
         cin_line(reader);
         int choose_int = std::stoi(reader);
         std::cout << "\n\n";
+        make_cout_yellow();
         switch (choose_int) {
             case 1:
                 std::for_each(trainees.begin(), trainees.end(), [](Trainee &trainee) {
@@ -190,6 +195,7 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
             default:
                 throw 0;
         }
+        make_cout_normal();
     });
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";

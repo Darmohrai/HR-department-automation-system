@@ -2,6 +2,10 @@
 #include <filesystem> // C++ 17 !!!
 
 #define cin_line(string) (std::getline(std::cin, string))
+#define make_cout_normal() (std::cout << "\033[0m")
+#define make_cout_red() (std::cout << "\033[31m")
+#define make_cout_yellow() (std::cout << "\033[33m")
+
 
 template<typename Function>
 void checkCinAnswer(Function &&func);
@@ -129,7 +133,9 @@ int main() {
         }
         catch (...) {
             gap();
+            make_cout_red();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            make_cout_normal();
         }
     }
 
@@ -151,7 +157,9 @@ void checkCinAnswer(Function &&func) {
         }
         catch (...) {
             gap();
+            make_cout_red();
             std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            make_cout_normal();
             exit = false;
         }
     }
@@ -159,6 +167,7 @@ void checkCinAnswer(Function &&func) {
 
 void userInstruction() {
     gap();
+    make_cout_yellow();
     std::cout << "Дана програма є системою автоматизації відділу кадрів.\n"
                  "\nВона надає можливість додавати та керувати робітниками фірми. Робітники поділяються на три "
                  "\nкатегорії – керівники, офісні працівники, працівники на додаткових посадах. Усі робітники мусять "
@@ -171,16 +180,17 @@ void userInstruction() {
                  "\nта департаменти. При перегляді інформації її можна сортувати за наданими вам шаблонами. Також "
                  "\nзастосунок автоматично перевіряє робітників щодо можливості звільнення, а стажерів прийняття на "
                  "\nроботу (Стажер може стати лише офісним працівником).\n"
-                 "\nЩоб обрати дію запропоновану в консольному меню введіть відповідну цифру й натисніть Enter\n"
-                 "\nЩоб повернутися до головного меню введіть '0'\n";
-
-
+                 "\nЩоб обрати дію запропоновану в консольному меню введіть відповідну цифру й натисніть Enter\n";
+    make_cout_normal();
+    std::cout << "\nЩоб повернутися до головного меню введіть '0'\n";
     std::string answer;
     cin_line(answer);
 
     while (answer != "0") {
         gap();
+        make_cout_red();
         std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+        make_cout_normal();
         cin_line(answer);
     }
 }
@@ -198,6 +208,7 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
         counter++;
     });
 
+    make_cout_yellow();
     counter = 0;
     std::for_each(office_workers.begin(), office_workers.end(),
                   [&office_workers, &marketing, &legal, &executive, &counter, &changes](
@@ -245,8 +256,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                       }
                       counter++;
                   });
-
+    make_cout_red();
     if (!changes) std::cout << "\n\nНемає суб'єктів для звільнення/приймання \n\n";
+    make_cout_normal();
 }
 
 void createDirectory() {

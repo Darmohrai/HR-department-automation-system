@@ -75,13 +75,11 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
 
     int choose_manager;
     findWorker<Manager>(managers, choose_manager);
-
     std::cout << "\n\nОберіть які дані хочете змінити\n"
                  "1). Підрозділ\n"
                  "2). Посада\n"
                  "3). Зарплата\n"
                  "4). Премія\n";
-
     int choose_change;
     checkCinAnswer([&choose_change](std::string &choose) {
         cin_line(choose);
@@ -155,20 +153,20 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
                             Executive &executive) {
 
     if (office_workers.empty()) {
+        make_cout_red();
         std::cout << "\nСуб'єктів поки ще немає\n";
+        make_cout_normal();
         return;
     }
 
     int choose_office_worker;
     findWorker<OfficeWorker>(office_workers, choose_office_worker);
 
-
     std::cout << "\n\nОберіть які дані хочете змінити\n"
                  "1). Підрозділ\n"
                  "2). Посада\n"
                  "3). Зарплата\n"
                  "4). Кількість проєктів\n";
-
     int choose_change;
 
     checkCinAnswer([&choose_change](std::string &choose) {
@@ -214,7 +212,9 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                                  Executive &executive) {
 
     if (auxiliary_position_workers.empty()) {
+        make_cout_red();
         std::cout << "\nСуб'єктів поки ще немає\n";
+        make_cout_normal();
         return;
     }
 
@@ -226,7 +226,6 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                  "2). Посада\n"
                  "3). Зарплата\n"
                  "4). Номер телефону\n";
-
     int choose_change;
 
     checkCinAnswer([&choose_change](std::string &choose) {
@@ -366,7 +365,9 @@ template<typename T>
 void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Executive &executive) {
     checkCinAnswer([&](std::string &choose) {
         if (vec.empty()) {
+            make_cout_red();
             std::cout << "\nДаного типу робітників немає\n";
+            make_cout_normal();
             return;
         }
         int count = 1;
@@ -395,7 +396,9 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
 void fireTrainee(std::vector<Trainee> &trainees) {
     checkCinAnswer([&](std::string &choose) {
         if (trainees.empty()) {
+            make_cout_red();
             std::cout << "\nДаного типу робітників немає\n";
+            make_cout_normal();
             return;
         }
         int count = 1;

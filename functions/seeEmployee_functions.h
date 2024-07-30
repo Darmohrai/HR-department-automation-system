@@ -75,6 +75,7 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
             }
             for (int i = 0; i < vec.size(); ++i) {
                 std::cout << "\n";
+                make_cout_yellow();
                 arr_obj[i].getAllInfo();
             }
             break;
@@ -90,6 +91,7 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
             }
             for (int i = 0; i < vec.size(); ++i) {
                 std::cout << "\n";
+                make_cout_yellow();
                 arr_obj[i].getAllInfo();
             }
             break;
@@ -105,22 +107,28 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
             }
             for (int i = 0; i < vec.size(); ++i) {
                 std::cout << "\n";
+                make_cout_yellow();
                 arr_obj[i].getAllInfo();
             }
             break;
         case 0:
             break;
     }
+    make_cout_normal();
 }
 
 
 void seeManagerInfo(std::vector<Manager> &managers) {
     if (managers.size() == 1) {
+        make_cout_yellow();
         managers[0].getAllInfo();
+        make_cout_normal();
         return;
     }
     if (managers.size() == 0) {
+        make_cout_yellow();
         std::cout << "\n\nРобітників поки немає\n\n";
+        make_cout_normal();
         return;
     }
 
@@ -136,12 +144,17 @@ void seeManagerInfo(std::vector<Manager> &managers) {
 
 template<typename T>
 void seeWorkerInfo(std::vector<T> &vec) {
+
     if (vec.size() == 1) {
+        make_cout_yellow();
         vec[0].getAllInfo();
+        make_cout_normal();
         return;
     }
     if (vec.size() == 0) {
+        make_cout_yellow();
         std::cout << "\n\nРобітників поки немає\n\n";
+        make_cout_normal();
         return;
     }
 
@@ -166,6 +179,7 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
         id = std::stoi(choose);
     });
 
+    make_cout_yellow();
     std::thread searchManager([&managers, &id, &worker_exist]() {
         std::for_each(managers.begin(), managers.end(), [&id, &worker_exist](Manager &manager) {
             if (manager.getID() == id) {
@@ -199,6 +213,7 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
     searchAuxiliaryPosition.join();
 
     if (!worker_exist) std::cout << "\nРобітника із даним ID немає\n";
+    make_cout_normal();
     std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
     system("pause");
 }

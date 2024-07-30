@@ -179,7 +179,7 @@ void saveDepartment(T_s &obj, std::string &filename) {
         fout.close();
     }
     catch (...) {
-        std::cout << "\nСталася помилка збереження інформації\n";
+        std::cerr << "\nСталася помилка збереження інформації\n";
     }
 }
 
@@ -217,7 +217,7 @@ void readDepartmentInfo(T_r &obj, std::string &filename) {
         obj.readInfo(fin);
     }
     catch (...) {
-        std::cout << "\nСталася помилка зчитування інформації\n";
+        std::cerr << "\nСталася помилка зчитування інформації\n";
     }
 }
 

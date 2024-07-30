@@ -33,7 +33,6 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
                      "1). Маркетинговий\n"
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
-
         cin_line(choose);
         if (choose.size() > 1) throw 0;
 
@@ -237,7 +236,6 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                          "1). Маркетинговий\n"
                          "2). Юридичний\n"
                          "3). Виконавчий\n";
-
             cin_line(choose);
             if (choose.size() > 1) throw 0;
 
@@ -274,6 +272,7 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
         if (choose.size() > 1) throw 0;
         bool exist = false;
         int choose_int = std::stoi(choose);
+        make_cout_yellow();
         switch (choose_int) {
             case 1:
                 std::cout << "\n\nКерівний склад: \n";
@@ -294,6 +293,7 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
             case 0:
                 break;
         }
+        make_cout_normal();
     });
 }
 
@@ -307,7 +307,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
         cin_line(choose);
         if (choose.size() > 1) throw 0;
         int choose_int = std::stoi(choose);
-
+        make_cout_yellow();
         switch (choose_int) {
             case 1:
                 marketing.getSalaryInformation();
@@ -321,6 +321,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
             case 0:
                 break;
         }
+        make_cout_normal();
     });
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
