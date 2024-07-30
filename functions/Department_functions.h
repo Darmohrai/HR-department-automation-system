@@ -34,7 +34,6 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
 
         int choose_int = std::stoi(choose);
         switch (choose_int) {
@@ -48,6 +47,8 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
                 changeExecutive(executive);
             case 0:
                 break;
+            default:
+                throw 0;
         }
     });
 }
@@ -61,8 +62,6 @@ void changeMarketing(Marketing &marketing) {
                      "3). Відсоток успішності реклами\n"
                      "4). Змінити всю інформацію\n";
         cin_line(choose);
-
-        if (choose.size() > 1) throw 0;
         int choose_int = std::stoi(choose);
 
         switch (choose_int) {
@@ -89,6 +88,8 @@ void changeMarketing(Marketing &marketing) {
                 marketing.setAllInfo(income, premium, ad_success_rate_int);
                 break;
             }
+            default:
+                throw 0;
         }
     });
 }
@@ -103,7 +104,6 @@ void changeLegal(Legal &legal) {
                      "4). Кількість виграних судів\n"
                      "5). Змінити всю інформацію\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
         int choose_int = std::stoi(choose);
 
         switch (choose_int) {
@@ -143,6 +143,8 @@ void changeLegal(Legal &legal) {
                 legal.setAllInfo(income, premium, court_cases_int, win_cases_int);
                 break;
             }
+            default:
+                throw 0;
         }
     });
 }
@@ -157,7 +159,6 @@ void changeExecutive(Executive &executive) {
                      "4). Середній час виконання проєкту (в тижнях)\n"
                      "5). Змінити всю інформацію\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
         int choose_int = std::stoi(choose);
 
         switch (choose_int) {
@@ -196,6 +197,8 @@ void changeExecutive(Executive &executive) {
                 executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
                 break;
             }
+            default:
+                throw 0;
         }
     });
 }
@@ -237,8 +240,6 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                          "2). Юридичний\n"
                          "3). Виконавчий\n";
             cin_line(choose);
-            if (choose.size() > 1) throw 0;
-
             int choose_int = std::stoi(choose);
             switch (choose_int) {
                 case 1:
@@ -252,6 +253,8 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                     break;
                 case 0:
                     break;
+                default:
+                    throw 0;
             }
         }
     });
@@ -269,7 +272,6 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                      "2). Працівників\n"
                      "3). Загальну інформацію\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
         bool exist = false;
         int choose_int = std::stoi(choose);
         make_cout_yellow();
@@ -292,6 +294,8 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                 break;
             case 0:
                 break;
+            default:
+                throw 0;
         }
         make_cout_normal();
     });
@@ -305,7 +309,6 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
                      "2). Юридичний\n"
                      "3). Виконавчий\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
         int choose_int = std::stoi(choose);
         make_cout_yellow();
         switch (choose_int) {
@@ -320,6 +323,8 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
                 break;
             case 0:
                 break;
+            default:
+                throw 0;
         }
         make_cout_normal();
     });

@@ -64,6 +64,8 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
                 int_change = std::stoi(choose);
             });
             break;
+        default:
+            break;
     }
 }
 
@@ -75,13 +77,13 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
 
     int choose_manager;
     findWorker<Manager>(managers, choose_manager);
-    std::cout << "\n\nОберіть які дані хочете змінити\n"
-                 "1). Підрозділ\n"
-                 "2). Посада\n"
-                 "3). Зарплата\n"
-                 "4). Премія\n";
     int choose_change;
     checkCinAnswer([&choose_change](std::string &choose) {
+        std::cout << "\n\nОберіть які дані хочете змінити\n"
+                     "1). Підрозділ\n"
+                     "2). Посада\n"
+                     "3). Зарплата\n"
+                     "4). Премія\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -119,6 +121,8 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
             });
             managers[choose_manager - 1].setPremium(premium);
             break;
+        default:
+            break;
     }
 }
 
@@ -132,18 +136,21 @@ void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker
                      "\n2). Офісний працівник"
                      "\n3). Додаткова посада\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
-        switch (choose[0]) {
-            case '1':
+        int choose_int = std::stoi(choose);
+        switch (choose_int) {
+            case 1:
                 changeManagerInfo(managers, marketing, legal, executive);
                 break;
-            case '2':
+            case 2:
                 changeOfficeWorkerInfo(office_workers, marketing, legal, executive);
                 break;
-            case '3':
+            case 3:
                 changeAuxiliaryPositionInfo(auxiliary_position_workers, marketing, legal, executive);
                 break;
-            case '0':
+            case 0:
+                break;
+            default:
+                throw 0;
                 break;
         }
     });
@@ -162,14 +169,13 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
     int choose_office_worker;
     findWorker<OfficeWorker>(office_workers, choose_office_worker);
 
-    std::cout << "\n\nОберіть які дані хочете змінити\n"
-                 "1). Підрозділ\n"
-                 "2). Посада\n"
-                 "3). Зарплата\n"
-                 "4). Кількість проєктів\n";
     int choose_change;
-
     checkCinAnswer([&choose_change](std::string &choose) {
+        std::cout << "\n\nОберіть які дані хочете змінити\n"
+                     "1). Підрозділ\n"
+                     "2). Посада\n"
+                     "3). Зарплата\n"
+                     "4). Кількість проєктів\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -194,6 +200,8 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
                 project_numbers = std::stoi(choose);
             });
             office_workers[choose_office_worker - 1].setProjectNumbers(project_numbers);
+            break;
+        default:
             break;
     }
 
@@ -221,14 +229,13 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
     int choose_auxiliary_position;
     findWorker<AuxiliaryPosition>(auxiliary_position_workers, choose_auxiliary_position);
 
-    std::cout << "\n\nОберіть які дані хочете змінити\n"
-                 "1). Підрозділ\n"
-                 "2). Посада\n"
-                 "3). Зарплата\n"
-                 "4). Номер телефону\n";
     int choose_change;
-
     checkCinAnswer([&choose_change](std::string &choose) {
+        std::cout << "\n\nОберіть які дані хочете змінити\n"
+                     "1). Підрозділ\n"
+                     "2). Посада\n"
+                     "3). Зарплата\n"
+                     "4). Номер телефону\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
         if (choose_change < 1 or choose_change > 4) throw 0;
@@ -254,6 +261,8 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                 phone_number = std::stoi(choose);
             });
             auxiliary_position_workers[choose_auxiliary_position - 1].setPhoneNumber(phone_number);
+            break;
+        default:
             break;
     }
 
@@ -324,6 +333,8 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
         case 3:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             vec[choose_worker - 1].setSalary(change_int);
+            break;
+        default:
             break;
     }
 }

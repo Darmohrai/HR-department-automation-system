@@ -15,7 +15,7 @@ public:
                       std::string &position, int salary, std::string &last_appointment, int id, int experience,
                       int phone_number);
 
-    AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition);
+    AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition) noexcept;
 
     AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition);
 
@@ -27,9 +27,9 @@ public:
 
     void getBriefInfo() final;
 
-    [[nodiscard]] int getSalary() { return Employee::getSalary(); }
+    [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
-    [[nodiscard]] int getExperience() { return experience; }
+    [[nodiscard]] int getExperience() const { return experience; }
 
 
     // methods set

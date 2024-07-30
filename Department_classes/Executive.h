@@ -12,7 +12,7 @@ public:
 
     Executive(int income, int premium, int project_quantity, int average_time);
 
-    Executive(Executive &&executive);
+    Executive(Executive &&executive) noexcept;
 
     Executive(Executive &executive) = default;
 
@@ -30,9 +30,9 @@ public:
     // methods get
     void getDepartmentInfo() final;
 
-    int getProjectQuantity() { return project_quantity; }
+    [[nodiscard]] int getProjectQuantity() const { return project_quantity; }
 
-    int getAverageTime() { return average_time; }
+    [[nodiscard]] int getAverageTime() const { return average_time; }
 
     void getSalaryInformation() final;
 

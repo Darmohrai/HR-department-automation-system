@@ -2,14 +2,14 @@
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_TRAINEE_FUNCTIONS_H
 
 // declaration
-void addTrainee();
+void addTrainee(std::vector<Trainee> &trainees);
 
 void changeTraineeInfo(std::vector<Trainee> &trainees);
 
 void performanceTrainee(std::string &performance);
 
 void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketing &marketing, Legal &legal,
-            Executive &executive);
+            Executive &executive, int &id);
 
 void seeTraineeInfo(std::vector<Trainee> &trainees);
 
@@ -160,6 +160,8 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
             break;
         case 3:
             executive.setWorker(office_workers.back());
+            break;
+        default:
             break;
     }
 }

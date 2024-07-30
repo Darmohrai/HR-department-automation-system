@@ -10,7 +10,7 @@ AuxiliaryPosition::AuxiliaryPosition(std::string &fullname, int age, int passpor
     this->phone_number = phone_number;
 }
 
-AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition) : Employee(std::move(auxiliaryPosition)),
+AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition) noexcept : Employee(std::move(auxiliaryPosition)),
                                                                               experience{auxiliaryPosition.experience},
                                                                               phone_number{
                                                                                       auxiliaryPosition.phone_number} {

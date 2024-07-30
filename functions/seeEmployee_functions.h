@@ -30,7 +30,6 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                    "\n2). Офісні працівники"
                    "\n3). Додаткова посада\n";
         cin_line(choose);
-        if (choose.size() > 1) throw 0;
         choose_int = std::stoi(choose);
 
         switch (choose_int) {
@@ -45,6 +44,8 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                 break;
             case 0:
                 break;
+            default:
+                throw 0;
         }
     });
 
@@ -59,7 +60,6 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
     std::copy(vec.begin(), vec.end(), arr_obj);
 
     cin_line(choose);
-    if (choose.size() > 1) throw 0;
     choose_int = std::stoi(choose);
 
     switch (choose_int) {
@@ -113,6 +113,8 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
             break;
         case 0:
             break;
+        default:
+            throw 0;
     }
     make_cout_normal();
 }
@@ -125,7 +127,7 @@ void seeManagerInfo(std::vector<Manager> &managers) {
         make_cout_normal();
         return;
     }
-    if (managers.size() == 0) {
+    if (managers.empty()) {
         make_cout_yellow();
         std::cout << "\n\nРобітників поки немає\n\n";
         make_cout_normal();
@@ -151,7 +153,7 @@ void seeWorkerInfo(std::vector<T> &vec) {
         make_cout_normal();
         return;
     }
-    if (vec.size() == 0) {
+    if (vec.empty()) {
         make_cout_yellow();
         std::cout << "\n\nРобітників поки немає\n\n";
         make_cout_normal();
@@ -214,7 +216,7 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
 
     if (!worker_exist) std::cout << "\nРобітника із даним ID немає\n";
     make_cout_normal();
-    std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+    std::cout << "\n\nНатисніть будь-яку клавішу, щоб продовжити\n";
     system("pause");
 }
 

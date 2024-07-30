@@ -35,22 +35,22 @@ void Trainee::getBriefInfo() {
 }
 
 bool Trainee::checkStatus() {
-        bool exit = false;
-        while (!exit) {
-            std::cout << "\n--------------------------------------------------------------\n";
-            if (performance == "well") {
-                std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
-                          << "\nВведіть '1', щоб побачити повну інформацію про претендента"
-                             "\nВведіть '2', щоб побачити коротку інформацію про претендента"
-                             "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
-                             "\nВведіть '0', щоб вийти\n";
+    bool exit = false;
+    while (!exit) {
+        std::cout << "\n--------------------------------------------------------------\n";
+        if (performance == "well") {
+            std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
+                      << "\nВведіть '1', щоб побачити повну інформацію про претендента"
+                         "\nВведіть '2', щоб побачити коротку інформацію про претендента"
+                         "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
+                         "\nВведіть '0', щоб вийти\n";
             exit = true;
             try {
                 std::string choose;
                 cin_line(choose);
                 int answer;
                 answer = std::stoi(choose);
-                while (answer != 0 or answer !=3) {
+                while (answer != 0 or answer != 3) {
                     answer = std::stoi(choose);
                     switch (answer) {
                         case 1:
@@ -86,9 +86,7 @@ bool Trainee::checkStatus() {
         }
     }
     return false;
-
 }
-
 
 
 void Trainee::saveInfo(std::ofstream &fout) {

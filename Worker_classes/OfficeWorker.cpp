@@ -11,9 +11,9 @@ OfficeWorker::OfficeWorker(std::string &fullname, int age, int passport_number,
     this->project_numbers = project_numbers;
 }
 
-OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) : Employee(std::move(officeWorker)),
-                                                          experience{officeWorker.experience},
-                                                          project_numbers{officeWorker.project_numbers} {
+OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) noexcept: Employee(std::move(officeWorker)),
+                                                                  experience{officeWorker.experience},
+                                                                  project_numbers{officeWorker.project_numbers} {
     officeWorker.experience = 0;
     officeWorker.project_numbers = 0;
 }

@@ -30,9 +30,9 @@ public:
     // get methods
     void getDepartmentInfo() final;
 
-    int getCourtCases() { return court_cases; }
+    [[nodiscard]] int getCourtCases() const { return court_cases; }
 
-    int getWinCases() { return win_cases; }
+    [[nodiscard]] int getWinCases() const { return win_cases; }
 
     void getSalaryInformation() final;
 

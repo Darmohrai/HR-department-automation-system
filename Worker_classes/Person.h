@@ -40,8 +40,6 @@ public:
 
     [[nodiscard]] std::string getEducation() const { return education; }
 
-    [[nodiscard]] std::string getEntryDate() const { return entry_date; }
-
     [[nodiscard]] std::string getSpecialty() const { return specialty; }
 
 
@@ -56,6 +54,7 @@ public:
     void readInfo(std::ifstream &fin) override;
 
 
+    // operators
     Person &operator=(const Person &employee) = default;
 };
 

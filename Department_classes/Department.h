@@ -31,7 +31,7 @@ public:
 
     void setWorker(Employee &worker);
 
-    void setName(std::string name_set) { this->name = name_set; }
+    void setName(std::string name_set) { this->name = name_set; } // don't use reference
 
     void changeWorker(Employee &worker);
 
@@ -49,9 +49,9 @@ public:
 
     virtual void getDepartmentInfo();
 
-    int getIncome() { return income; }
+    [[nodiscard]] int getIncome() const { return income; }
 
-    int getPremium() { return premium; }
+    [[nodiscard]] int getPremium() const { return premium; }
 
     virtual void getSalaryInformation();
 

@@ -56,31 +56,29 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
     setID(id, managers, office_workers, auxiliary_position_workers);
     checkCinAnswer([&managers, &office_workers, &auxiliary_position_workers, &marketing, &legal, &executive, &id]
                            (std::string &choose) {
-        {
-            gap();
-            std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
-                         "\n  ID робітника буде - " << id <<
-                      "\n1). Керівник"
-                      "\n2). Офісний працівник"
-                      "\n3). Додаткова посада\n";
-            int choose_int;
-            cin_line(choose);
-            choose_int = std::stoi(choose);
-            switch (choose_int) {
-                case 1:
-                    addManager(managers, marketing, legal, executive, id);
-                    break;
-                case 2:
-                    addOfficeWorker(office_workers, marketing, legal, executive, id);
-                    break;
-                case 3:
-                    addAuxiliaryPosition(auxiliary_position_workers, marketing, legal, executive, id);
-                    break;
-                case 0:
-                    break;
-                default:
-                    throw 0;
-            }
+        gap();
+        std::cout << "Оберіть якого робітника Ви хочете додати (щоб повернутися до головного меню введіть '0')"
+                     "\n  ID робітника буде - " << id <<
+                  "\n1). Керівник"
+                  "\n2). Офісний працівник"
+                  "\n3). Додаткова посада\n";
+        int choose_int;
+        cin_line(choose);
+        choose_int = std::stoi(choose);
+        switch (choose_int) {
+            case 1:
+                addManager(managers, marketing, legal, executive, id);
+                break;
+            case 2:
+                addOfficeWorker(office_workers, marketing, legal, executive, id);
+                break;
+            case 3:
+                addAuxiliaryPosition(auxiliary_position_workers, marketing, legal, executive, id);
+                break;
+            case 0:
+                break;
+            default:
+                throw 0;
         }
     });
 }
@@ -99,7 +97,7 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
 
     checkCinAnswer([&passport_number](std::string &reader) {
                        std::cout << "\nВведіть паспортні дані (номер) - ";
-                       cin_line(reader);;
+                       cin_line(reader);
                        passport_number = std::stoi(reader);
                    }
     );
@@ -219,6 +217,8 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
             managers.push_back(std::move(new_manager));
             break;
         }
+        default:
+            break;
     }
 }
 
@@ -271,6 +271,8 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
         case 3:
             executive.setWorker(office_workers.back());
             break;
+        default:
+            break;
     }
 }
 
@@ -322,6 +324,8 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
             break;
         case 3:
             executive.setWorker(auxiliary_position_workers.back());
+            break;
+        default:
             break;
     }
 }

@@ -11,7 +11,7 @@ public:
 
     Marketing(int income, int premium, int ad_success_rate);
 
-    Marketing(Marketing &&marketing);
+    Marketing(Marketing &&marketing) noexcept;
 
     Marketing(Marketing &marketing) = default;
 
@@ -27,7 +27,7 @@ public:
     // methods get
     void getDepartmentInfo() final;
 
-    int getADSuccessRate() { return ad_success_rate; }
+    [[nodiscard]] int getADSuccessRate() const { return ad_success_rate; }
 
     void getSalaryInformation() final;
 

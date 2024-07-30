@@ -16,7 +16,7 @@ public:
                  std::string &position, int salary, std::string &last_appointment, int id, int experience,
                  int project_numbers);
 
-    OfficeWorker(OfficeWorker &&officeWorker);
+    OfficeWorker(OfficeWorker &&officeWorker) noexcept;
 
     OfficeWorker(OfficeWorker &officeWorker);
 
@@ -29,8 +29,6 @@ public:
     void getBriefInfo() final;
 
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
-
-    [[nodiscard]] int getExperience() { return experience; }
 
 
     // methods set

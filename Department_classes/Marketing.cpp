@@ -3,8 +3,8 @@
 Marketing::Marketing(int income, int premium, int ad_success_rate) :
         Department(income, premium), ad_success_rate{ad_success_rate} {}
 
-Marketing::Marketing(Marketing &&marketing) : Department(std::move(marketing)),
-                                              ad_success_rate{marketing.ad_success_rate} {
+Marketing::Marketing(Marketing &&marketing) noexcept: Department(std::move(marketing)),
+                                                      ad_success_rate{marketing.ad_success_rate} {
     marketing.ad_success_rate = 0;
 }
 
@@ -19,7 +19,7 @@ void Marketing::getDepartmentInfo() {
     std::cout << "\nУспішність реклами (%) - " << ad_success_rate;
 }
 
-void Marketing::getSalaryInformation(){
+void Marketing::getSalaryInformation() {
     std::cout << "\nУспішність реклами - " << ad_success_rate << "%";
     Department::getSalaryInformation();
 }

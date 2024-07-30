@@ -33,9 +33,7 @@ public:
 
     [[nodiscard]] std::string getDepartment() { return department; }
 
-    [[nodiscard]] std::string getLastAppointment() { return last_appointment; }
-
-    [[nodiscard]] int getID() { return id; }
+    [[nodiscard]] int getID() const { return id; }
 
 
     // methods set

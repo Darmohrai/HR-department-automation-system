@@ -42,7 +42,7 @@ public:
 
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
-    [[nodiscard]] int getPremium() { return premium; }
+    [[nodiscard]] int getPremium() const { return premium; }
 
 
     // methods set
