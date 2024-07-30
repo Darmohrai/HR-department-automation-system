@@ -29,8 +29,6 @@ public:
 
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
-    [[nodiscard]] int getExperience() const { return experience; }
-
 
     // methods set
     void setPhoneNumber(int phone_number_set) { this->phone_number = phone_number_set; }

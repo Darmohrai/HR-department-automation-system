@@ -30,10 +30,6 @@ public:
     // methods get
     void getDepartmentInfo() final;
 
-    [[nodiscard]] int getProjectQuantity() const { return project_quantity; }
-
-    [[nodiscard]] int getAverageTime() const { return average_time; }
-
     void getSalaryInformation() final;
 
 

@@ -27,8 +27,6 @@ public:
     // methods get
     void getDepartmentInfo() final;
 
-    [[nodiscard]] int getADSuccessRate() const { return ad_success_rate; }
-
     void getSalaryInformation() final;
 
 

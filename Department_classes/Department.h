@@ -45,13 +45,9 @@ public:
     // methods get
     void getWorkersInfo();
 
-    void getWorkers();
+    void getWorkers(); // don't this method
 
     virtual void getDepartmentInfo();
-
-    [[nodiscard]] int getIncome() const { return income; }
-
-    [[nodiscard]] int getPremium() const { return premium; }
 
     virtual void getSalaryInformation();
 
