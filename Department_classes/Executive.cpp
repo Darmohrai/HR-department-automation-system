@@ -23,9 +23,9 @@ void Executive::getDepartmentInfo() {
               << "\nСередній час виконання (в тижнях) - " << average_time;
 }
 
-void Executive::getSalaryInformation() {
+void Executive::getSalaryInformation(int managers_salary) {
+    Department::getSalaryInformation(managers_salary);
     std::cout << "\nЧас на виконання всіх проєктів - " << average_time * project_quantity << " тижнів";
-    Department::getSalaryInformation();
 }
 
 

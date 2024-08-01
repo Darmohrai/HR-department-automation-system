@@ -66,7 +66,7 @@ void Department::getDepartmentInfo() {
               << "\nПреміальні кошти виділені на підприємство - " << premium;
 }
 
-void Department::getSalaryInformation() {
+void Department::getSalaryInformation(int managers_salary) {
     std::cout << "\n---Зарплатана відомість підрозділу---\n";
 
     int total_salary;
@@ -79,8 +79,9 @@ void Department::getSalaryInformation() {
                   });
 
     std::cout << "\nЗагальний прибуток - " << income
-              << "\nЧистий прибуток - " << income - total_salary - premium
-              << "\nЗагальні витрати на зарплати - " << total_salary
+              << "\nЧистий прибуток - " << income - total_salary - premium - managers_salary
+              << "\nЗагальні витрати на зарплати робітників - " << total_salary
+              << "\nЗагальні витрати на керівників - " << managers_salary
               << "\nПреміальні кошти - " << premium
               << "\nНайвища зарплатня " << richest_employee.getSalary() << " у робітника "
               << richest_employee.getFullname() << "\n\n";

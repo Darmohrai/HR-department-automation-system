@@ -22,7 +22,9 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal,
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers);
 
-void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive);
+void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers);
+
+[[nodiscard]] int managersSalary(std::vector<Manager> &managers, std::string department);
 
 
 // definition
@@ -301,8 +303,8 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
     });
 }
 
-void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive) {
-    checkCinAnswer([&marketing, &legal, &executive](std::string &choose) {
+void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &executive, std::vector<Manager> &managers) {
+    checkCinAnswer([&](std::string &choose) {
         gap();
         std::cout << "Оберіть підрозділ (натисніть '0', щоб повернутися назад)\n"
                      "1). Маркетинговий\n"
@@ -311,15 +313,16 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
         cin_line(choose);
         int choose_int = std::stoi(choose);
         make_cout_yellow();
+
         switch (choose_int) {
             case 1:
-                marketing.getSalaryInformation();
+                marketing.getSalaryInformation(managersSalary(managers, "Marketing"));
                 break;
             case 2:
-                legal.getSalaryInformation();
+                legal.getSalaryInformation(managersSalary(managers, "Legal"));
                 break;
             case 3:
-                executive.getSalaryInformation();
+                executive.getSalaryInformation(managersSalary(managers, "Executive"));
                 break;
             case 0:
                 break;
@@ -331,6 +334,16 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
     system("pause");
+}
+
+[[nodiscard]] int managersSalary(std::vector<Manager> &managers, std::string department) {
+    int total_salary;
+    std::for_each(managers.begin(), managers.end(), [&department, &total_salary](Manager &manager) {
+        if (manager.getDepartment() == department) {
+            total_salary = manager.getSalary() + manager.getPremium();
+        }
+    });
+    return total_salary;
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_DEPARTMENT_FUNCTIONS_H

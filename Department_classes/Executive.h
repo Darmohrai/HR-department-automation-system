@@ -30,7 +30,7 @@ public:
     // methods get
     void getDepartmentInfo() final;
 
-    void getSalaryInformation() final;
+    void getSalaryInformation(int managers_salary) final;
 
 
     // methods save

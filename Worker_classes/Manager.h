@@ -32,9 +32,9 @@ public:
 
     void getBriefInfo() final;
 
-    //void
-
     [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
+
+    [[nodiscard]] int getPremium() { return this->premium; }
 
 
     // methods set

@@ -30,7 +30,7 @@ Employee::Employee(Employee &employee) : Person(employee), department{employee.d
 
 void Employee::getAllInfo() {
     Person::getAllInfo();
-    std::cout << "\nПідрозділ -" << department
+    std::cout << "\nПідрозділ - " << department
               << "\nПосада - " << position
               << "\nОклад - " << salary
               << "\nОстаннє призначення - " << last_appointment

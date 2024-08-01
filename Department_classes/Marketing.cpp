@@ -19,9 +19,9 @@ void Marketing::getDepartmentInfo() {
     std::cout << "\nУспішність реклами (%) - " << ad_success_rate;
 }
 
-void Marketing::getSalaryInformation() {
+void Marketing::getSalaryInformation(int managers_salary) {
+    Department::getSalaryInformation(managers_salary);
     std::cout << "\nУспішність реклами - " << ad_success_rate << "%";
-    Department::getSalaryInformation();
 }
 
 

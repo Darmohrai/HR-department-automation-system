@@ -45,11 +45,11 @@ public:
     // methods get
     void getWorkersInfo();
 
-    void getWorkers(); // don't this method
+    void getWorkers(); // don't delete this method
 
     virtual void getDepartmentInfo();
 
-    virtual void getSalaryInformation();
+    virtual void getSalaryInformation(int managers_salary);
 
     std::string getName() { return name; }
 
