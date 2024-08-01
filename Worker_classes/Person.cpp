@@ -57,10 +57,10 @@ bool Person::prepareOrder(){
             cin_line(answer);
             answer_int = std::stoi(answer);
             if (answer_int == 1) {
-                std::cout << getFullname() << "\n\nНаказ підписано\n\n";
+                std::cout << getFullname() << "\033[32m\n\nНаказ підписано\n\n\033[0m"; // create cout green
                 return true;
             } else if (answer_int == 0) {
-                std::cout << "\n\nНаказ скасовано\n\n";
+                std::cout << "\033[31m\n\nНаказ скасовано\n\n\033[0m"; // create cout red
                 return false;
             } else throw false;
         }

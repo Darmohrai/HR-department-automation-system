@@ -63,20 +63,20 @@ bool Employee::checkStatus() {
                 std::string choose;
                 cin_line(choose);
                 int answer;
-                answer = std::stoi(choose);
+                answer = 1;
                 while (answer == 1 or answer == 2) {
                     answer = std::stoi(choose);
                     switch (answer) {
                         case 1:
                             getAllInfo();
-                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
                             system("pause");
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
                                          "\nВведіть '0', щоб вийти\n";
                             break;
                         case 2:
                             getBriefInfo();
-                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити\n";
+                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
                             system("pause");
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
                                          "\nВведіть '0', щоб вийти\n";
