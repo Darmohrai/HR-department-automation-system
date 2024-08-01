@@ -71,7 +71,9 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
 
 void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Legal &legal, Executive &executive) {
     if (managers.empty()) {
+        make_cout_red();
         std::cout << "\nСуб'єктів поки ще немає\n";
+        make_cout_normal();
         return;
     }
 
@@ -280,16 +282,14 @@ template<typename T>
 void findWorker(std::vector<T> &obj, int &choose_worker) {
     gap();
 
-    std::cout << "Оберіть суб'єкт\n";
-
-    int count = 1;
-    std::for_each(obj.begin(), obj.end(),
-                  [&count](T &obj) {
-                      std::cout << count << "). " << obj.getFullname() << "\n";
-                      count++;
-                  });
-
     checkCinAnswer([&choose_worker, &obj](std::string &choose) {
+        std::cout << "Оберіть суб'єкт\n";
+        int count = 1;
+        std::for_each(obj.begin(), obj.end(),
+                      [&count](T &obj) {
+                          std::cout << count << "). " << obj.getFullname() << "\n";
+                          count++;
+                      });
         cin_line(choose);
         choose_worker = std::stoi(choose);
         if (choose_worker < 1 or choose_worker > obj.size()) throw 0;

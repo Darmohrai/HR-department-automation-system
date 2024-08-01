@@ -47,8 +47,11 @@ void Employee::getBriefInfo() {
 
 
 bool Employee::checkStatus() {
-    if (getAge() >= 65) {
-        std::cout << "\n" << getFullname() << " рекомендовано звільнити"
+    if (getAge() >= 60) {
+        std::string retire_age;
+        if(getAge() > 65) retire_age = " пенсійного віку, ";
+        else retire_age = " передпенсійного віку, ";
+        std::cout << "\n" << getFullname() << retire_age << " рекомендовано звільнити"
                   << "\nВведіть '1', щоб побачити повну інформацію про робітника"
                      "\nВведіть '2', щоб побачити коротку інформацію про робітника"
                      "\nВведіть '3', щоб підготувати наказ про звільнення"

@@ -20,7 +20,7 @@ void Executive::setAllInfo(int income, int premium, int project_quantity, int av
 void Executive::getDepartmentInfo() {
     Department::getDepartmentInfo();
     std::cout << "\nКількість проєктів - " << project_quantity
-              << "\nСередній час виконання (в днях)" << average_time;
+              << "\nСередній час виконання (в тижнях) - " << average_time;
 }
 
 void Executive::getSalaryInformation() {

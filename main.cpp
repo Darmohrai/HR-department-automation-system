@@ -201,9 +201,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
     bool changes = false;
     int counter = 0;
     std::for_each(managers.begin(), managers.end(), [&managers, &counter, &changes](Manager &manager) {
+        if (manager.getAge() >= 60) changes = true;
         if (manager.checkStatus()) {
             managers.erase(managers.begin() + counter);
-            changes = true;
         }
         counter++;
     });
@@ -213,6 +213,7 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
     std::for_each(office_workers.begin(), office_workers.end(),
                   [&office_workers, &marketing, &legal, &executive, &counter, &changes](
                           OfficeWorker &officeWorker) {
+                      if (officeWorker.getAge() >= 60) changes = true;
                       if (officeWorker.checkStatus()) {
                           office_workers.erase(office_workers.begin() + counter);
                           if (officeWorker.getDepartment() == "Marketing")
@@ -230,6 +231,7 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
     std::for_each(auxiliary_position_workers.begin(), auxiliary_position_workers.end(),
                   [&auxiliary_position_workers, &marketing, &legal, &executive, &counter, &changes](
                           AuxiliaryPosition &auxiliaryPosition) {
+                      if (auxiliaryPosition.getAge() >= 60) changes = true;
                       if (auxiliaryPosition.checkStatus()) {
                           auxiliary_position_workers.erase(auxiliary_position_workers.begin() + counter);
                           if (auxiliaryPosition.getDepartment() == "Marketing")
@@ -249,6 +251,7 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
     std::for_each(trainees.begin(), trainees.end(),
                   [&trainees, &office_workers, &marketing, &legal, &executive, &counter, &changes, &new_id](
                           Trainee &trainee) {
+                      if (trainee.getPerformance()) changes = true;
                       if (trainee.checkStatus()) {
                           changes = true;
                           employ(trainee, office_workers, marketing, legal, executive, new_id);

@@ -26,6 +26,8 @@ public:
 
     void getBriefInfo() override;
 
+    bool getPerformance() { if (performance == "well") return true; else return false; }
+
     [[nodiscard]] int getSalary() override { return 0; }
 
 

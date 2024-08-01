@@ -169,7 +169,7 @@ void changeExecutive(Executive &executive) {
             }
             case 3: {
                 std::string project_quantity;
-                std::cout << "\n\nВведіть кількість судових випадків - ";
+                std::cout << "\n\nВведіть кількість проєктів - ";
                 cin_line(project_quantity);
                 int project_quantity_int = std::stoi(project_quantity);
                 executive.setProjectQuantity(project_quantity_int);
@@ -177,7 +177,7 @@ void changeExecutive(Executive &executive) {
             }
             case 4: {
                 std::string average_time;
-                std::cout << "\n\nВведіть кількість виграних судів - ";
+                std::cout << "\n\nВведіть середній час виконання проєкту (в тижнях) - ";
                 cin_line(average_time);
                 int average_time_int = std::stoi(average_time);
                 executive.setAverageTime(average_time_int);
@@ -187,11 +187,11 @@ void changeExecutive(Executive &executive) {
                 int income, premium, project_quantity_int, average_time_int;
                 addDepartmentInfo(income, premium);
                 std::string project_quantity;
-                std::cout << "\n\nВведіть кількість судових випадків - ";
+                std::cout << "\n\nВведіть кількість проєктів - ";
                 cin_line(project_quantity);
                 project_quantity_int = std::stoi(project_quantity);
                 std::string average_time;
-                std::cout << "\n\nВведіть кількість виграних судів - ";
+                std::cout << "\n\nВведіть середній час виконання проєкту (в тижнях) - ";
                 cin_line(average_time);
                 average_time_int = std::stoi(average_time);
                 executive.setAllInfo(income, premium, project_quantity_int, average_time_int);
