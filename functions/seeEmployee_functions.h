@@ -49,7 +49,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
         }
     });
 
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
     system("pause");
 }
 
@@ -216,7 +216,7 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
 
     if (!worker_exist) std::cout << "\nРобітника із даним ID немає\n";
     make_cout_normal();
-    std::cout << "\n\nНатисніть будь-яку клавішу, щоб продовжити\n";
+    std::cout << "\n\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
     system("pause");
 }
 

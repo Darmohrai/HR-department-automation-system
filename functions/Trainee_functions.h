@@ -200,7 +200,7 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
         make_cout_normal();
     });
 
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
     system("pause");
 }
 

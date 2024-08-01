@@ -61,6 +61,7 @@ int main() {
 
     while (!exit) {
         try {
+            std::cout << std::endl;
             gap();
             std::cout << "Оберіть що Ви хочете зробити та введіть відповідну цифру\n"
                          "1). Переглянути інструкцію користувача\n"
@@ -76,7 +77,7 @@ int main() {
                          "11). Переглянути зарплатні відомості\n"
                          "12). Звільнити робітника/стажера\n"
                          "13). Знайти робітника за ID\n"
-                         "0). Вийти з програми\n";
+                         "0). Вийти з програми" << std::endl;
             cin_line(answer);
             int answer_int = std::stoi(answer);
             switch (answer_int) {
@@ -184,7 +185,7 @@ void userInstruction() {
                  "\n\nПримітка: при перегляді зарплатних відомомтей керівники не входять в поняття 'робітників', "
                  "\nта є окремими об'єктами";
     make_cout_normal();
-    std::cout << "\nЩоб повернутися до головного меню введіть '0'\n";
+    std::cout << "\nЩоб повернутися до головного меню введіть '0'" << std::endl;
     std::string answer;
     cin_line(answer);
 
@@ -246,8 +247,9 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                       counter++;
                   });
 
+    std::cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -";
     counter = 0;
-    int new_id;
+    int new_id = 1;
     setID(new_id, managers, office_workers, auxiliary_position_workers);
     std::for_each(trainees.begin(), trainees.end(),
                   [&trainees, &office_workers, &marketing, &legal, &executive, &counter, &changes, &new_id](
@@ -257,6 +259,7 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
                           changes = true;
                           employ(trainee, office_workers, marketing, legal, executive, new_id);
                           trainees.erase(trainees.begin() + counter);
+                          new_id++;
                       }
                       counter++;
                   });

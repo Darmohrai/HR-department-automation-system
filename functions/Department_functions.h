@@ -261,7 +261,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
         }
     });
 
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
     system("pause");
 }
 
@@ -332,7 +332,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
         make_cout_normal();
     });
 
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n ";
+    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
     system("pause");
 }
 

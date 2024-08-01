@@ -37,14 +37,13 @@ void Trainee::getBriefInfo() {
 bool Trainee::checkStatus() {
     bool exit = false;
     while (!exit) {
-        std::cout << "\n--------------------------------------------------------------\n";
+        exit = true;
         if (performance == "well") {
             std::cout << "\n" << getFullname() << " рекомендовано взяти на роботу"
                       << "\nВведіть '1', щоб побачити повну інформацію про претендента"
                          "\nВведіть '2', щоб побачити коротку інформацію про претендента"
                          "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
                          "\nВведіть '0', щоб вийти\n";
-            exit = true;
             try {
                 std::string choose;
                 cin_line(choose);
