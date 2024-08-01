@@ -337,7 +337,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
 }
 
 [[nodiscard]] int managersSalary(std::vector<Manager> &managers, std::string department) {
-    int total_salary;
+    int total_salary = 0;
     std::for_each(managers.begin(), managers.end(), [&department, &total_salary](Manager &manager) {
         if (manager.getDepartment() == department) {
             total_salary = manager.getSalary() + manager.getPremium();

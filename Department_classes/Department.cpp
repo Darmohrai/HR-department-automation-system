@@ -69,13 +69,16 @@ void Department::getDepartmentInfo() {
 void Department::getSalaryInformation(int managers_salary) {
     std::cout << "\n---Зарплатана відомість підрозділу---\n";
 
-    int total_salary;
-    Employee richest_employee;
+    int total_salary = 0;
+    std::string richest_employee = "None";
+    int biggest_salary = 0;
     std::for_each(workers.begin(), workers.end(),
-                  [&total_salary, &richest_employee](std::unique_ptr<Employee> &employee) {
+                  [&total_salary, &richest_employee, &biggest_salary](std::unique_ptr<Employee> &employee) {
                       total_salary += employee->getSalary();
-
-                      if (richest_employee.getSalary() < employee->getSalary()) richest_employee = *employee;
+                      if (biggest_salary < employee->getSalary()) {
+                          biggest_salary = employee->getSalary();
+                          richest_employee = employee->getFullname();
+                      }
                   });
 
     std::cout << "\nЗагальний прибуток - " << income
@@ -83,8 +86,8 @@ void Department::getSalaryInformation(int managers_salary) {
               << "\nЗагальні витрати на зарплати робітників - " << total_salary
               << "\nЗагальні витрати на керівників - " << managers_salary
               << "\nПреміальні кошти - " << premium
-              << "\nНайвища зарплатня " << richest_employee.getSalary() << " у робітника "
-              << richest_employee.getFullname() << "\n\n";
+              << "\nНайвища зарплатня " << biggest_salary << " у робітника "
+              << richest_employee << "\n\n";
 }
 
 
