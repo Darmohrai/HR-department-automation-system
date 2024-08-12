@@ -66,6 +66,11 @@ public:
         return this->salary < employee.salary;
     }
 
+    //for id
+    bool operator<=(const Employee &employee) const {
+        return this->id <= employee.id;
+    }
+
     Employee &operator=(const Employee &employee) = default;
 };
 

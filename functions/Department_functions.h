@@ -289,7 +289,16 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
                 if (!exist) std::cout << "\n\nКерівників поки що немає\n\n";
                 break;
             case 2:
-                obj.getWorkersInfo();
+                checkCinAnswer([&](std::string &choose) {
+                    make_cout_normal();
+                    gap();
+                    std::cout << "Оберіть за чим сортувати керівників"
+                                 "\n1). Прізвище"
+                                 "\n2). Оклад"
+                                 "\n3). ID\n";
+                    std::vector<Employee> workers = obj.getWorkers();
+                    chooseWorkerSort<Employee>(workers, choose);
+                });
                 break;
             case 3:
                 obj.getDepartmentInfo();

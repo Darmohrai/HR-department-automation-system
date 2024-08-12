@@ -45,7 +45,7 @@ public:
     // methods get
     void getWorkersInfo();
 
-    void getWorkers(); // don't delete this method
+    [[nodiscard]] std::vector<Employee> getWorkers();
 
     virtual void getDepartmentInfo();
 

@@ -20,10 +20,10 @@ void checkCinAnswer(Function &&func);
 
 #include "functions/Save&Read_functions.h"
 #include "functions/addEmployee_functions.h" // function gap() here
+#include "functions/seeEmployee_functions.h"
 #include "functions/Department_functions.h"
 #include "functions/changeEmployee_functions.h"
 #include "functions/Trainee_functions.h"
-#include "functions/seeEmployee_functions.h"
 
 
 void userInstruction();
