@@ -50,7 +50,7 @@ void changeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executi
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -91,7 +91,7 @@ void changeMarketing(Marketing &marketing) {
                 break;
             }
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -146,7 +146,7 @@ void changeLegal(Legal &legal) {
                 break;
             }
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -200,7 +200,7 @@ void changeExecutive(Executive &executive) {
                 break;
             }
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -256,7 +256,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
                 case 0:
                     break;
                 default:
-                    throw 0;
+                    throw std::out_of_range("\nНеправильно введене число\n");
             }
         }
     });
@@ -297,7 +297,7 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
         make_cout_normal();
     });
@@ -327,7 +327,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
         make_cout_normal();
     });

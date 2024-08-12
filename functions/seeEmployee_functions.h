@@ -45,7 +45,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 
@@ -114,7 +114,7 @@ void chooseWorkerSort(std::vector<T> &vec, std::string &choose) {
         case 0:
             break;
         default:
-            throw 0;
+            throw std::out_of_range("\nНеправильно введене число\n");
     }
     make_cout_normal();
 }

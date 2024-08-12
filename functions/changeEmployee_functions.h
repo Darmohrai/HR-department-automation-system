@@ -48,7 +48,7 @@ void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_c
                 if (department_int == 1) str_change = "Marketing";
                 else if (department_int == 2) str_change = "Legal";
                 else if (department_int == 3) str_change = "Executive";
-                else throw 0;
+                else throw std::out_of_range("\nНеправильно введене число\n");
             });
             break;
         }
@@ -88,7 +88,7 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
                      "4). Премія\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
-        if (choose_change < 1 or choose_change > 4) throw 0;
+        if (choose_change < 1 or choose_change > 4) throw std::out_of_range("\nНеправильно введене число\n");
     });
 
     std::string change_str;
@@ -152,7 +152,7 @@ void changeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
                 break;
         }
     });
@@ -180,7 +180,7 @@ void changeOfficeWorkerInfo(std::vector<OfficeWorker> &office_workers, Marketing
                      "4). Кількість проєктів\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
-        if (choose_change < 1 or choose_change > 4) throw 0;
+        if (choose_change < 1 or choose_change > 4) throw std::out_of_range("\nНеправильно введене число\n");
     });
 
     std::string change_str;
@@ -240,7 +240,7 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
                      "4). Номер телефону\n";
         cin_line(choose);
         choose_change = std::stoi(choose);
-        if (choose_change < 1 or choose_change > 4) throw 0;
+        if (choose_change < 1 or choose_change > 4) throw std::out_of_range("\nНеправильно введене число\n");
     });
 
 
@@ -292,7 +292,7 @@ void findWorker(std::vector<T> &obj, int &choose_worker) {
                       });
         cin_line(choose);
         choose_worker = std::stoi(choose);
-        if (choose_worker < 1 or choose_worker > obj.size()) throw 0;
+        if (choose_worker < 1 or choose_worker > obj.size()) throw std::out_of_range("\nНеправильно введене число\n");
     });
 }
 
@@ -367,7 +367,7 @@ void fireEmployeeOrTrainee(std::vector<Manager> &managers, std::vector<OfficeWor
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -389,7 +389,7 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
         });
         cin_line(choose);
         int choose_int = std::stoi(choose);
-        if (choose_int < 1 or choose_int > vec.size()) throw 0;
+        if (choose_int < 1 or choose_int > vec.size()) throw std::out_of_range("\nНеправильно введене число\n");
         else if (vec[choose_int - 1].prepareOrder()) {
             if (typeid(T) == typeid(OfficeWorker) or typeid(T) == typeid(AuxiliaryPosition)) {
                 if (vec[choose_int - 1].getDepartment() == "Marketing")

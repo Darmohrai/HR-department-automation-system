@@ -129,13 +129,25 @@ int main() {
                     searchEmployee(managers, office_workers, auxiliary_position_workers);
                     break;
                 default:
-                    throw 0;
+                    throw std::out_of_range("\nНеправильно введене число\n");
             }
         }
-        catch (...) {
+        catch (std::out_of_range &e){
             gap();
             make_cout_red();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            std::cout << e.what();
+            make_cout_normal();
+        }
+        catch (std::invalid_argument &e) {
+            gap();
+            make_cout_red();
+            std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
+            make_cout_normal();
+        }
+        catch (...){
+            gap();
+            make_cout_red();
+            std::cout << "\nНевідома помилка, спробуйте ще раз\n";
             make_cout_normal();
         }
     }
@@ -156,12 +168,23 @@ void checkCinAnswer(Function &&func) {
             exit = true;
             func(choose);
         }
-        catch (...) {
+        catch (std::out_of_range &e){
             gap();
             make_cout_red();
-            std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+            std::cout << e.what();
             make_cout_normal();
-            exit = false;
+        }
+        catch (std::invalid_argument &e) {
+            gap();
+            make_cout_red();
+            std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
+            make_cout_normal();
+        }
+        catch (...){
+            gap();
+            make_cout_red();
+            std::cout << "\nНевідома помилка, спробуйте ще раз\n";
+            make_cout_normal();
         }
     }
 }

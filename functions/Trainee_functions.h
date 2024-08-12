@@ -86,7 +86,7 @@ void performanceTrainee(std::string &performance) {
                 performance = "bad";
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -109,7 +109,7 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
         if (department_int == 1) department = "Marketing";
         else if (department_int == 2) department = "Legal";
         else if (department_int == 3) department = "Executive";
-        else throw 0;
+        else throw std::out_of_range("\nНеправильно введене число\n");
     });
 
     std::cout << "\nВведіть посаду - ";
@@ -195,7 +195,7 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
                 });
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
         make_cout_normal();
     });

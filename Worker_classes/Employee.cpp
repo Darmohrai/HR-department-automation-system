@@ -55,7 +55,7 @@ bool Employee::checkStatus() {
                   << "\nВведіть '1', щоб побачити повну інформацію про робітника"
                      "\nВведіть '2', щоб побачити коротку інформацію про робітника"
                      "\nВведіть '3', щоб підготувати наказ про звільнення"
-                     "\nВведіть '0', щоб вийти\n";
+                     "\nВведіть '0', щоб пропустити\n";
         bool exit = false;
         while (!exit) {
             exit = true;
@@ -72,28 +72,36 @@ bool Employee::checkStatus() {
                             std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
                             system("pause");
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
-                                         "\nВведіть '0', щоб вийти\n";
+                                         "\nВведіть '0', щоб пропустити\n";
                             break;
                         case 2:
                             getBriefInfo();
                             std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
                             system("pause");
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
-                                         "\nВведіть '0', щоб вийти\n";
+                                         "\nВведіть '0', щоб пропустити\n";
                             break;
                         case 3:
                             return prepareOrder();
                         case 0:
-                            std::cout << "\n\nВи вийшли\n\n";
+                            std::cout << "\n\nВи пропустили\n\n";
                             return false;
                         default:
-                            throw 0;
+                            throw std::out_of_range("\nНеправильно введене число\n");
                     }
                     cin_line(choose);
                 }
             }
+            catch (std::out_of_range &e){
+                std::cout << "\\033[31m" << e.what() << "\\033[0m"; // make cout red
+                exit = false;
+            }
+            catch (std::invalid_argument &e) {
+                std::cout << "\n\\033[31m Ви ввели некоректні дані, спробуйте ще раз\\033[0m\n"; // make cout red
+                exit = false;
+            }
             catch (...) {
-                std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+                std::cout << "\n\\033[31m Невідома помилка, спробуйте ще раз\\033[0m\n"; // make cout red
                 exit = false;
             }
         }

@@ -62,7 +62,7 @@ bool Person::prepareOrder(){
             } else if (answer_int == 0) {
                 std::cout << "\033[31m\n\nНаказ скасовано\n\n\033[0m"; // create cout red
                 return false;
-            } else throw false;
+            } else throw std::out_of_range("");
         }
         catch (...) {
             std::cout << "\nВи ввели неправильний номер, спробуйте ще раз\n";

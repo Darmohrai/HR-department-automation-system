@@ -78,7 +78,7 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
             case 0:
                 break;
             default:
-                throw 0;
+                throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
 }
@@ -113,12 +113,11 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
         std::stringstream ss_reader(reader);
         int data;
         for (int i = 0; i < 3; i++) {
-            if (ss_reader.eof()) throw 0;
+            if (ss_reader.eof()) throw std::invalid_argument("");
             std::getline(ss_reader, reader, '/');
             data = std::stoi(reader);
         }
     });
-
 
     std::cout << "\nВведіть спеціальність - ";
     cin_line(specialty);
@@ -139,7 +138,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
                        if (department_int == 1) department = "Marketing";
                        else if (department_int == 2) department = "Legal";
                        else if (department_int == 3) department = "Executive";
-                       else throw 0;
+                       else throw std::out_of_range("\nНеправильно введене число\n");
                    }
     );
 
@@ -160,7 +159,7 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
         std::stringstream ss_reader(reader);
         int data;
         for (int i = 0; i < 3; i++) {
-            if (ss_reader.eof()) throw 0;
+            if (ss_reader.eof()) throw std::invalid_argument("");
             std::getline(ss_reader, reader, '/');
             data = std::stoi(reader);
         }
