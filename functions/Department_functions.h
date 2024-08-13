@@ -17,7 +17,7 @@ void addDepartmentInfo(int &income, int &premium);
 
 void seeDepartmentInfo(Marketing &marketing, Legal &legal,
                        Executive &executive,
-                       std::vector<Manager> &managers); // could be optimized to changeDepartmentInfo
+                       std::vector<Manager> &managers);
 
 template<typename T>
 void chooseInfoForWatching(T &obj, std::vector<Manager> &managers);

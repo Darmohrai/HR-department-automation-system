@@ -1,5 +1,6 @@
 #include <iostream>
 #include <filesystem> // C++ 17 !!!
+#include <locale>
 
 #define cin_line(string) (std::getline(std::cin, string))
 #define make_cout_normal() (std::cout << "\033[0m")
@@ -35,7 +36,13 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
 void createDirectory();
 
 int main() {
+
+#ifdef __linux__
+    setlocale(LC_ALL, "ukr");
+#elif defined(_WIN32)
     system("chcp 65001");
+#endif
+
     createDirectory();
 
     Marketing marketing;
