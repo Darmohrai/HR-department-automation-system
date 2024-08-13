@@ -260,9 +260,7 @@ void seeDepartmentInfo(Marketing &marketing, Legal &legal, Executive &executive,
             }
         }
     });
-
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
-    system("pause");
+    pause();
 }
 
 template<typename T>
@@ -340,9 +338,7 @@ void seeDepartmentSalaryInfo(Marketing &marketing, Legal &legal, Executive &exec
         }
         make_cout_normal();
     });
-
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
-    system("pause");
+    pause();
 }
 
 [[nodiscard]] int managersSalary(std::vector<Manager> &managers, std::string department) {

@@ -48,9 +48,7 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
                 throw std::out_of_range("\nНеправильно введене число\n");
         }
     });
-
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
-    system("pause");
+    pause();
 }
 
 template<typename T>
@@ -216,8 +214,7 @@ void searchEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &o
 
     if (!worker_exist) std::cout << "\nРобітника із даним ID немає\n";
     make_cout_normal();
-    std::cout << "\n\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
-    system("pause");
+    pause();
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SEEEMPLOYEE_FUNCTIONS_H

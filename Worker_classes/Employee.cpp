@@ -69,15 +69,15 @@ bool Employee::checkStatus() {
                     switch (answer) {
                         case 1:
                             getAllInfo();
-                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
-                            system("pause");
+                            std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
+                            pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
                                          "\nВведіть '0', щоб пропустити\n";
                             break;
                         case 2:
                             getBriefInfo();
-                            std::cout << "\nНатисніть будь-яку клавішу, щоб продовжити" << std::endl;
-                            system("pause");
+                            std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
+                            pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
                                          "\nВведіть '0', щоб пропустити\n";
                             break;

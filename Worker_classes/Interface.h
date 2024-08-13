@@ -4,7 +4,8 @@
 // macros use in daughters classes
 #define cin_line(string) (std::getline(std::cin, string))
 #define fin_line(fin, string) (std::getline(fin, string))
-#define fin_int(fin, int_variable, string) (std::getline(fin, string), int_variable = std::stoi(string)) \
+#define fin_int(fin, int_variable, string) (std::getline(fin, string), int_variable = std::stoi(string))
+#define pause_class() (system("pause"), std::cout << std::endl)
 
 
 #include <string>
