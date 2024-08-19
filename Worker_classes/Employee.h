@@ -56,11 +56,6 @@ public:
     void readInfo(std::ifstream &fin) override;
 
 
-    //for fullname
-    bool operator>(const Employee &employee) const {
-        return this->getFullname() > employee.getFullname();
-    }
-
     //for salary
     bool operator<(const Employee &employee) const {
         return this->salary < employee.salary;

@@ -180,24 +180,27 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
         cin_line(reader);
         int choose_int = std::stoi(reader);
         std::cout << "\n\n";
-        make_cout_yellow();
+        std::string choice;
         switch (choose_int) {
             case 1:
-                std::for_each(trainees.begin(), trainees.end(), [](Trainee &trainee) {
-                    std::cout << "\n";
-                    trainee.getAllInfo();
-                });
+                std::cout << "\nОберіть за чим сортувати\n"
+                             "1). ПІБ\n"
+                             "2). Термін завершення пробного періоду\n"
+                             "3). Продуктивність\n";
+                chooseWorkerSort(trainees, reader);
                 break;
             case 2:
+                make_cout_yellow();
                 std::for_each(trainees.begin(), trainees.end(), [](Trainee &trainee) {
                     std::cout << "\n";
                     trainee.getBriefInfo();
                 });
+                make_cout_normal();
                 break;
             default:
                 throw std::out_of_range("\nНеправильно введене число\n");
         }
-        make_cout_normal();
+
     });
 
     std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;

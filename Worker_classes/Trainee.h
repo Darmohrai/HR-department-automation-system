@@ -44,6 +44,14 @@ public:
     void readInfo(std::ifstream &fin) override;
 
     Trainee &operator=(const Trainee &employee) = default;
+
+    bool operator<(const Trainee &trainee) const {
+        return this->probation < trainee.probation;
+    }
+
+    bool operator<=(const Trainee &trainee) const {
+        return this->performance[0] <= trainee.performance[0];
+    }
 };
 
 

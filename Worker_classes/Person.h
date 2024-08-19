@@ -56,6 +56,10 @@ public:
 
     // operators
     Person &operator=(const Person &employee) = default;
+
+    bool operator>(const Person &person) const {
+        return this->getFullname() > person.getFullname();
+    }
 };
 
 
