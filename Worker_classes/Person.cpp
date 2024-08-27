@@ -19,6 +19,8 @@ Person::Person(Person &&pers) noexcept: fullname{pers.fullname}, age{pers.age}, 
     pers.education = "";
     pers.entry_date = "";
     pers.specialty = "";
+
+
 }
 
 Person::Person(Person &pers) : fullname{pers.fullname}, age{pers.age}, passport_number{pers.passport_number},
@@ -75,6 +77,13 @@ bool Person::prepareOrder(){
 void Person::saveInfo(std::ofstream &fout) {
     fout << fullname << "\n" << age << "\n" << passport_number << "\n" << education << "\n" << entry_date << "\n"
          << specialty << "\n";
+}
+
+void Person::log_Worker_class(std::string method_name, std::string class_name){
+    std::string log_file = R"(..\\log_file\\1_log_file.txt)";
+    std::ofstream fout(log_file, std::ios::in);
+    fout << "Worker class use method - " << method_name << "| in class - " << class_name << std::endl;
+    fout.close();
 }
 
 void Person::readInfo(std::ifstream &fin) {

@@ -300,8 +300,15 @@ void workerStatus(std::vector<Manager> &managers, std::vector<OfficeWorker> &off
 }
 
 void createDirectory() {
-    const std::string path = "..//savings_file";
-    if (!std::filesystem::exists(path)) {
-        std::filesystem::create_directory(path);
+    const std::string savings_file_path = "..//savings_file";
+    if (!std::filesystem::exists(savings_file_path)) {
+        std::filesystem::create_directory(savings_file_path);
     }
+
+    const std::string log_path = "..//log_file";
+    if (!std::filesystem::exists(log_path)) {
+        std::filesystem::create_directory(log_path);
+    }
+
+    checkLog();
 }

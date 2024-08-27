@@ -41,6 +41,8 @@ void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
                                std::vector<OfficeWorker> &office_workers,
                                std::vector<AuxiliaryPosition> &auxiliary_position_workers);
 
+void checkLog();
+
 
 // definition
 void clear_file(std::string &filename) {
@@ -252,6 +254,12 @@ void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
     catch (...) {
         std::cerr << "\nСталася помилка зчитування інформації\n";
     }
+}
+
+void checkLog(){
+    remove("..\\log_file\\3_log_file.txt");
+    rename("..\\log_file\\2_log_file.txt", "..\\log_file\\3_log_file.txt");
+    rename("..\\log_file\\1_log_file.txt", "..\\log_file\\2_log_file.txt");
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_SAVE_READ_FUNCTIONS_H

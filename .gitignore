@@ -2,3 +2,4 @@ cmake-build-debug/
 .idea/
 savings_file/
 build exe file/
+log_file/
