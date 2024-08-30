@@ -10,7 +10,7 @@ private:
     Department *supervisory_department = new Department; // need to create 'has a relationship' with class Department
     int premium;
 public:
-    Manager() : Employee(), premium{0}, supervisory_department{nullptr} {}
+    Manager();
 
     Manager(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty, std::string &department,

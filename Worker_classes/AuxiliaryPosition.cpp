@@ -1,12 +1,16 @@
 #include "AuxiliaryPosition.h"
 
+AuxiliaryPosition::AuxiliaryPosition() : Employee(), experience{0}, phone_number{0} {
+    Logger::add_log("base constructor", "AuxiliaryPosition");
+}
+
 AuxiliaryPosition::AuxiliaryPosition(std::string &fullname, int age, int passport_number,
                                      std::string &education, std::string &entry_date, std::string &specialty,
                                      std::string &department, std::string &position, int salary,
                                      std::string &last_appointment, int id, int experience, int phone_number) : Employee(
         fullname, age, passport_number, education, entry_date, specialty, department, position,
         salary, last_appointment, id) {
-        Person::log_Worker_class("input constructor", "Manager");
+    Logger::add_log("input constructor", "AuxiliaryPosition");
     this->experience = experience;
     this->phone_number = phone_number;
 }
@@ -17,7 +21,7 @@ AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &&auxiliaryPosition) noex
                                                                                       auxiliaryPosition.phone_number} {
     auxiliaryPosition.experience = 0;
     auxiliaryPosition.phone_number = 0;
-        Person::log_Worker_class("move constructor", "Manager");
+    Logger::add_log("move constructor", "AuxiliaryPosition");
 }
 
 AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition) : Employee(auxiliaryPosition),
@@ -25,11 +29,11 @@ AuxiliaryPosition::AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition) : Emp
                                                                              phone_number{
                                                                                      auxiliaryPosition.phone_number} {
 
-        Person::log_Worker_class("copy constructor", "Manager");
+    Logger::add_log("copy constructor", "AuxiliaryPosition");
 }
 
 AuxiliaryPosition::~AuxiliaryPosition() {
-        Person::log_Worker_class("DESTRUCTOR", "AuxiliaryPOsition");
+    Logger::add_log("DESTRUCTOR", "AuxiliaryPosition");
 }
 
 

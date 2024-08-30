@@ -2,6 +2,7 @@
 #define HR_DEPARTMENT_AUTOMATION_SYSTEM_PERSON_H
 
 #include "Interface.h"
+#include "../Logger.h"
 #include <iostream>
 #include <fstream>
 #include <queue>
@@ -17,6 +18,7 @@ private:
     std::string entry_date;
     std::string specialty;
     static std::mutex log_mtx;
+    static std::queue<std::pair<std::string, std::string>> queue_log;
 public:
     Person() : Interface(), fullname{"None"}, age{0}, passport_number{0},
                education{"None"}, entry_date{"None"}, specialty{"None"} {};
@@ -57,7 +59,7 @@ public:
 
     void readInfo(std::ifstream &fin) override;
 
-    void log_Worker_class(std::string method_name, std::string class_name);
+    //static void log_Worker_class(std::string method_name, std::string class_name);
 
     // operators
     Person &operator=(const Person &employee) = default;

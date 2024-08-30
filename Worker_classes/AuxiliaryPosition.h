@@ -9,7 +9,7 @@ private:
     int phone_number;
     static std::mutex log_auxiliaryPosition;
 public:
-    AuxiliaryPosition() : Employee(), experience{0}, phone_number{0} {}
+    AuxiliaryPosition();
 
     AuxiliaryPosition(std::string &fullname, int age, int passport_number,
                       std::string &education, std::string &entry_date, std::string &specialty, std::string &department,

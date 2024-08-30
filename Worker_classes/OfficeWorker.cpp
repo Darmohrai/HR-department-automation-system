@@ -1,5 +1,9 @@
 #include "OfficeWorker.h"
 
+OfficeWorker::OfficeWorker() : Employee(), experience{0}, project_numbers{0} {
+    Logger::add_log("base constructor", "OfficeWorker");
+}
+
 OfficeWorker::OfficeWorker(std::string &fullname, int age, int passport_number,
                            std::string &education, std::string &entry_date, std::string &specialty,
                            std::string &department,
@@ -9,7 +13,7 @@ OfficeWorker::OfficeWorker(std::string &fullname, int age, int passport_number,
                                                            position, salary, last_appointment, id) {
     this->experience = experience;
     this->project_numbers = project_numbers;
-        Person::log_Worker_class("input constructor", "OfficeWorker");
+    Logger::add_log("input constructor", "OfficeWorker");
 }
 
 OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) noexcept: Employee(std::move(officeWorker)),
@@ -18,16 +22,16 @@ OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) noexcept: Employee(std::
     officeWorker.experience = 0;
     officeWorker.project_numbers = 0;
 
-        Person::log_Worker_class("move constructor", "OfficeWorker");
+    Logger::add_log("move constructor", "OfficeWorker");
 }
 
 OfficeWorker::OfficeWorker(OfficeWorker &officeWorker) : Employee(officeWorker), experience{officeWorker.experience},
                                                          project_numbers{officeWorker.project_numbers} {
-        Person::log_Worker_class("copy constructor", "OfficeWorker");
+    Logger::add_log("copy constructor", "OfficeWorker");
 }
 
 OfficeWorker::~OfficeWorker() {
-        Person::log_Worker_class("DESTRUCTOR", "OfficeWorker");
+    Logger::add_log("DESTRUCTOR", "OfficeWorker");
 }
 
 

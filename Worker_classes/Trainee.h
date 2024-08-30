@@ -9,7 +9,7 @@ private:
     std::string performance;
     std::string mentor;
 public:
-    Trainee() : Person(), probation{0}, performance{"bad"}, mentor{"None"} {};
+    Trainee();
 
     Trainee(std::string &fullname, int age, int passport_number,
             std::string &education, std::string &entry_date, std::string &specialty,

@@ -77,14 +77,22 @@ void Person::saveInfo(std::ofstream &fout) {
          << specialty << "\n";
 }
 
-void Person::log_Worker_class(std::string method_name, std::string class_name) {
-
-    std::lock_guard<std::mutex> lock(log_mtx);
-    std::string log_file = R"(..\\log_file\\1_log_file.txt)";
-    std::ofstream fout(log_file, std::ios::app);
-    fout << "Worker class | Use " << method_name << "| in class - " << class_name << std::endl;
-    fout.close();
-}
+/*void Person::log_Worker_class(std::string method_name, std::string class_name) {
+    if (log_mtx.try_lock()) {
+        std::string log_file = R"(..\\log_file\\1_log_file.txt)";
+        std::ofstream fout(log_file, std::ios::app);
+        queue_log.push(std::pair<std::string, std::string>(method_name, class_name));
+        while (!queue_log.empty()) {
+            fout << "Worker class | Use " << queue_log.front().first << "| in class - " << queue_log.front().second
+                 << std::endl;
+            queue_log.pop();
+        }
+        fout.close();
+        log_mtx.unlock();
+    } else {
+        queue_log.push(std::pair<std::string, std::string>(method_name, class_name));
+    }
+}*/
 
 void Person::readInfo(std::ifstream &fin) {
     std::string reader;
@@ -98,3 +106,4 @@ void Person::readInfo(std::ifstream &fin) {
 }
 
 std::mutex Person::log_mtx;
+std::queue<std::pair<std::string, std::string>> Person::queue_log;

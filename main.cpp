@@ -12,6 +12,12 @@ std::cout << std::endl)
 template<typename Function>
 void checkCinAnswer(Function &&func);
 
+#include "Logger.h"
+
+std::queue<std::pair<std::string, std::string>> Logger::queue_log;
+bool Logger::do_log;
+std::mutex Logger::log_mtx;
+
 #include "Worker_classes/Trainee.h"
 #include "Worker_classes/Manager.h"
 #include "Worker_classes/OfficeWorker.h"
@@ -43,126 +49,133 @@ int main() {
 #elif defined(_WIN32)
     system("chcp 65001");
 #endif
-
     createDirectory();
 
-    Marketing marketing;
-    Legal legal;
-    Executive executive;
+    std::thread log_program([&] { Logger::make_log(); });
+    Logger::start_log();
 
-    std::vector<Manager> managers;
-    std::vector<OfficeWorker> office_workers;
-    std::vector<AuxiliaryPosition> auxiliary_position_workers;
-    std::vector<Trainee> trainees;
+    //main part
+    {
+        Marketing marketing;
+        Legal legal;
+        Executive executive;
 
-    threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
+        std::vector<Manager> managers;
+        std::vector<OfficeWorker> office_workers;
+        std::vector<AuxiliaryPosition> auxiliary_position_workers;
+        std::vector<Trainee> trainees;
 
-    std::for_each(managers.begin(), managers.end(), [&marketing, &legal, &executive](Manager &manager) {
-        manager.setSupervisoryDepartment(marketing, legal, executive);
-    });
+        threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
-    threadsReadDepartmentInfo(marketing, legal, executive, office_workers, auxiliary_position_workers);
+        std::for_each(managers.begin(), managers.end(), [&marketing, &legal, &executive](Manager &manager) {
+            manager.setSupervisoryDepartment(marketing, legal, executive);
+        });
+
+        threadsReadDepartmentInfo(marketing, legal, executive, office_workers, auxiliary_position_workers);
 
 
-    bool exit = false;
-    std::string answer;
+        bool exit = false;
+        std::string answer;
 
-    while (!exit) {
-        try {
-            std::cout << std::endl;
-            gap();
-            std::cout << "Оберіть що Ви хочете зробити та введіть відповідну цифру\n"
-                         "1). Переглянути інструкцію користувача\n"
-                         "2). Додати робітника\n"
-                         "3). Додати практиканта\n"
-                         "4). Змінити дані про підрозділи\n"
-                         "5). Змінити дані про робітника\n"
-                         "6). Змінити дані про практиканта\n"
-                         "7). Переглянути інформацію про всіх робітників\n"
-                         "8). Переглянути інформацію про підрозділи\n"
-                         "9). Переглянути інформацію про всіх стажерів\n"
-                         "10). Перевірити статус робітників\n"
-                         "11). Переглянути зарплатні відомості\n"
-                         "12). Звільнити робітника/стажера\n"
-                         "13). Знайти робітника за ID\n"
-                         "0). Вийти з програми" << std::endl;
-            cin_line(answer);
-            int answer_int = std::stoi(answer);
-            switch (answer_int) {
-                case 0:
-                    exit = true;
-                    break;
-                case 1:
-                    userInstruction();
-                    break;
-                case 2:
-                    addEmployee(managers, office_workers, auxiliary_position_workers,
-                                marketing, legal, executive);
-                    break;
-                case 3:
-                    addTrainee(trainees);
-                    break;
-                case 4:
-                    changeDepartmentInfo(marketing, legal, executive);
-                    break;
-                case 5:
-                    changeEmployeeInfo(managers, office_workers, auxiliary_position_workers,
-                                       marketing, legal, executive);
-                    break;
-                case 6:
-                    changeTraineeInfo(trainees);
-                    break;
-                case 7:
-                    seeEmployeeInfo(managers, office_workers, auxiliary_position_workers);
-                    break;
-                case 8:
-                    seeDepartmentInfo(marketing, legal, executive, managers);
-                    break;
-                case 9:
-                    seeTraineeInfo(trainees);
-                    break;
-                case 10:
-                    workerStatus(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
-                                 executive);
-                    break;
-                case 11:
-                    seeDepartmentSalaryInfo(marketing, legal, executive, managers);
-                    break;
-                case 12:
-                    fireEmployeeOrTrainee(managers, office_workers, auxiliary_position_workers, trainees, marketing,
-                                          legal,
-                                          executive);
-                    break;
-                case 13:
-                    searchEmployee(managers, office_workers, auxiliary_position_workers);
-                    break;
-                default:
-                    throw std::out_of_range("\nНеправильно введене число\n");
+        while (!exit) {
+            try {
+                std::cout << std::endl;
+                gap();
+                std::cout << "Оберіть що Ви хочете зробити та введіть відповідну цифру\n"
+                             "1). Переглянути інструкцію користувача\n"
+                             "2). Додати робітника\n"
+                             "3). Додати практиканта\n"
+                             "4). Змінити дані про підрозділи\n"
+                             "5). Змінити дані про робітника\n"
+                             "6). Змінити дані про практиканта\n"
+                             "7). Переглянути інформацію про всіх робітників\n"
+                             "8). Переглянути інформацію про підрозділи\n"
+                             "9). Переглянути інформацію про всіх стажерів\n"
+                             "10). Перевірити статус робітників\n"
+                             "11). Переглянути зарплатні відомості\n"
+                             "12). Звільнити робітника/стажера\n"
+                             "13). Знайти робітника за ID\n"
+                             "0). Вийти з програми" << std::endl;
+                cin_line(answer);
+                int answer_int = std::stoi(answer);
+                switch (answer_int) {
+                    case 0:
+                        exit = true;
+                        break;
+                    case 1:
+                        userInstruction();
+                        break;
+                    case 2:
+                        addEmployee(managers, office_workers, auxiliary_position_workers,
+                                    marketing, legal, executive);
+                        break;
+                    case 3:
+                        addTrainee(trainees);
+                        break;
+                    case 4:
+                        changeDepartmentInfo(marketing, legal, executive);
+                        break;
+                    case 5:
+                        changeEmployeeInfo(managers, office_workers, auxiliary_position_workers,
+                                           marketing, legal, executive);
+                        break;
+                    case 6:
+                        changeTraineeInfo(trainees);
+                        break;
+                    case 7:
+                        seeEmployeeInfo(managers, office_workers, auxiliary_position_workers);
+                        break;
+                    case 8:
+                        seeDepartmentInfo(marketing, legal, executive, managers);
+                        break;
+                    case 9:
+                        seeTraineeInfo(trainees);
+                        break;
+                    case 10:
+                        workerStatus(managers, office_workers, auxiliary_position_workers, trainees, marketing, legal,
+                                     executive);
+                        break;
+                    case 11:
+                        seeDepartmentSalaryInfo(marketing, legal, executive, managers);
+                        break;
+                    case 12:
+                        fireEmployeeOrTrainee(managers, office_workers, auxiliary_position_workers, trainees, marketing,
+                                              legal,
+                                              executive);
+                        break;
+                    case 13:
+                        searchEmployee(managers, office_workers, auxiliary_position_workers);
+                        break;
+                    default:
+                        throw std::out_of_range("\nНеправильно введене число\n");
+                }
+            }
+            catch (std::out_of_range &e) {
+                gap();
+                make_cout_red();
+                std::cout << e.what();
+                make_cout_normal();
+            }
+            catch (std::invalid_argument &e) {
+                gap();
+                make_cout_red();
+                std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
+                make_cout_normal();
+            }
+            catch (...) {
+                gap();
+                make_cout_red();
+                std::cout << "\nНевідома помилка, спробуйте ще раз\n";
+                make_cout_normal();
             }
         }
-        catch (std::out_of_range &e){
-            gap();
-            make_cout_red();
-            std::cout << e.what();
-            make_cout_normal();
-        }
-        catch (std::invalid_argument &e) {
-            gap();
-            make_cout_red();
-            std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
-            make_cout_normal();
-        }
-        catch (...){
-            gap();
-            make_cout_red();
-            std::cout << "\nНевідома помилка, спробуйте ще раз\n";
-            make_cout_normal();
-        }
+
+        threadsSaveInfo(managers, office_workers, auxiliary_position_workers, trainees);
+        threadsSaveDepartmentInfo(marketing, legal, executive);
     }
 
-    threadsSaveInfo(managers, office_workers, auxiliary_position_workers, trainees);
-    threadsSaveDepartmentInfo(marketing, legal, executive);
-
+    Logger::stop_log();
+    log_program.join();
     return 0;
 }
 
@@ -176,23 +189,26 @@ void checkCinAnswer(Function &&func) {
             exit = true;
             func(choose);
         }
-        catch (std::out_of_range &e){
+        catch (std::out_of_range &e) {
             gap();
             make_cout_red();
             std::cout << e.what();
             make_cout_normal();
+            exit = false;
         }
         catch (std::invalid_argument &e) {
             gap();
             make_cout_red();
             std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
             make_cout_normal();
+            exit = false;
         }
-        catch (...){
+        catch (...) {
             gap();
             make_cout_red();
             std::cout << "\nНевідома помилка, спробуйте ще раз\n";
             make_cout_normal();
+            exit = false;
         }
     }
 }

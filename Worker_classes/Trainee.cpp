@@ -1,5 +1,9 @@
 #include "Trainee.h"
 
+Trainee::Trainee() : Person(), probation{0}, performance{"bad"}, mentor{"None"} {
+    Logger::add_log("base constructor", "Trainee");
+}
+
 Trainee::Trainee(std::string &fullname, int age, int passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty,
                  int probation, std::string &performance, std::string &mentor) :
@@ -7,26 +11,25 @@ Trainee::Trainee(std::string &fullname, int age, int passport_number,
     this->probation = probation;
     this->performance = performance;
     this->mentor = mentor;
-        Person::log_Worker_class("constructor input", "Trainee");
+    Logger::add_log("constructor input", "Trainee");
 }
 
 Trainee::Trainee(Trainee &&trainee) noexcept: Person(std::move(trainee)), probation{trainee.probation},
                                               performance{std::move(trainee.performance)},
                                               mentor{std::move(trainee.mentor)} {
     trainee.probation = 0;
-        Person::log_Worker_class("move constructor", "Trainee");;
+    Logger::add_log("move constructor", "Trainee");;
 }
 
 Trainee::Trainee(Trainee &trainee) : Person(trainee) {
     this->probation = trainee.probation;
     this->performance = trainee.performance;
     this->mentor = trainee.mentor;
-
-        Person::log_Worker_class("copy constructor", "Trainee");
+    Logger::add_log("copy constructor", "Trainee");
 }
 
 Trainee::~Trainee() {
-        Person::log_Worker_class("DESTRUCTOR", "Trainee");
+    Logger::add_log("DESTRUCTOR", "Trainee");
 }
 
 void Trainee::getAllInfo() {
@@ -108,3 +111,5 @@ void Trainee::readInfo(std::ifstream &fin) {
     fin_line(fin, performance);
     fin_line(fin, mentor);
 }
+
+//std::queue<std::pair<std::string, std::string>> Logger::queue_log;
