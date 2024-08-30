@@ -19,8 +19,6 @@ Person::Person(Person &&pers) noexcept: fullname{pers.fullname}, age{pers.age}, 
     pers.education = "";
     pers.entry_date = "";
     pers.specialty = "";
-
-
 }
 
 Person::Person(Person &pers) : fullname{pers.fullname}, age{pers.age}, passport_number{pers.passport_number},
@@ -46,7 +44,7 @@ bool Person::checkStatus() {
     else return false;
 }
 
-bool Person::prepareOrder(){
+bool Person::prepareOrder() {
     int answer_int;
     bool numb = false;
     std::cout << "\n\nНаказ підготовлено, "
@@ -79,10 +77,12 @@ void Person::saveInfo(std::ofstream &fout) {
          << specialty << "\n";
 }
 
-void Person::log_Worker_class(std::string method_name, std::string class_name){
+void Person::log_Worker_class(std::string method_name, std::string class_name) {
+
+    std::lock_guard<std::mutex> lock(log_mtx);
     std::string log_file = R"(..\\log_file\\1_log_file.txt)";
-    std::ofstream fout(log_file, std::ios::in);
-    fout << "Worker class use method - " << method_name << "| in class - " << class_name << std::endl;
+    std::ofstream fout(log_file, std::ios::app);
+    fout << "Worker class | Use " << method_name << "| in class - " << class_name << std::endl;
     fout.close();
 }
 
@@ -96,3 +96,5 @@ void Person::readInfo(std::ifstream &fin) {
     fin_line(fin, entry_date);
     fin_line(fin, specialty);
 }
+
+std::mutex Person::log_mtx;

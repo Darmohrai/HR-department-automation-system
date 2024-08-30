@@ -4,6 +4,8 @@
 #include "Interface.h"
 #include <iostream>
 #include <fstream>
+#include <queue>
+#include <thread>
 
 
 class Person : public Interface {
@@ -14,6 +16,7 @@ private:
     std::string education;
     std::string entry_date;
     std::string specialty;
+    static std::mutex log_mtx;
 public:
     Person() : Interface(), fullname{"None"}, age{0}, passport_number{0},
                education{"None"}, entry_date{"None"}, specialty{"None"} {};
@@ -25,7 +28,7 @@ public:
 
     Person(Person &&pers) noexcept;
 
-    ~Person() { std::cout << "\nobj deleted\n"; };
+    ~Person() = default;
 
     // methods get
     void getAllInfo() override;
@@ -48,13 +51,13 @@ public:
 
     bool prepareOrder() override;
 
+
     // methods save
     void saveInfo(std::ofstream &fout) override;
 
     void readInfo(std::ifstream &fin) override;
 
     void log_Worker_class(std::string method_name, std::string class_name);
-
 
     // operators
     Person &operator=(const Person &employee) = default;

@@ -7,6 +7,7 @@ class AuxiliaryPosition final : public Employee {
 private:
     int experience;
     int phone_number;
+    static std::mutex log_auxiliaryPosition;
 public:
     AuxiliaryPosition() : Employee(), experience{0}, phone_number{0} {}
 
@@ -19,7 +20,7 @@ public:
 
     AuxiliaryPosition(AuxiliaryPosition &auxiliaryPosition);
 
-    ~AuxiliaryPosition() { std::cout << "object deleted"; }
+    ~AuxiliaryPosition();
 
 
     // methods get

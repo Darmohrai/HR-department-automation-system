@@ -6,18 +6,27 @@ Manager::Manager(std::string &fullname, int age, int passport_number,
                  Department *supervisory_department) :
         Employee(fullname, age, passport_number, education, entry_date, specialty, department,
                  position, salary, last_appointment, id) {
+        Person::log_Worker_class("input constructor", "Manager");
+
     this->premium = premium;
     this->supervisory_department = supervisory_department;
 }
 
 Manager::Manager(Manager &&manager) noexcept: Employee(std::move(manager)), premium{manager.premium},
                                               supervisory_department{manager.supervisory_department} {
+
+        Person::log_Worker_class("move constructor", "Manager");
     manager.premium = 0;
     supervisory_department = nullptr;
 }
 
 Manager::Manager(Manager &manager) : Employee(manager), premium{manager.premium},
                                      supervisory_department{manager.supervisory_department} {}
+
+Manager::~Manager() {
+        Person::log_Worker_class("DESTRUCTOR", "Manager");
+    if (supervisory_department != nullptr) supervisory_department = nullptr;
+}
 
 
 void Manager::setSupervisoryDepartment(Department &manager, Department &legal, Department &executive) {

@@ -25,7 +25,8 @@ Employee::Employee(Employee &&employee) noexcept: Person(std::move(employee)), d
 
 Employee::Employee(Employee &employee) : Person(employee), department{employee.department},
                                          salary{employee.salary}, position{employee.position},
-                                         last_appointment{employee.last_appointment}, id(employee.id) {}
+                                         last_appointment{employee.last_appointment}, id(employee.id) {
+}
 
 
 void Employee::getAllInfo() {

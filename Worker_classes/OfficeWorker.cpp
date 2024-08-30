@@ -9,6 +9,7 @@ OfficeWorker::OfficeWorker(std::string &fullname, int age, int passport_number,
                                                            position, salary, last_appointment, id) {
     this->experience = experience;
     this->project_numbers = project_numbers;
+        Person::log_Worker_class("input constructor", "OfficeWorker");
 }
 
 OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) noexcept: Employee(std::move(officeWorker)),
@@ -16,10 +17,18 @@ OfficeWorker::OfficeWorker(OfficeWorker &&officeWorker) noexcept: Employee(std::
                                                                   project_numbers{officeWorker.project_numbers} {
     officeWorker.experience = 0;
     officeWorker.project_numbers = 0;
+
+        Person::log_Worker_class("move constructor", "OfficeWorker");
 }
 
 OfficeWorker::OfficeWorker(OfficeWorker &officeWorker) : Employee(officeWorker), experience{officeWorker.experience},
-                                                         project_numbers{officeWorker.project_numbers} {}
+                                                         project_numbers{officeWorker.project_numbers} {
+        Person::log_Worker_class("copy constructor", "OfficeWorker");
+}
+
+OfficeWorker::~OfficeWorker() {
+        Person::log_Worker_class("DESTRUCTOR", "OfficeWorker");
+}
 
 
 void OfficeWorker::getAllInfo() {

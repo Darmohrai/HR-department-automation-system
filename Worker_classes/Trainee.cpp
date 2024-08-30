@@ -7,18 +7,26 @@ Trainee::Trainee(std::string &fullname, int age, int passport_number,
     this->probation = probation;
     this->performance = performance;
     this->mentor = mentor;
+        Person::log_Worker_class("constructor input", "Trainee");
 }
 
 Trainee::Trainee(Trainee &&trainee) noexcept: Person(std::move(trainee)), probation{trainee.probation},
                                               performance{std::move(trainee.performance)},
                                               mentor{std::move(trainee.mentor)} {
     trainee.probation = 0;
+        Person::log_Worker_class("move constructor", "Trainee");;
 }
 
 Trainee::Trainee(Trainee &trainee) : Person(trainee) {
     this->probation = trainee.probation;
     this->performance = trainee.performance;
     this->mentor = trainee.mentor;
+
+        Person::log_Worker_class("copy constructor", "Trainee");
+}
+
+Trainee::~Trainee() {
+        Person::log_Worker_class("DESTRUCTOR", "Trainee");
 }
 
 void Trainee::getAllInfo() {

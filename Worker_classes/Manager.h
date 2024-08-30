@@ -21,10 +21,7 @@ public:
 
     Manager(Manager &manager);
 
-    ~Manager() {
-        if (supervisory_department != nullptr) supervisory_department = nullptr;
-        std::cout << "object deleted";
-    }
+    ~Manager();
 
 
     // methods get

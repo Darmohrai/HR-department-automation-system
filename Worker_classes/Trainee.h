@@ -19,7 +19,7 @@ public:
 
     Trainee(Trainee &trainee);
 
-    ~Trainee() { std::cout << "object deleted"; }
+    ~Trainee();
 
     // methods get
     void getAllInfo() override;

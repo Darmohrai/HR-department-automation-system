@@ -6,7 +6,6 @@
 class OfficeWorker final : public Employee {
 private:
     int experience;
-
     int project_numbers;
 public:
     OfficeWorker() : Employee(), experience{0}, project_numbers{0} {}
@@ -20,7 +19,7 @@ public:
 
     OfficeWorker(OfficeWorker &officeWorker);
 
-    ~OfficeWorker() { std::cout << "object deleted"; }
+    ~OfficeWorker();
 
 
     // methods get

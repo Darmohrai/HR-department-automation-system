@@ -76,8 +76,8 @@ void readWorkerInfo(std::vector<T_r> &vector_obj, std::string &filename) {
         std::string reader;
         std::getline(fin, reader);
         count = std::stoi(reader);
+        T_r obj;
         for (int i = 0; i < count; i++) {
-            T_r obj;
             obj.readInfo(fin);
             vector_obj.push_back(std::move(obj));
         }

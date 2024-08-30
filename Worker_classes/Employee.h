@@ -21,7 +21,7 @@ public:
 
     Employee(Employee &employee);
 
-    ~Employee() { std::cout << "object deleted"; }
+    ~Employee() = default;
 
 
     // methods get
