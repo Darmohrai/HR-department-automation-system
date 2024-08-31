@@ -1,14 +1,25 @@
 #include "Executive.h"
 
+Executive::Executive() : Department(), project_quantity{0}, average_time{0} {
+    setName("Executive");
+    Logger::add_log("base constructor", "Executive");
+}
+
 Executive::Executive(int income, int premium, int project_quantity, int average_time)
-        : Department(income, premium), project_quantity{project_quantity}, average_time{average_time} {}
+        : Department(income, premium), project_quantity{project_quantity}, average_time{average_time} {
+    Logger::add_log("input constructor", "Executive");
+}
 
 Executive::Executive(Executive &&executive) noexcept: Department(std::move(executive)),
                                                       project_quantity{executive.project_quantity},
                                                       average_time{executive.average_time} {
     executive.project_quantity = 0;
     executive.average_time = 0;
+    Logger::add_log("move constructor", "Executive");
 }
+
+Executive::~Executive() { Logger::add_log("DESTRUCTOR", "Executive"); }
+
 
 void Executive::setAllInfo(int income, int premium, int project_quantity, int average_time) {
     Department::setAllInfo(income, premium);

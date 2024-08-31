@@ -59,7 +59,6 @@ public:
 
     void readInfo(std::ifstream &fin) override;
 
-    //static void log_Worker_class(std::string method_name, std::string class_name);
 
     // operators
     Person &operator=(const Person &employee) = default;

@@ -8,15 +8,13 @@ private:
     int court_cases; // number of court cases
     int win_cases; // number of court cases won
 public:
-    Legal() : Department(), court_cases{0}, win_cases{0} { setName("Legal"); }
+    Legal();
 
     Legal(int income, int premium, int court_cases, int win_cases);
 
     Legal(Legal &&legal) noexcept;
 
-    Legal(Legal &legal) = default;
-
-    ~Legal() { std::cout << "object deleted"; }
+    ~Legal();
 
 
     // set methods

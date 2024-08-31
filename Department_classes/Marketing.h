@@ -7,15 +7,13 @@ class Marketing final : public Department {
 private:
     int ad_success_rate;
 public:
-    Marketing() : Department(), ad_success_rate{0} { setName("Marketing"); }
+    Marketing();
 
     Marketing(int income, int premium, int ad_success_rate);
 
     Marketing(Marketing &&marketing) noexcept;
 
-    Marketing(Marketing &marketing) = default;
-
-    ~Marketing() { std::cout << "object deleted"; }
+    ~Marketing();
 
 
     // methods set

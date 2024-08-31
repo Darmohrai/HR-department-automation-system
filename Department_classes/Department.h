@@ -21,9 +21,7 @@ public:
 
     Department(Department &department) = default;
 
-    ~Department() {
-        std::cout << "object deleted";
-    }
+    ~Department() = default;
 
 
     // methods set

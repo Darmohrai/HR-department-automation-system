@@ -8,15 +8,13 @@ private:
     int project_quantity;
     int average_time; // average executive time
 public:
-    Executive() : Department(), project_quantity{0}, average_time{0} { setName("Executive"); }
+    Executive();
 
     Executive(int income, int premium, int project_quantity, int average_time);
 
     Executive(Executive &&executive) noexcept;
 
-    Executive(Executive &executive) = default;
-
-    ~Executive() { std::cout << "object deleted"; }
+    ~Executive();
 
 
     // methods set
