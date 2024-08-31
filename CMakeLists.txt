@@ -4,7 +4,6 @@ project(HR_department_automation_system)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(HR_department_automation_system main.cpp
-        Worker_classes/Interface.cpp
         Worker_classes/Interface.h
         Worker_classes/Person.h
         Worker_classes/Person.cpp
@@ -34,5 +33,4 @@ add_executable(HR_department_automation_system main.cpp
         functions/changeEmployee_functions.h
         functions/seeEmployee_functions.h
         Logger.h
-        Logger.cpp
 )
