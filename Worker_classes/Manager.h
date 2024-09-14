@@ -29,16 +29,10 @@ public:
 
     void getBriefInfo() final;
 
-    //[[nodiscard]] int getSalary() final { return Employee::getSalary(); }
-
     [[nodiscard]] int getPremium() { return this->premium; }
 
 
     // methods set
-    [[nodiscard]] bool prepareOrder() final { return Employee::prepareOrder(); }
-
-    [[nodiscard]] bool checkStatus() final { return Employee::checkStatus(); }
-
     void setPremium(int premium_set) { this->premium = premium_set; }
 
     void setSupervisoryDepartment(Department &manager, Department &legal, Department &executive);

@@ -22,9 +22,9 @@ public:
     ~Trainee();
 
     // methods get
-    void getAllInfo() override;
+    void getAllInfo() final;
 
-    void getBriefInfo() override;
+    void getBriefInfo() final;
 
     bool getPerformance() { if (performance == "well") return true; else return false; }
 
@@ -32,16 +32,14 @@ public:
 
 
     // methods set
-    [[nodiscard]] bool prepareOrder() override { return Person::prepareOrder(); };
-
-    bool checkStatus() override;
+    bool checkStatus() final;
 
     void setPerformance(std::string &performance_set) { this->performance = performance_set; }
 
     // methods save
-    void saveInfo(std::ofstream &fout) override;
+    void saveInfo(std::ofstream &fout) final;
 
-    void readInfo(std::ifstream &fin) override;
+    void readInfo(std::ifstream &fin) final;
 
     Trainee &operator=(const Trainee &employee) = default;
 

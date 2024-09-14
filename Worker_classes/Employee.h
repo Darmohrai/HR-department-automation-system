@@ -29,7 +29,7 @@ public:
 
     void getBriefInfo() override;
 
-    [[nodiscard]] int getSalary() override { return salary; }
+    [[nodiscard]] int getSalary() final { return salary; }
 
     [[nodiscard]] std::string getDepartment() { return department; }
 
@@ -45,9 +45,7 @@ public:
 
     void setSalary(int salary_set) { this->salary = salary_set; }
 
-    [[nodiscard]] bool prepareOrder() override { return Person::prepareOrder(); }
-
-    [[nodiscard]] bool checkStatus() override;
+    [[nodiscard]] bool checkStatus() final;
 
 
     // methods save

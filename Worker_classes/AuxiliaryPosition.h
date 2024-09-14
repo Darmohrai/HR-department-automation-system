@@ -28,15 +28,9 @@ public:
 
     void getBriefInfo() final;
 
-    [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
-
 
     // methods set
     void setPhoneNumber(int phone_number_set) { this->phone_number = phone_number_set; }
-
-    [[nodiscard]] bool prepareOrder() final { return Employee::prepareOrder(); }
-
-    [[nodiscard]] bool checkStatus() final { return Employee::checkStatus(); }
 
 
     // methods save

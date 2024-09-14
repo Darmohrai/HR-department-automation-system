@@ -49,9 +49,9 @@ public:
 
 
     // methods set
-    bool checkStatus() override;
+    [[nodiscard]] bool checkStatus() override;
 
-    bool prepareOrder() override;
+    [[nodiscard]] bool prepareOrder() final;
 
 
     // methods save
