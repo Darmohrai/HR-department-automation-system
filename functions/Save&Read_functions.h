@@ -120,7 +120,7 @@ void threadsSaveInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
     }
 }
 
-void threadsReadInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
+void threadsReadWorkersInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &office_workers,
                      std::vector<AuxiliaryPosition> &auxiliary_position_workers, std::vector<Trainee> &trainees) {
     try {
         std::lock_guard<std::mutex> read_lockGuard(mtx_for_database);
@@ -256,7 +256,7 @@ void threadsReadDepartmentInfo(Marketing &marketing, Legal &legal, Executive &ex
     }
 }
 
-void checkLog(){
+void checkLogFiles(){
     remove("..\\log_file\\3_log_file.txt");
     rename("..\\log_file\\2_log_file.txt", "..\\log_file\\3_log_file.txt");
     rename("..\\log_file\\1_log_file.txt", "..\\log_file\\2_log_file.txt");

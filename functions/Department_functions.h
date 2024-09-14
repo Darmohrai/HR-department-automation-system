@@ -215,7 +215,7 @@ void caseIncomeOrPremium(T &obj, int choose) {
         obj.setIncome(income_int);
     } else {
         std::string premium;
-        std::cout << "\n\nВведіть дохід підрозділу - ";
+        std::cout << "\n\nВведіть преміальні кошти підрозділу - ";
         cin_line(premium);
         int premium_int = std::stoi(premium);
         obj.setPremium(premium_int);

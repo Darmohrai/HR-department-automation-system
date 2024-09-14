@@ -64,7 +64,7 @@ int main() {
         std::vector<AuxiliaryPosition> auxiliary_position_workers;
         std::vector<Trainee> trainees;
 
-        threadsReadInfo(managers, office_workers, auxiliary_position_workers, trainees);
+        threadsReadWorkersInfo(managers, office_workers, auxiliary_position_workers, trainees);
 
         std::for_each(managers.begin(), managers.end(), [&marketing, &legal, &executive](Manager &manager) {
             manager.setSupervisoryDepartment(marketing, legal, executive);
@@ -228,6 +228,8 @@ void userInstruction() {
                  "\nзастосунок автоматично перевіряє робітників щодо можливості звільнення, а стажерів ще й прийняття на "
                  "\nроботу (Стажер може стати лише офісним працівником)."
                  "\n\nЩоб обрати дію запропоновану в консольному меню введіть відповідну цифру й натисніть Enter"
+                 "\n Мова інтерфейсу українська, проте ввід даних МУСИТЬ бути на трансліті(!!!), інакше програма працюватиме"
+                 "\n некоректно."
                  "\n\nПримітка: при перегляді зарплатних відомомтей керівники не входять в поняття 'робітників', "
                  "\nта є окремими об'єктами";
     make_cout_normal();
@@ -325,5 +327,5 @@ void createDirectory() {
         std::filesystem::create_directory(log_path);
     }
 
-    checkLog();
+    checkLogFiles();
 }

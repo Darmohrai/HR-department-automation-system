@@ -20,7 +20,7 @@ Manager::Manager(Manager &&manager) noexcept: Employee(std::move(manager)), prem
 
     Logger::add_log("move constructor", "Manager");
     manager.premium = 0;
-    supervisory_department = nullptr;
+    manager.supervisory_department = nullptr;
 }
 
 Manager::Manager(Manager &manager) : Employee(manager), premium{manager.premium},

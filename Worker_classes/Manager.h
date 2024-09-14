@@ -29,7 +29,7 @@ public:
 
     void getBriefInfo() final;
 
-    [[nodiscard]] int getSalary() final { return Employee::getSalary(); }
+    //[[nodiscard]] int getSalary() final { return Employee::getSalary(); }
 
     [[nodiscard]] int getPremium() { return this->premium; }
 
