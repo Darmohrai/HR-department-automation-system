@@ -4,7 +4,7 @@ Manager::Manager() : Employee(), premium{0}, supervisory_department{nullptr} {
     Logger::add_log("base constructor", "Manager");
 }
 
-Manager::Manager(std::string &fullname, int age, int passport_number,
+Manager::Manager(std::string &fullname, int age, std::string &passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                  std::string &position, int salary, std::string &last_appointment, int id, int premium,
                  Department *supervisory_department) :

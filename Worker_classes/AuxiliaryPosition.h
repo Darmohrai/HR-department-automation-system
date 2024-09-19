@@ -11,7 +11,7 @@ private:
 public:
     AuxiliaryPosition();
 
-    AuxiliaryPosition(std::string &fullname, int age, int passport_number,
+    AuxiliaryPosition(std::string &fullname, int age, std::string &passport_number,
                       std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                       std::string &position, int salary, std::string &last_appointment, int id, int experience,
                       int phone_number);

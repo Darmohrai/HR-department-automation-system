@@ -20,7 +20,7 @@ void addTrainee(std::vector<Trainee> &trainees) {
 
     std::string fullname;
     int age;
-    int passport_number;
+    std::string passport_number;
     std::string education;
     std::string entry_date;
     std::string specialty;
@@ -134,7 +134,7 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
             data = std::stoi(reader);
             date_arr[i] = data;
         }
-        validateDate(date_arr[0], date_arr[1], date_arr[2]);
+        validateDate(date_arr[0], date_arr[1], date_arr[2]); // include from addEmployee_functions
     });
 
 
@@ -155,7 +155,7 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
 
     std::string fullname = trainee.getFullname();
     int age = trainee.getAge();
-    int passport_number = trainee.getPassportNumber();
+    std::string passport_number = trainee.getPassportNumber();
     std::string education = trainee.getEducation();
     std::string specialty = trainee.getSpecialty();
 

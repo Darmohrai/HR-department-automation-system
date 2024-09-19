@@ -11,10 +11,10 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
                  std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                  Executive &executive);
 
-void readerPerson(std::string &fullname, int &age, int &passport_number,
+void readerPerson(std::string &fullname, int &age, std::string &passport_number,
                   std::string &education, std::string &entry_date, std::string &specialty);
 
-void readerEmployee(std::string &fullname, int &age, int &passport_number,
+void readerEmployee(std::string &fullname, int &age, std::string &passport_number,
                     std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                     std::string &position, int &salary, std::string &last_appointment, int &department_int);
 
@@ -87,7 +87,7 @@ void addEmployee(std::vector<Manager> &managers, std::vector<OfficeWorker> &offi
     });
 }
 
-void readerPerson(std::string &fullname, int &age, int &passport_number,
+void readerPerson(std::string &fullname, int &age, std::string &passport_number,
                   std::string &education, std::string &entry_date, std::string &specialty) {
     std::cout << "\nВведіть ПІБ - ";
     cin_line(fullname);
@@ -99,12 +99,8 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
                    }
     );
 
-    checkCinAnswer([&passport_number](std::string &reader) {
-                       std::cout << "\nВведіть паспортні дані (номер) - ";
-                       cin_line(reader);
-                       passport_number = std::stoi(reader);
-                   }
-    );
+    std::cout << "\nВведіть паспортні дані (номер) - ";
+    cin_line(passport_number);
 
     std::cout << "\nВведіть ВНЗ, який закінчував - ";
     cin_line(education);
@@ -130,7 +126,7 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
     cin_line(specialty);
 }
 
-void readerEmployee(std::string &fullname, int &age, int &passport_number,
+void readerEmployee(std::string &fullname, int &age, std::string &passport_number,
                     std::string &education, std::string &entry_date, std::string &specialty, std::string &department,
                     std::string &position, int &salary, std::string &last_appointment, int &department_int) {
     readerPerson(fullname, age, passport_number, education, entry_date, specialty);
@@ -183,7 +179,7 @@ void addManager(std::vector<Manager> &managers, Marketing &marketing, Legal &leg
 
     std::string fullname;
     int age;
-    int passport_number;
+    std::string passport_number;
     std::string education;
     std::string entry_date;
     std::string specialty;
@@ -238,7 +234,7 @@ void addOfficeWorker(std::vector<OfficeWorker> &office_workers, Marketing &marke
 
     std::string fullname;
     int age;
-    int passport_number;
+    std::string passport_number;
     std::string education;
     std::string entry_date;
     std::string specialty;
@@ -293,7 +289,7 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
 
     std::string fullname;
     int age;
-    int passport_number;
+    std::string passport_number;
     std::string education;
     std::string entry_date;
     std::string specialty;

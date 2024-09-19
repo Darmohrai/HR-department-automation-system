@@ -1,6 +1,6 @@
 #include "Person.h"
 
-Person::Person(std::string &fullname, int age, int passport_number,
+Person::Person(std::string &fullname, int age, std::string &passport_number,
                std::string &education, std::string &entry_date, std::string &specialty) {
     this->fullname = fullname;
     this->age = age;
@@ -15,7 +15,7 @@ Person::Person(Person &&pers) noexcept: fullname{pers.fullname}, age{pers.age}, 
                                         specialty{pers.specialty} {
     pers.fullname = "";
     pers.age = 0;
-    pers.passport_number = 0;
+    pers.passport_number = "";
     pers.education = "";
     pers.entry_date = "";
     pers.specialty = "";
@@ -82,7 +82,7 @@ void Person::readInfo(std::ifstream &fin) {
     fin_line(fin, reader);
     fin_line(fin, fullname);
     fin_int(fin, age, reader);
-    fin_int(fin, passport_number, reader);
+    fin_line(fin, passport_number);
     fin_line(fin, education);
     fin_line(fin, entry_date);
     fin_line(fin, specialty);

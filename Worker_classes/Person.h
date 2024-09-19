@@ -13,17 +13,17 @@ class Person : public Interface {
 private:
     std::string fullname;
     int age;
-    int passport_number;
+    std::string passport_number;
     std::string education;
     std::string entry_date;
     std::string specialty;
     static std::mutex log_mtx;
     static std::queue<std::pair<std::string, std::string>> queue_log;
 public:
-    Person() : Interface(), fullname{"None"}, age{0}, passport_number{0},
+    Person() : Interface(), fullname{"None"}, age{0}, passport_number{"None"},
                education{"None"}, entry_date{"None"}, specialty{"None"} {};
 
-    Person(std::string &fullname, int age, int passport_number,
+    Person(std::string &fullname, int age, std::string &passport_number,
            std::string &education, std::string &entry_date, std::string &specialty);
 
     Person(Person &pers);
@@ -41,7 +41,7 @@ public:
 
     [[nodiscard]] int getAge() const { return age; }
 
-    [[nodiscard]] int getPassportNumber() const { return passport_number; }
+    [[nodiscard]] std::string getPassportNumber() const { return passport_number; }
 
     [[nodiscard]] std::string getEducation() const { return education; }
 

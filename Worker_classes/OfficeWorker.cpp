@@ -4,7 +4,7 @@ OfficeWorker::OfficeWorker() : Employee(), experience{0}, project_numbers{0} {
     Logger::add_log("base constructor", "OfficeWorker");
 }
 
-OfficeWorker::OfficeWorker(std::string &fullname, int age, int passport_number,
+OfficeWorker::OfficeWorker(std::string &fullname, int age, std::string &passport_number,
                            std::string &education, std::string &entry_date, std::string &specialty,
                            std::string &department,
                            std::string &position, int salary, std::string &last_appointment, int id, int experience,

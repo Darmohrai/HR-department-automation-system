@@ -4,7 +4,7 @@ Trainee::Trainee() : Person(), probation{0}, performance{"bad"}, mentor{"None"} 
     Logger::add_log("base constructor", "Trainee");
 }
 
-Trainee::Trainee(std::string &fullname, int age, int passport_number,
+Trainee::Trainee(std::string &fullname, int age, std::string &passport_number,
                  std::string &education, std::string &entry_date, std::string &specialty,
                  int probation, std::string &performance, std::string &mentor) :
         Person(fullname, age, passport_number, education, entry_date, specialty) {

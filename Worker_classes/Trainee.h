@@ -11,11 +11,11 @@ private:
 public:
     Trainee();
 
-    Trainee(std::string &fullname, int age, int passport_number,
+    Trainee(std::string &fullname, int age, std::string &passport_number,
             std::string &education, std::string &entry_date, std::string &specialty,
             int probation, std::string &performance, std::string &mentor);
 
-    Trainee(Trainee &&trainee) noexcept; // need check
+    Trainee(Trainee &&trainee) noexcept;
 
     Trainee(Trainee &trainee);
 
