@@ -17,9 +17,9 @@ public:
 
 
     // methods set
-    void setAdSuccessRate(int ad_success_rate_in) { ad_success_rate = ad_success_rate_in; }
-
     void setAllInfo(int income, int premium, int ad_success_rate);
+
+    void setAdSuccessRate(int ad_success_rate_in) { ad_success_rate = ad_success_rate_in; }
 
 
     // methods get

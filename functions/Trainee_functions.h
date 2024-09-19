@@ -121,8 +121,21 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
         salary = std::stoi(reader);
     });
 
-    std::cout << "\nВведіть дату останнього призначення - ";
-    cin_line(last_appointment);
+    checkCinAnswer([&last_appointment](std::string &reader) {
+        std::cout << "\nВведіть дату останнього призначення - ";
+        cin_line(reader);
+        last_appointment = reader;
+        std::stringstream ss_reader(reader);
+        int data;
+        int date_arr[3];
+        for (int i = 0; i < 3; i++) {
+            if (ss_reader.eof()) throw std::invalid_argument("");
+            std::getline(ss_reader, reader, '/');
+            data = std::stoi(reader);
+            date_arr[i] = data;
+        }
+        validateDate(date_arr[0], date_arr[1], date_arr[2]);
+    });
 
 
     int experience;

@@ -28,12 +28,12 @@ public:
 
     bool getPerformance() { if (performance == "well") return true; else return false; }
 
-    [[nodiscard]] int getSalary() override { return 0; }
+    [[nodiscard]] int getSalary() final { return 0; }
+
+    bool checkStatus() final;
 
 
     // methods set
-    bool checkStatus() final;
-
     void setPerformance(std::string &performance_set) { this->performance = performance_set; }
 
     // methods save

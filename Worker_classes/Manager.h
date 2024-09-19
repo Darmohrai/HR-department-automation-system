@@ -29,7 +29,7 @@ public:
 
     void getBriefInfo() final;
 
-    [[nodiscard]] int getPremium() { return this->premium; }
+    [[nodiscard]] int getPremium() const { return this->premium; }
 
 
     // methods set

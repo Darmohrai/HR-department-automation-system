@@ -28,6 +28,10 @@ void
 addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers, Marketing &marketing, Legal &legal,
                      Executive &executive, int &id);
 
+bool isLeapYear(int year);
+
+void validateDate(int day, int month, int year);
+
 
 // definition
 void gap() {
@@ -112,11 +116,14 @@ void readerPerson(std::string &fullname, int &age, int &passport_number,
         entry_date = reader;
         std::stringstream ss_reader(reader);
         int data;
+        int date_arr[3];
         for (int i = 0; i < 3; i++) {
             if (ss_reader.eof()) throw std::invalid_argument("");
             std::getline(ss_reader, reader, '/');
             data = std::stoi(reader);
+            date_arr[i] = data;
         }
+        validateDate(date_arr[0], date_arr[1], date_arr[2]);
     });
 
     std::cout << "\nВведіть спеціальність - ";
@@ -158,11 +165,14 @@ void readerEmployee(std::string &fullname, int &age, int &passport_number,
         last_appointment = reader;
         std::stringstream ss_reader(reader);
         int data;
+        int date_arr[3];
         for (int i = 0; i < 3; i++) {
             if (ss_reader.eof()) throw std::invalid_argument("");
             std::getline(ss_reader, reader, '/');
             data = std::stoi(reader);
+            date_arr[i] = data;
         }
+        validateDate(date_arr[0], date_arr[1], date_arr[2]);
     });
 }
 
@@ -329,5 +339,26 @@ addAuxiliaryPosition(std::vector<AuxiliaryPosition> &auxiliary_position_workers,
     }
 }
 
+bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+void validateDate(int day, int month, int year) {
+    if (month < 1 || month > 12 || day < 1) {
+        throw std::invalid_argument("");
+    }
+
+    int maxDays = 31;
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        maxDays = 30;
+    } else if (month == 2) {
+        maxDays = isLeapYear(year) ? 29 : 28;
+    }
+
+    if (day > maxDays)
+    {
+        throw std::invalid_argument("");
+    }
+}
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_ADDEMPLOYEE_FUNCTIONS_H
