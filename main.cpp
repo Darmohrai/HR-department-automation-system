@@ -14,6 +14,7 @@ void checkCinAnswer(Function &&func);
 
 #include "Logger.h"
 std::queue<std::pair<std::string, std::string>> Logger::queue_log;
+std::queue<std::string> Logger::time_log;
 bool Logger::do_log;
 std::mutex Logger::log_mtx;
 
