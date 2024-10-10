@@ -51,9 +51,6 @@ void seeEmployeeInfo(std::vector<Manager> &managers, std::vector<OfficeWorker> &
 
 
     pause();
-    //std::cin.get();
-    //std::cin.clear();
-    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 template<typename T>

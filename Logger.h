@@ -22,7 +22,7 @@ public:
         std::string log_file = R"(..\\log_file\\1_log_file.txt)";
         std::ofstream fout(log_file, std::ios::app);
         while (do_log or !queue_log.empty()) {
-            if (!queue_log.empty()) {
+            if (!queue_log.empty() and !time_log.empty()) {
                 fout << "Time: " << time_log.front() << "; Use " << queue_log.front().first << "| in class - " << queue_log.front().second
                      << std::endl << "-------------------------------------------------------" << std::endl;
                 time_log.pop();

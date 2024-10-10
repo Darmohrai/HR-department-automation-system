@@ -33,6 +33,8 @@ void fireEmployee(std::vector<T> &vec, Marketing &marketing, Legal &legal, Execu
 
 void fireTrainee(std::vector<Trainee> &trainees);
 
+std::string setDate();
+
 
 // definition
 void ChangeEmployeeFields(int choose_change, std::string &str_change, int &int_change) {
@@ -99,15 +101,13 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
             ChangeEmployeeFields(choose_change, change_str, change_int);
             managers[choose_manager - 1].setDepartment(change_str);
             managers[choose_manager - 1].setSupervisoryDepartment(marketing, legal, executive);
-            std::cout << "\nВведіть сьогоднішню дату - \n";
-            cin_line(change_str);
+            change_str = setDate();
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 2:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             managers[choose_manager - 1].setPosition(change_str);
-            std::cout << "\nВведіть сьогоднішню дату - \n";
-            cin_line(change_str);
+            change_str = setDate();
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 3:
@@ -233,6 +233,7 @@ void changeAuxiliaryPositionInfo(std::vector<AuxiliaryPosition> &auxiliary_posit
 
     int choose_change;
     checkCinAnswer([&choose_change](std::string &choose) {
+        gap();
         std::cout << "\n\nОберіть які дані хочете змінити\n"
                      "1). Підрозділ\n"
                      "2). Посада\n"
@@ -310,8 +311,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
                 executive.deleteWorker(vec[choose_worker - 1].getFullname());
 
             vec[choose_worker - 1].setDepartment(change_str);
-            std::cout << "\nВведіть сьогоднішню дату - \n";
-            std::getline(std::cin, change_str);
+            change_str = setDate();
             vec[choose_worker - 1].setLastAppointment(change_str);
 
             if (vec[choose_worker - 1].getDepartment() == "Marketing")
@@ -325,8 +325,7 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
         case 2:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             vec[choose_worker - 1].setPosition(change_str);
-            std::cout << "\nВведіть сьогоднішню дату - \n";
-            cin_line(change_str);
+            change_str = setDate();
             vec[choose_worker - 1].setLastAppointment(change_str);
 
             break;
@@ -424,5 +423,24 @@ void fireTrainee(std::vector<Trainee> &trainees) {
     });
 }
 
+std::string setDate() { // use code from addEmployee_functions
+    std::string last_appointment;
+    checkCinAnswer([&last_appointment](std::string &reader) {
+        std::cout << "\nВведіть сьогоднішню дату (приклад: 24/08/1991) - ";
+        cin_line(reader);
+        last_appointment = reader;
+        std::stringstream ss_reader(reader);
+        int data;
+        int date_arr[3];
+        for (int i = 0; i < 3; i++) {
+            if (ss_reader.eof()) throw std::invalid_argument("");
+            std::getline(ss_reader, reader, '/');
+            data = std::stoi(reader);
+            date_arr[i] = data;
+        }
+        validateDate(date_arr[0], date_arr[1], date_arr[2]);
+    });
+    return last_appointment;
+}
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_CHANGEEMPLOYEE_FUNCTIONS_H
