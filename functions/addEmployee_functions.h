@@ -32,6 +32,8 @@ bool isLeapYear(int year);
 
 void validateDate(int day, int month, int year);
 
+void checkDateLogical(std::string entry_date, std::string last_appointment);
+
 
 // definition
 void gap() {
@@ -155,7 +157,7 @@ void readerEmployee(std::string &fullname, int &age, std::string &passport_numbe
                    }
     );
 
-    checkCinAnswer([&last_appointment](std::string &reader) {
+    checkCinAnswer([&last_appointment, &entry_date](std::string &reader) {
         std::cout << "\nВведіть дату останнього призначення (приклад: 24/08/1991) - ";
         cin_line(reader);
         last_appointment = reader;
@@ -169,6 +171,7 @@ void readerEmployee(std::string &fullname, int &age, std::string &passport_numbe
             date_arr[i] = data;
         }
         validateDate(date_arr[0], date_arr[1], date_arr[2]);
+        checkDateLogical(entry_date, last_appointment);
     });
 }
 
@@ -351,8 +354,55 @@ void validateDate(int day, int month, int year) {
         maxDays = isLeapYear(year) ? 29 : 28;
     }
 
-    if (day > maxDays)
-    {
+    if (day > maxDays) {
+        throw std::invalid_argument("");
+    }
+}
+
+void checkDateLogical(std::string entry_date, std::string last_appointment) {
+    int int_entry_date;
+    int int_entry_date_arr[3];
+    std::stringstream ss_entry_date(entry_date);
+    for (int i = 0; i < 3; i++) {
+        if (ss_entry_date.eof()) throw std::invalid_argument("");
+        std::getline(ss_entry_date, entry_date, '/');
+        int_entry_date = std::stoi(entry_date);
+        int_entry_date_arr[i] = int_entry_date;
+    }
+
+    int int_last_appointment;
+    int int_last_appointment_arr[3];
+    std::stringstream ss_last_appointment(last_appointment);
+    for (int i = 0; i < 3; i++) {
+        if (ss_last_appointment.eof()) throw std::invalid_argument("");
+        std::getline(ss_last_appointment, last_appointment, '/');
+        int_last_appointment = std::stoi(last_appointment);
+        int_last_appointment_arr[i] = int_last_appointment;
+    }
+
+    if (int_entry_date_arr[2] == int_last_appointment_arr[2]) {
+        if (int_entry_date_arr[1] == int_last_appointment_arr[1]) {
+            if (int_entry_date_arr[0] == int_last_appointment_arr[0] ||
+                int_entry_date_arr[0] < int_last_appointment_arr[0])
+                return;
+            else {
+                make_cout_red();
+                std::cout << "Дата останнього призначення менша за дату взяття на роботу";
+                make_cout_normal();
+                throw std::invalid_argument("");
+            }
+        } else if (int_entry_date_arr[1] < int_last_appointment_arr[1]) return;
+        else {
+            make_cout_red();
+            std::cout << "Дата останнього призначення менша за дату взяття на роботу";
+            make_cout_normal();
+            throw std::invalid_argument("");
+        }
+    } else if (int_entry_date_arr[2] < int_last_appointment_arr[2]) return;
+    else {
+        make_cout_red();
+        std::cout << "Дата останнього призначення менша за дату взяття на роботу";
+        make_cout_normal();
         throw std::invalid_argument("");
     }
 }

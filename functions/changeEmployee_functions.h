@@ -101,13 +101,19 @@ void changeManagerInfo(std::vector<Manager> &managers, Marketing &marketing, Leg
             ChangeEmployeeFields(choose_change, change_str, change_int);
             managers[choose_manager - 1].setDepartment(change_str);
             managers[choose_manager - 1].setSupervisoryDepartment(marketing, legal, executive);
-            change_str = setDate();
+            checkCinAnswer([&](std::string useless_str) {
+                change_str = setDate();
+                checkDateLogical(managers[choose_manager - 1].getEntryDate(), change_str);
+            });
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 2:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             managers[choose_manager - 1].setPosition(change_str);
-            change_str = setDate();
+            checkCinAnswer([&](std::string useless_str) {
+                change_str = setDate();
+                checkDateLogical(managers[choose_manager - 1].getEntryDate(), change_str);
+            });
             managers[choose_manager - 1].setLastAppointment(change_str);
             break;
         case 3:
@@ -311,7 +317,10 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
                 executive.deleteWorker(vec[choose_worker - 1].getFullname());
 
             vec[choose_worker - 1].setDepartment(change_str);
-            change_str = setDate();
+            checkCinAnswer([&](std::string useless_str){
+                change_str = setDate();
+                checkDateLogical(vec[choose_worker - 1].getEntryDate(),change_str);
+            });
             vec[choose_worker - 1].setLastAppointment(change_str);
 
             if (vec[choose_worker - 1].getDepartment() == "Marketing")
@@ -325,9 +334,11 @@ void cases_Office_Auxiliary(std::vector<T> &vec, int &choose_worker, int &choose
         case 2:
             ChangeEmployeeFields(choose_change, change_str, change_int);
             vec[choose_worker - 1].setPosition(change_str);
-            change_str = setDate();
-            vec[choose_worker - 1].setLastAppointment(change_str);
-
+            checkCinAnswer([&](std::string useless_str) {
+                change_str = setDate();
+                checkDateLogical(vec[choose_worker - 1].getEntryDate(), change_str);
+                vec[choose_worker - 1].setLastAppointment(change_str);
+            });
             break;
         case 3:
             ChangeEmployeeFields(choose_change, change_str, change_int);

@@ -47,6 +47,8 @@ public:
 
     [[nodiscard]] std::string getSpecialty() const { return specialty; }
 
+    [[nodiscard]] std::string getEntryDate() const { return entry_date; }
+
 
     // methods set
     [[nodiscard]] bool checkStatus() override;

@@ -121,8 +121,8 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
         salary = std::stoi(reader);
     });
 
-    checkCinAnswer([&last_appointment](std::string &reader) {
-        std::cout << "\nВведіть дату останнього призначення - ";
+    checkCinAnswer([&last_appointment, &trainee](std::string &reader) {
+        std::cout << "\nВведіть дату останнього призначення (приклад: 24/08/1991) - ";
         cin_line(reader);
         last_appointment = reader;
         std::stringstream ss_reader(reader);
@@ -135,6 +135,7 @@ void employ(Trainee &trainee, std::vector<OfficeWorker> &office_workers, Marketi
             date_arr[i] = data;
         }
         validateDate(date_arr[0], date_arr[1], date_arr[2]); // include from addEmployee_functions
+        checkDateLogical(trainee.getEntryDate(), last_appointment);
     });
 
 

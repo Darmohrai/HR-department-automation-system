@@ -35,6 +35,8 @@ public:
 
     [[nodiscard]] int getID() const { return id; }
 
+    [[nodiscard]] std::string getLastAppointment() const { return last_appointment; }
+
 
     // methods set
     void setDepartment(std::string &department_set) { this->department = department_set; }
