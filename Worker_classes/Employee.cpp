@@ -52,14 +52,14 @@ bool Employee::checkStatus() {
         std::string retire_age;
         if(getAge() > 65) retire_age = " пенсійного віку, ";
         else retire_age = " передпенсійного віку, ";
-        std::cout << "\n" << getFullname() << retire_age << " рекомендовано звільнити"
-                  << "\nВведіть '1', щоб побачити повну інформацію про робітника"
-                     "\nВведіть '2', щоб побачити коротку інформацію про робітника"
-                     "\nВведіть '3', щоб підготувати наказ про звільнення"
-                     "\nВведіть '0', щоб пропустити\n";
         bool exit = false;
         while (!exit) {
             exit = true;
+            std::cout << "\n" << getFullname() << retire_age << " рекомендовано звільнити"
+                      << "\nВведіть '1', щоб побачити повну інформацію про робітника"
+                         "\nВведіть '2', щоб побачити коротку інформацію про робітника"
+                         "\nВведіть '3', щоб підготувати наказ про звільнення"
+                         "\nВведіть '0', щоб пропустити\n";
             try {
                 std::string choose;
                 cin_line(choose);
@@ -69,14 +69,18 @@ bool Employee::checkStatus() {
                     answer = std::stoi(choose);
                     switch (answer) {
                         case 1:
+                            make_cout_yellow();
                             getAllInfo();
+                            make_cout_normal();
                             std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
                             pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
                                          "\nВведіть '0', щоб пропустити\n";
                             break;
                         case 2:
+                            make_cout_yellow();
                             getBriefInfo();
+                            make_cout_normal();
                             std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
                             pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про звільнення"
@@ -94,15 +98,21 @@ bool Employee::checkStatus() {
                 }
             }
             catch (std::out_of_range &e){
-                std::cout << "\\033[31m" << e.what() << "\\033[0m"; // make cout red
+                make_cout_red();
+                std::cout << e.what();
+                make_cout_normal();
                 exit = false;
             }
             catch (std::invalid_argument &e) {
-                std::cout << "\n\\033[31m Ви ввели некоректні дані, спробуйте ще раз\\033[0m\n"; // make cout red
+                make_cout_red();
+                std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
+                make_cout_normal();
                 exit = false;
             }
             catch (...) {
-                std::cout << "\n\\033[31m Невідома помилка, спробуйте ще раз\\033[0m\n"; // make cout red
+                make_cout_red();
+                std::cout << "\nНевідома помилка, спробуйте ще раз\n";
+                make_cout_normal();
                 exit = false;
             }
         }

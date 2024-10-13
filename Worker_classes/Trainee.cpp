@@ -64,14 +64,18 @@ bool Trainee::checkStatus() {
                     answer = std::stoi(choose);
                     switch (answer) {
                         case 1:
+                            make_cout_yellow();
                             getAllInfo();
+                            make_cout_normal();
                             std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
                             pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
                                          "\nВведіть '0', щоб пропустити\n";
                             break;
                         case 2:
+                            make_cout_yellow();
                             getBriefInfo();
+                            make_cout_normal();
                             std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити\n";
                             pause_class();
                             std::cout << "\nВведіть '3', щоб підготувати наказ про взяття на роботу"
@@ -88,9 +92,22 @@ bool Trainee::checkStatus() {
                     cin_line(choose);
                 }
             }
+            catch (std::out_of_range &e){
+                make_cout_red();
+                std::cout << e.what();
+                make_cout_normal();
+                exit = false;
+            }
+            catch (std::invalid_argument &e) {
+                make_cout_red();
+                std::cout << "\nВи ввели некоректні дані, спробуйте ще раз\n";
+                make_cout_normal();
+                exit = false;
+            }
             catch (...) {
-                std::cout << "\n--------------------------------------------------------------\n";
-                std::cout << "\nПомилка вводу, спробуйте ще раз\n";
+                make_cout_red();
+                std::cout << "\nНевідома помилка, спробуйте ще раз\n";
+                make_cout_normal();
                 exit = false;
             }
         }

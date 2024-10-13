@@ -216,8 +216,7 @@ void seeTraineeInfo(std::vector<Trainee> &trainees) {
 
     });
 
-    std::cout << "\n\nНатисніть будь-яку кнопку, щоб продовжити" << std::endl;
-    system("pause");
+    pause();
 }
 
 #endif //HR_DEPARTMENT_AUTOMATION_SYSTEM_TRAINEE_FUNCTIONS_H
