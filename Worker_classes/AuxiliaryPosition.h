@@ -7,7 +7,6 @@ class AuxiliaryPosition final : public Employee {
 private:
     int experience;
     int phone_number;
-    static std::mutex log_auxiliaryPosition;
 public:
     AuxiliaryPosition();
 

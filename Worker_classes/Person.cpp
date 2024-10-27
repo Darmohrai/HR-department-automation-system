@@ -87,6 +87,3 @@ void Person::readInfo(std::ifstream &fin) {
     fin_line(fin, entry_date);
     fin_line(fin, specialty);
 }
-
-std::mutex Person::log_mtx;
-std::queue<std::pair<std::string, std::string>> Person::queue_log;

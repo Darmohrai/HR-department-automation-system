@@ -74,7 +74,7 @@ void changeMarketing(Marketing &marketing) {
             }
             case 3: {
                 std::string ad_success_rate;
-                std::cout << "\n\nВведіть відсоток успішності реклами - ";
+                std::cout << "\n\nВведіть відсоток успішності реклами (%11 ) - ";
                 cin_line(ad_success_rate);
                 int ad_success_rate_int = std::stoi(ad_success_rate);
                 marketing.setAdSuccessRate(ad_success_rate_int);

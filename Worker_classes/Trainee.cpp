@@ -128,5 +128,3 @@ void Trainee::readInfo(std::ifstream &fin) {
     fin_line(fin, performance);
     fin_line(fin, mentor);
 }
-
-//std::queue<std::pair<std::string, std::string>> Logger::queue_log;

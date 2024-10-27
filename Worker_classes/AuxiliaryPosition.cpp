@@ -60,5 +60,3 @@ void AuxiliaryPosition::readInfo(std::ifstream &fin) {
     fin_int(fin, experience, read);
     fin_int(fin, phone_number, read);
 }
-
-std::mutex AuxiliaryPosition::log_auxiliaryPosition;
