@@ -74,7 +74,7 @@ void changeMarketing(Marketing &marketing) {
             }
             case 3: {
                 std::string ad_success_rate;
-                std::cout << "\n\nВведіть відсоток успішності реклами (%11 ) - ";
+                std::cout << "\n\nВведіть відсоток успішності реклами - ";
                 cin_line(ad_success_rate);
                 int ad_success_rate_int = std::stoi(ad_success_rate);
                 marketing.setAdSuccessRate(ad_success_rate_int);
@@ -289,12 +289,18 @@ void chooseInfoForWatching(T &obj, std::vector<Manager> &managers) {
             case 2:
                 checkCinAnswer([&](std::string &choose) {
                     make_cout_normal();
+                    std::vector<Employee> workers = obj.getWorkers();
+                    if(workers.size() == 0) {
+                        make_cout_yellow();
+                        std::cout << "\n\nПрацівників поки що немає\n\n";
+                        make_cout_normal();
+                        return;
+                    }
                     gap();
-                    std::cout << "Оберіть за чим сортувати керівників"
+                    std::cout << "Оберіть за чим сортувати працівників"
                                  "\n1). Прізвище"
                                  "\n2). Оклад"
                                  "\n3). ID\n";
-                    std::vector<Employee> workers = obj.getWorkers();
                     chooseWorkerSort<Employee>(workers, choose);
                 });
                 break;
